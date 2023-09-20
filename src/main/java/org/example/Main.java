@@ -16,14 +16,14 @@ public class Main extends Application {
     }
     @Override
     public void start(Stage primaryStage) throws Exception {
-        primaryStage.initStyle(StageStyle.UTILITY);
+//        primaryStage.initStyle(StageStyle.UTILITY);
         primaryStage.setResizable(false);
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/login.fxml"));
         Parent root = fxmlLoader.load();
 
         LoginController loginController = fxmlLoader.getController();
         loginController.setPrimaryStage(primaryStage);
-
+        System.out.println("primary stage"+primaryStage);
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);
         primaryStage.setTitle("SSTP Demo");

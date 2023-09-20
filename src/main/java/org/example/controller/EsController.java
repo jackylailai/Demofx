@@ -3,6 +3,7 @@ package org.example.controller;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -14,19 +15,24 @@ import javafx.scene.control.TextArea;
 import javafx.stage.Stage;
 import org.example.http.HttpClientGet;
 import org.example.http.HttpClientGetData;
+import org.example.vo.Course;
+import org.example.vo.User;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.util.ArrayList;
+import java.util.List;
 
 public class EsController {
     @FXML
     private TextArea textArea;
+
     public void initializeUserData(JsonNode jsonNode) {
         String name = jsonNode.get("name").asText();
         String info = "學員 :   "+name;
+//        User user = new User();
         textArea.setText(info);
     }
 
@@ -35,20 +41,24 @@ public class EsController {
         HttpURLConnection connection = HttpClientGet.sendGetRequest(serverUrl);
         if (isHttpResponseSuccessful(connection)) {
             showSuccessAlert("登出成功");
-            Stage currentStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            Platform.runLater(() -> {
 
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/login.fxml"));
-            Parent loginRoot = null;
-            try {
-                loginRoot = loader.load();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+                Stage currentStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
 
-            Scene loginScene = new Scene(loginRoot);
-
-            currentStage.setScene(loginScene);
-            currentStage.setTitle("Login");
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/login.fxml"));
+                Parent loginRoot = null;
+                try {
+                    loginRoot = loader.load();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                LoginController loginController = loader.getController();
+                loginController.setPrimaryStage(currentStage);
+                Scene loginScene = new Scene(loginRoot);
+                System.out.println("es stage"+currentStage);
+                currentStage.setScene(loginScene);
+                currentStage.setTitle("Login");
+            });
         } else {
 
         }
@@ -71,31 +81,31 @@ public class EsController {
         alert.showAndWait();
     }
 //控制training的按鈕
-    public void handleCourseTrainingClick(ActionEvent actionEvent) {
-
-        String jsonResponse = HttpClientGetData.sendGetRequest("http://localhost:8080/course");
-        ObjectMapper objectMapper = new ObjectMapper();
-        try {
-            JsonNode jsonNode = objectMapper.readTree(jsonResponse);
-            String courseName = jsonNode.get("courseName").asText();
-            System.out.println("courseName"+courseName);
-            FXMLLoader courseloader = new FXMLLoader(getClass().getResource("/courseitem.fxml"));
-            Parent courseroot = courseloader.load();
-
-            CourseItemController courseItemController = courseloader.getController();
-            courseItemController.setCourseData(jsonNode);
-
-            Scene courseItemScene = new Scene(courseroot);
-            Stage currentStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-            currentStage.setScene(courseItemScene);
-            currentStage.setTitle("Course Item");
-        } catch (JsonProcessingException e) {
-            showFailureAlert("操作失敗，請重試。");
-            e.printStackTrace();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
+//    public void handleCourseTrainingClick(ActionEvent actionEvent) {
+//
+//        String jsonResponse = HttpClientGetData.sendGetRequest("http://localhost:8080/course");
+//        ObjectMapper objectMapper = new ObjectMapper();
+//        try {
+//            JsonNode jsonNode = objectMapper.readTree(jsonResponse);
+//            String courseName = jsonNode.get("courseName").asText();
+//            System.out.println("courseName"+courseName);
+//            FXMLLoader courseloader = new FXMLLoader(getClass().getResource("/courseitem.fxml"));
+//            Parent courseroot = courseloader.load();
+//
+//            CourseItemController courseItemController = courseloader.getController();
+//            courseItemController.setCourseData(jsonNode);
+//
+//            Scene courseItemScene = new Scene(courseroot);
+//            Stage currentStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+//            currentStage.setScene(courseItemScene);
+//            currentStage.setTitle("Course Item");
+//        } catch (JsonProcessingException e) {
+//            showFailureAlert("操作失敗，請重試。");
+//            e.printStackTrace();
+//        } catch (IOException e) {
+//            throw new RuntimeException(e);
+//        }
+//    }
 
     private void showFailureAlert(String message) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -116,55 +126,71 @@ public class EsController {
 
 
 
-//    public void handleCourseTrainingClick(ActionEvent actionEvent) {
-//        try {
-//
-//            HttpURLConnection connection = HttpClientGet.sendGetRequest("http://course");
-//
-//            if (isHttpResponseSuccessful(connection)) {
-//
-//                List<Course> courses = parseApiResponse(connection);
-//
-//                FXMLLoader courseloader = new FXMLLoader(getClass().getResource("/courseitem.fxml"));
-//                Parent courseroot = courseloader.load();
-//
-//
-//                CourseItemController courseItemController = courseloader.getController();
-//                courseItemController.setCourses(courses);
-//
-//
-//
-//                Scene courseItemScene = new Scene(courseroot);
-//                Stage currentStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-//                currentStage.setScene(courseItemScene);
-//                currentStage.setTitle("Course Item");
-//            } else {
-//
-//            }
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//    }
-//
-//    private List<Course> parseApiResponse(HttpURLConnection connection) throws IOException {
-//        List<Course> courses = new ArrayList<>();
-//
-//        try (InputStream inputStream = connection.getInputStream()) {
-//            ObjectMapper objectMapper = new ObjectMapper();
-//            JsonNode root = objectMapper.readTree(inputStream);
-//
-//            if (root.isArray()) {
-//                for (JsonNode courseNode : root) {
-//                    Long id = courseNode.get("id").asLong();
-//                    String name = courseNode.get("name").asText();
-//                    String description = courseNode.get("description").asText();
-//
-//                    Course course = new Course(id, name, description);
-//                    courses.add(course);
-//                }
-//            }
-//        }
-//
-//        return courses;
-//    }
+    public void handleCourseTrainingClick(ActionEvent actionEvent) {
+        try {
+
+            String jsonResponse = HttpClientGetData.sendGetRequest("http://localhost:8080/course");
+            ObjectMapper objectMapper = new ObjectMapper();
+            if (jsonResponse!=null) {
+
+                List<Course> courses = parseCoursesJson(jsonResponse);
+
+                FXMLLoader courseloader = new FXMLLoader(getClass().getResource("/courseitem.fxml"));
+                Parent courseroot = courseloader.load();
+
+
+                CourseItemController courseItemController = courseloader.getController();
+                courseItemController.setCourses(courses);
+
+
+
+                Scene courseItemScene = new Scene(courseroot);
+                Stage currentStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+                currentStage.setScene(courseItemScene);
+                currentStage.setTitle("Course Item");
+            } else {
+
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public List<Course> parseCoursesJson(String jsonResponse) {
+        List<Course> courses = new ArrayList<>();
+        ObjectMapper objectMapper = new ObjectMapper();
+        List<String> courseNameList = new ArrayList<>();
+        try {
+            JsonNode jsonNode = objectMapper.readTree(jsonResponse);
+
+            if (jsonNode.isArray()) {
+                for (JsonNode courseJson : jsonNode) {
+                    Course course = new Course();
+//                    course.setId(courseJson.get("id").asLong());
+                    course.setCourseId(courseJson.get("courseId").asLong());
+                    course.setCourseType(courseJson.get("courseType").asInt());
+                    course.setCourseName(courseJson.get("courseName").asText());
+                    course.setCourseSchedule(courseJson.get("courseSchedule").asText());
+                    course.setCourseDesc(courseJson.get("courseDesc").asText());
+                    course.setCreditUnits(courseJson.get("creditUnits").asInt());
+//                    course.setState(courseJson.get("state").asInt());
+//                    course.setLongDate(courseJson.get("longDate").asLong());
+//                    course.setCreateDate(courseJson.get("createDate").asText());
+//                    course.setUpdateDate(courseJson.get("updateDate").asText());
+                    courses.add(course);
+                    System.out.println("course"+courses);
+                }
+                System.out.println("courselist"+courses);
+                for (Course course : courses) {
+                    String courseName = course.getCourseName();
+                    System.out.println("Course Name: " + courseName);
+                    courseNameList.add(courseName);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return courses;
+    }
 }

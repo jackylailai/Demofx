@@ -37,7 +37,7 @@ public class HttpClientPostLogin {
             }
         } catch (IOException e) {
             e.printStackTrace();
-            return "error";
+            return "帳號或密碼錯誤";
         }
     }
 }

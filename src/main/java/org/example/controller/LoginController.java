@@ -50,12 +50,12 @@ public class LoginController {
                 int level = jsonNode.get("level").asInt();
                 if (level == 1) {
                     System.out.println("1你是學生!");
-                    FXMLLoader esLoader = new FXMLLoader(getClass().getResource("/es.fxml"));
+                    FXMLLoader esLoader = new FXMLLoader(getClass().getResource("/ts.fxml"));
                     Parent esRoot = esLoader.load();
                     Scene esScene = new Scene(esRoot);
                     EsController esController = esLoader.getController();
                     esController.initializeUserData(jsonNode);
-
+                    System.out.println("這裡是登入確認是學生的訊息 primary stage"+primaryStage);
                     primaryStage.setScene(esScene);
                     primaryStage.setTitle("ES");
                 } else if (level == 2) {

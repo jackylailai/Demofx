@@ -36,10 +36,10 @@ public class HttpClientGetData {
 
             System.out.println("Response Data: " + response.toString());
 
-            ObjectMapper ob = new ObjectMapper();
-            Course[] courses = ob.readValue(response.toString(), Course[].class);//array
-            List<String> sourseNameList = Arrays.stream(courses).map(Course::getCourseName).toList();//
-            System.out.println("aaaaaaaaaaaaaa"+sourseNameList);
+//            ObjectMapper ob = new ObjectMapper();
+//            Course[] courses = ob.readValue(response.toString(), Course[].class);//array
+//            List<String> sourseNameList = Arrays.stream(courses).map(Course::getCourseName).toList();//
+//            System.out.println("aaaaaaaaaaaaaa"+sourseNameList);
 
             connection.disconnect();
             return response.toString();
