@@ -24,7 +24,7 @@ public class LoginController {
 
     @FXML
     private Button loginButton;
-    private Stage primaryStage; // 添加 Stage 成员变量
+    private Stage primaryStage;
 
     public void setPrimaryStage(Stage primaryStage) {
         this.primaryStage = primaryStage; //
@@ -53,8 +53,8 @@ public class LoginController {
                     FXMLLoader esLoader = new FXMLLoader(getClass().getResource("/ts.fxml"));
                     Parent esRoot = esLoader.load();
                     Scene esScene = new Scene(esRoot);
-                    EsController esController = esLoader.getController();
-                    esController.initializeUserData(jsonNode);
+                    TsController tsController = esLoader.getController();
+                    tsController.initializeUserData(jsonNode);
                     System.out.println("這裡是登入確認是學生的訊息 primary stage"+primaryStage);
                     primaryStage.setScene(esScene);
                     primaryStage.setTitle("ES");

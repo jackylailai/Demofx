@@ -17,14 +17,17 @@ public class Unit implements Serializable {
     private String unitSchedule;
     private String unitSubject;
     private int unitOrder;
+
     private String descTitle1;
     private String descContent1;
-
     private String descTitle2;
-
     private String descContent2;
+    private String descTitle3;
+    private String descContent3;
+
     private String videoUrl;
     private String videoFormat;
+
     private String dfcsFilename;
     private int creditUnits;
 
@@ -125,6 +128,21 @@ public class Unit implements Serializable {
 
     public void setDescContent2(String descContent2) {
         this.descContent2 = descContent2;
+    }
+    public String getDescTitle3() {
+        return descTitle3;
+    }
+
+    public void setDescTitle3(String descTitle3) {
+        this.descTitle3 = descTitle3;
+    }
+
+    public String getDescContent3() {
+        return descContent3;
+    }
+
+    public void setDescContent3(String descContent3) {
+        this.descContent3 = descContent3;
     }
 
     public String getVideoUrl() {

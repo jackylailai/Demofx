@@ -1,6 +1,5 @@
 package org.example.controller;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import javafx.application.Platform;
@@ -16,16 +15,13 @@ import javafx.stage.Stage;
 import org.example.http.HttpClientGet;
 import org.example.http.HttpClientGetData;
 import org.example.vo.Course;
-import org.example.vo.User;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.util.ArrayList;
 import java.util.List;
 
-public class EsController {
+public class TsController {
     @FXML
     private TextArea textArea;
 
@@ -130,7 +126,6 @@ public class EsController {
         try {
 
             String jsonResponse = HttpClientGetData.sendGetRequest("http://localhost:8080/course");
-            ObjectMapper objectMapper = new ObjectMapper();
             if (jsonResponse!=null) {
 
                 List<Course> courses = parseCoursesJson(jsonResponse);
