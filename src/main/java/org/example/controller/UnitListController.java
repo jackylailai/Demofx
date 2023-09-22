@@ -13,13 +13,17 @@ import javafx.stage.Stage;
 import org.example.http.HttpClientGetData;
 import org.example.modaldata.CourseButtonData;
 import org.example.modaldata.UnitButtonData;
+import org.example.vo.Course;
 import org.example.vo.Unit;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.example.controller.CourseItemController.coursedata;
+
 public class UnitListController {
+    public static List<Unit> unitsdata;
     @FXML
     private Button button1;
 
@@ -52,6 +56,9 @@ public class UnitListController {
 //            button3.setUserData(units.get(2).getUnitId());
 //            button4.setText(units.get(3).getUnitName());
 //            button4.setUserData(units.get(3).getUnitId());
+
+            unitsdata=units;
+
             UnitButtonData buttonData1 = createUnitData(units.get(0).getUnitId(),units.get(0).getUnitName());
             button1.setText(units.get(0).getUnitName());
             button1.setUserData(buttonData1);
@@ -168,6 +175,11 @@ public class UnitListController {
             Parent root = loader.load();
             Scene scene = new Scene(root);
             Stage currentStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            //我要進COURSEITEM頁面 我需要拿到List<Course> courses
+            //但是這邊只能拿到UNITS LIST
+
+            CourseItemController courseItemController = loader.getController();
+            courseItemController.setCourses(coursedata);
 
             currentStage.setScene(scene);
             currentStage.setTitle("ES");

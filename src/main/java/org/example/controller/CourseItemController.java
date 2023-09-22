@@ -19,33 +19,44 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.example.controller.TsController.jsonNodeForUser;
+
 public class CourseItemController {
 
     @FXML
     private Button button1;
-
+    public static String buttonString1;
+    //對應的button 設定static string
+    //沒有資料才call api
+    //元素交給scene scene有button要動作 有button
+    //static可用來暫時存放記憶體
+    public static List<Course> coursedata;
     @FXML
     private Button button2;
-
+    private static String buttonString2;
     @FXML
     private Button button3;
-
+    private static String buttonString3;
     @FXML
     private Button button4;
-
+    private static String buttonString4;
     @FXML
     private Button button5;
-
+    private static String buttonString5;
     @FXML
     private Button button6;
+    private static String buttonString6;
     @FXML
     public Button button7;
+    private static String buttonString7;
     @FXML
     public Button button8;
+    private static String buttonString8;
 
     public void setCourses(List<Course> courses) {
         if (courses != null && courses.size() >= 2) {
             CourseButtonData buttonData1 = createCourseData(courses.get(0).getCourseId(),courses.get(0).getCourseName());
+            coursedata = courses;
             button1.setText(courses.get(0).getCourseName());
             button1.setUserData(buttonData1);
 
@@ -150,6 +161,9 @@ public class CourseItemController {
             Parent root = loader.load();
             Scene scene = new Scene(root);
             Stage currentStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+
+            TsController tsController = loader.getController();
+            tsController.initializeUserData(jsonNodeForUser);
 
             currentStage.setScene(scene);
             currentStage.setTitle("TS");

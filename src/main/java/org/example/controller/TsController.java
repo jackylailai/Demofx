@@ -24,8 +24,9 @@ import java.util.List;
 public class TsController {
     @FXML
     private TextArea textArea;
-
+    public static JsonNode jsonNodeForUser;
     public void initializeUserData(JsonNode jsonNode) {
+        jsonNodeForUser = jsonNode;
         String name = jsonNode.get("name").asText();
         String info = "學員 :   "+name;
 //        User user = new User();

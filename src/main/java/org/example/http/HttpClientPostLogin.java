@@ -26,7 +26,9 @@ public class HttpClientPostLogin {
 
             int responseCode = connection.getResponseCode();
             System.out.println("Response Code: " + responseCode);
-
+            if(responseCode==401){
+                return "401";
+            }
             try (BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()))) {
                 StringBuilder response = new StringBuilder();
                 String line;
@@ -37,7 +39,7 @@ public class HttpClientPostLogin {
             }
         } catch (IOException e) {
             e.printStackTrace();
-            return "帳號或密碼錯誤";
+            return "500";
         }
     }
 }

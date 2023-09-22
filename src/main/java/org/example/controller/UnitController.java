@@ -14,6 +14,8 @@ import org.example.vo.Unit;
 import java.io.IOException;
 import java.util.List;
 
+import static org.example.controller.UnitListController.unitsdata;
+
 public class UnitController {
     @FXML
     private Button button1;
@@ -60,6 +62,9 @@ public class UnitController {
             Parent root = loader.load();
             Scene scene = new Scene(root);
             Stage currentStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+
+            UnitListController unitListController = loader.getController();
+            unitListController.setUnits(unitsdata);
 
             currentStage.setScene(scene);
             currentStage.setTitle("Unit List");
