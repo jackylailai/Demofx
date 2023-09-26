@@ -1,64 +1,74 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="960.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.TsController">
    <children>
-      <ImageView fitHeight="250.0" fitWidth="262.0" layoutX="68.0" layoutY="199.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@images/1-2箭頭.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="293.0" fitWidth="304.0" layoutX="706.0" layoutY="187.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@images/1-2學員成績點選.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="293.0" fitWidth="304.0" layoutX="706.0" layoutY="456.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@images/1-2課程輔助點選.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="563.0" fitWidth="396.0" layoutX="332.0" layoutY="187.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@images/1-2課程訓練點選.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="27.0" layoutY="875.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@images/army.png" />
-         </image>
-      </ImageView>
-      <Button layoutX="924.0" layoutY="19.0" mnemonicParsing="false" onAction="#handleLogoutButtonAction" text="登出">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Button>
-      <TextArea fx:id="textArea" layoutX="780.0" layoutY="88.0" prefHeight="89.0" prefWidth="200.0" />
-      <Button fx:id="" layoutX="211.0" layoutY="591.0" onAction="#handleCourseTrainingClick" prefHeight="16.0" prefWidth="16.0" />
-      <ImageView fitHeight="293.0" fitWidth="304.0" layoutX="47.0" layoutY="456.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@images/1-2連線課程點選.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="38.0" fitWidth="76.0" layoutX="980.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@images/1-2登出點觸碰.png" />
-         </image>
-      </ImageView>
       <Pane prefHeight="960.0" prefWidth="1080.0">
          <children>
-            <ImageView fitHeight="960.0" fitWidth="1080.0" opacity="0.1" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="960.0" fitWidth="1080.0" layoutY="-6.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@images/通用底圖.png" />
+                  <Image url="@images/1-2背景.png" />
+               </image>
+            </ImageView>
+            <Text fill="#fcf9f9" layoutX="194.0" layoutY="539.0" strokeType="OUTSIDE" strokeWidth="0.0" text="連線課程">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Text>
+            <Text fill="#ffecec" layoutX="566.0" layoutY="294.0" strokeType="OUTSIDE" strokeWidth="0.0" text="課程訓練">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Text>
+            <Text fill="#fcf9f9" layoutX="858.0" layoutY="291.0" strokeType="OUTSIDE" strokeWidth="0.0" text="學員成績">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Text>
+            <ImageView fx:id="courseTraining" fitHeight="563.0" fitWidth="396.0" layoutX="335.0" layoutY="167.0" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;">
+               <image>
+                  <Image url="@images/1-2課程訓練點選.png" />
+               </image>
+            </ImageView>
+      <!--      <Button layoutX="924.0" layoutY="19.0" mnemonicParsing="false" onAction="#handleLogoutButtonAction" text="登出">-->
+      <!--         <font>-->
+      <!--            <Font size="14.0" />-->
+      <!--         </font>-->
+      <!--      </Button>-->
+            <TextArea fx:id="textArea" layoutX="809.0" layoutY="81.0" prefHeight="53.0" prefWidth="129.0" />
+            <ImageView fitHeight="293.0" fitWidth="304.0" layoutX="706.0" layoutY="169.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/1-2學員成績點選.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="293.0" fitWidth="304.0" layoutX="706.0" layoutY="437.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/1-2課程輔助點選.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="250.0" fitWidth="262.0" layoutX="71.0" layoutY="187.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/1-2箭頭.png" />
+               </image>
+            </ImageView>
+      <!--      <Button fx:id="" layoutX="211.0" layoutY="591.0" onAction="#handleCourseTrainingClick" prefHeight="16.0" prefWidth="16.0" />-->
+            <ImageView fitHeight="293.0" fitWidth="304.0" layoutX="50.0" layoutY="437.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/1-2連線課程點選.png" />
                </image>
             </ImageView>
          </children>
       </Pane>
+      <ImageView fx:id="logoutButtonView" fitHeight="38.0" fitWidth="76.0" layoutX="980.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/1-2登出點觸碰.png" />
+         </image>
+      </ImageView>
    </children>
 </Pane>

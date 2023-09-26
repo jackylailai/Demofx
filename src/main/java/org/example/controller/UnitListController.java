@@ -2,49 +2,59 @@ package org.example.controller;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import org.example.http.HttpClientGetData;
-import org.example.modaldata.CourseButtonData;
-import org.example.modaldata.UnitButtonData;
-import org.example.vo.Course;
+import org.example.modaldata.UnitLabelData;
 import org.example.vo.Unit;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import static org.example.controller.CourseItemController.coursedata;
 
 public class UnitListController {
     public static List<Unit> unitsdata;
+    public Label label9;
+    public Label label8;
+    public Label label7;
+    public Label label6;
+    public Label label5;
+    public Label label4;
+    public Label label3;
+    public Label label2;
+    public Label label1;
+    public ImageView button9;
     @FXML
-    private Button button1;
+    private ImageView button1;
 
     @FXML
-    private Button button2;
+    private ImageView button2;
 
     @FXML
-    private Button button3;
+    private ImageView button3;
 
     @FXML
-    private Button button4;
+    private ImageView button4;
 
     @FXML
-    private Button button5;
+    private ImageView button5;
 
     @FXML
-    private Button button6;
+    private ImageView button6;
     @FXML
-    public Button button7;
+    public ImageView button7;
     @FXML
-    public Button button8;
+    public ImageView button8;
 
     public void setUnits(List<Unit> units) {
         if (units != null && units.size() >= 2) {
@@ -59,21 +69,21 @@ public class UnitListController {
 
             unitsdata=units;
 
-            UnitButtonData buttonData1 = createUnitData(units.get(0).getUnitId(),units.get(0).getUnitName());
-            button1.setText(units.get(0).getUnitName());
-            button1.setUserData(buttonData1);
+            UnitLabelData labelData1 = createUnitData(units.get(0).getUnitId(),units.get(0).getUnitName());
+            label1.setText(units.get(0).getUnitName());
+            button1.setUserData(labelData1);
 
-            button2.setText(units.get(1).getUnitName());
-            UnitButtonData buttonData2 = createUnitData(units.get(1).getUnitId(),units.get(1).getUnitName());
-            button2.setUserData(buttonData2);
+            label2.setText(units.get(1).getUnitName());
+            UnitLabelData labelData2 = createUnitData(units.get(1).getUnitId(),units.get(1).getUnitName());
+            button2.setUserData(labelData2);
 
-            button3.setText(units.get(2).getUnitName());
-            UnitButtonData buttonData3 = createUnitData(units.get(2).getUnitId(),units.get(2).getUnitName());
-            button3.setUserData(buttonData3);
+            label3.setText(units.get(2).getUnitName());
+            UnitLabelData labelData3 = createUnitData(units.get(2).getUnitId(),units.get(2).getUnitName());
+            button3.setUserData(labelData3);
 
-            button4.setText(units.get(3).getUnitName());
-            UnitButtonData buttonData4 = createUnitData(units.get(3).getUnitId(),units.get(3).getUnitName());
-            button4.setUserData(buttonData4);
+            label4.setText(units.get(3).getUnitName());
+            UnitLabelData labelData4 = createUnitData(units.get(3).getUnitId(),units.get(3).getUnitName());
+            button4.setUserData(labelData4);
 
 //            button5.setText(units.get(4).getUnitName());
 //            UnitButtonData buttonData5 = createUnitData(units.get(4).getUnitId(),units.get(4).getUnitName());
@@ -84,13 +94,13 @@ public class UnitListController {
 //            button6.setUserData(buttonData6);
         }
     }
-    private UnitButtonData createUnitData(Long unitId, String unitName) {
-        return new UnitButtonData(unitId,unitName);
+    private UnitLabelData createUnitData(Long unitId, String unitName) {
+        return new UnitLabelData(unitId,unitName);
     }
     @FXML
-    public void handleButtonAction(ActionEvent event) {
-        Button clickedButton = (Button) event.getSource();
-        UnitButtonData buttonData = (UnitButtonData) clickedButton.getUserData();
+    public void handleButtonAction(MouseEvent event) {
+        ImageView clickedButton = (ImageView) event.getSource();
+        UnitLabelData buttonData = (UnitLabelData) clickedButton.getUserData();
         Long unitId = (Long) buttonData.getUnitId();
         String unitName = buttonData.getUnitName();
         System.out.println("unitName"+unitName);
@@ -101,7 +111,7 @@ public class UnitListController {
         }
     }
     
-    private void showUnitDetails(Long courseId, ActionEvent actionevent) {
+    private void showUnitDetails(Long courseId, MouseEvent event) {
         String baseUrl = "http://localhost:8080/unit";
         String serverUrl = baseUrl + "/" + courseId;
         try {
@@ -118,8 +128,10 @@ public class UnitListController {
                 unitController.setUnits(units);
 
                 Scene unitScene = new Scene(unitroot);
-                Stage currentStage = (Stage) ((Node) actionevent.getSource()).getScene().getWindow();
+                unitScene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/globalStyles.css")).toExternalForm());
+                Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
+                System.out.println("unitScene"+unitScene);
 
                 currentStage.setScene(unitScene);
                 currentStage.setTitle("Unit List");
@@ -139,12 +151,13 @@ public class UnitListController {
             Unit unit = new Unit();
             unit.setCourseId(unitJson.get("courseId").asLong());
             unit.setUnitId(unitJson.get("unitId").asLong());
-            unit.setUnitId(unitJson.get("name").asLong());
+            System.out.println("解析unitjson"+unitJson.get("unitId").asLong());
             unit.setUnitSubject(unitJson.get("unitSubject").asText());
             unit.setDescContent1(unitJson.get("descContent1").asText());
             unit.setDescContent2(unitJson.get("descContent2").asText());
             unit.setDescContent3(unitJson.get("descContent3").asText());
             unit.setPictureUrl1(unitJson.get("pictureUrl1").asText());
+            unit.setPictureUrl2(unitJson.get("pictureUrl2").asText());
             units.add(unit);
             System.out.println("units" + unit);
 
@@ -169,12 +182,13 @@ public class UnitListController {
         return units;
     }
     @FXML
-    public void handleGoBackButtonAction(ActionEvent actionEvent) {
+    public void handleGoBackButtonAction(MouseEvent event) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/courseitem.fxml"));
             Parent root = loader.load();
             Scene scene = new Scene(root);
-            Stage currentStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/globalStyles.css")).toExternalForm());
             //我要進COURSEITEM頁面 我需要拿到List<Course> courses
             //但是這邊只能拿到UNITS LIST
 

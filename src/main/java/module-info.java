@@ -6,7 +6,7 @@ module Demofx {
     requires json.simple;
     requires com.fasterxml.jackson.databind;
     requires lombok;
-
+    exports org.example.vo;
     opens org.example;
     opens org.example.controller;
 //    opens org.example.handler; // <- package 請跟著自己的專案結構改變

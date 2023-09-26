@@ -25,7 +25,12 @@
             <Font size="18.0" />
          </font>
       </PasswordField>
-      <Button layoutX="457.0" layoutY="647.0" mnemonicParsing="false" onAction="#handleLoginButtonAction" prefHeight="42.0" prefWidth="165.0" text="登入" textFill="#140e0e" textOverrun="CENTER_ELLIPSIS" />
+<!--      <Button layoutX="457.0" layoutY="647.0" mnemonicParsing="false"  prefHeight="42.0" prefWidth="165.0" text="登入" textFill="#140e0e" textOverrun="CENTER_ELLIPSIS" />-->
+      <ImageView fx:id="loginButtonView" fitHeight="75.0" fitWidth="200.0" layoutX="440.0" layoutY="631.0" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;">
+         <image>
+            <Image url="@images/登入點選.png" />
+         </image>
+      </ImageView>
    </children>
    <opaqueInsets>
       <Insets />

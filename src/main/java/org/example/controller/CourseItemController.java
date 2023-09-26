@@ -2,106 +2,129 @@ package org.example.controller;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import org.example.http.HttpClientGetData;
-import org.example.modaldata.CourseButtonData;
+import org.example.modaldata.CourseLabelData;
 import org.example.vo.Course;
 import org.example.vo.Unit;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import static org.example.controller.TsController.jsonNodeForUser;
 
 public class CourseItemController {
 
+    public Label label9;
+    public Label label8;
+    public Label label7;
+    public Label label6;
+    public Label label5;
+    public Label label4;
+    public Label label3;
+    public Label label2;
+    public Label label1;
     @FXML
-    private Button button1;
+    private ImageView button9;
+
     public static String buttonString1;
     //對應的button 設定static string
     //沒有資料才call api
     //元素交給scene scene有button要動作 有button
     //static可用來暫時存放記憶體
+    @FXML
+    private ImageView button1;
     public static List<Course> coursedata;
     @FXML
-    private Button button2;
+    private ImageView button2;
     private static String buttonString2;
     @FXML
-    private Button button3;
+    private ImageView button3;
     private static String buttonString3;
     @FXML
-    private Button button4;
+    private ImageView button4;
     private static String buttonString4;
     @FXML
-    private Button button5;
-    private static String buttonString5;
+    private ImageView button5;
     @FXML
-    private Button button6;
-    private static String buttonString6;
+    private ImageView button6;
     @FXML
-    public Button button7;
-    private static String buttonString7;
-    @FXML
-    public Button button8;
-    private static String buttonString8;
+    private ImageView button7;
 
+    @FXML
+    private ImageView button8;
+
+//把圖片改成BUTTON比較好 然後label獨立拉出來寫上去
     public void setCourses(List<Course> courses) {
         if (courses != null && courses.size() >= 2) {
-            CourseButtonData buttonData1 = createCourseData(courses.get(0).getCourseId(),courses.get(0).getCourseName());
+            CourseLabelData labelData1 = createCourseData(courses.get(0).getCourseId(),courses.get(0).getCourseName());
             coursedata = courses;
-            button1.setText(courses.get(0).getCourseName());
-            button1.setUserData(buttonData1);
+            label1.setText(courses.get(0).getCourseName());
+            button1.setUserData(labelData1);
 
-            button2.setText(courses.get(1).getCourseName());
-            CourseButtonData buttonData2 = createCourseData(courses.get(1).getCourseId(),courses.get(1).getCourseName());
-            button2.setUserData(buttonData2);
+            label2.setText(courses.get(1).getCourseName());
+            CourseLabelData labelData2 = createCourseData(courses.get(1).getCourseId(),courses.get(1).getCourseName());
+            button2.setUserData(labelData2);
 
-            button3.setText(courses.get(2).getCourseName());
-            CourseButtonData buttonData3 = createCourseData(courses.get(2).getCourseId(),courses.get(2).getCourseName());
-            button3.setUserData(buttonData3);
+            label3.setText(courses.get(2).getCourseName());
+            CourseLabelData labelData3 = createCourseData(courses.get(2).getCourseId(),courses.get(2).getCourseName());
+            button3.setUserData(labelData3);
 
-            button4.setText(courses.get(3).getCourseName());
-            CourseButtonData buttonData4 = createCourseData(courses.get(3).getCourseId(),courses.get(3).getCourseName());
-            button4.setUserData(buttonData4);
+            label4.setText(courses.get(3).getCourseName());
+            CourseLabelData labelData4 = createCourseData(courses.get(3).getCourseId(),courses.get(3).getCourseName());
+            button4.setUserData(labelData4);
 
-            button5.setText(courses.get(4).getCourseName());
-            CourseButtonData buttonData5 = createCourseData(courses.get(4).getCourseId(),courses.get(4).getCourseName());
-            button5.setUserData(buttonData5);
+            label5.setText(courses.get(4).getCourseName());
+            CourseLabelData labelData5 = createCourseData(courses.get(4).getCourseId(),courses.get(4).getCourseName());
+            button5.setUserData(labelData5);
 
-            button6.setText(courses.get(5).getCourseName());
-            CourseButtonData buttonData6 = createCourseData(courses.get(5).getCourseId(),courses.get(5).getCourseName());
-            button6.setUserData(buttonData6);
+            label6.setText(courses.get(5).getCourseName());
+            CourseLabelData labelData6 = createCourseData(courses.get(5).getCourseId(),courses.get(5).getCourseName());
+            button6.setUserData(labelData6);
         }
     }
+    public void initialize() {
 
-    private CourseButtonData createCourseData(Long courseId, String courseName) {
-        return new CourseButtonData(courseId,courseName);
+//        courseTraining.setOnMouseClicked(event -> {
+//            ActionEvent actionEvent = new ActionEvent(event.getSource(), event.getTarget());
+//            handleCourseTrainingClick(actionEvent);
+//        });
+
+    }
+    private CourseLabelData createCourseData(Long courseId, String courseName) {
+        return new CourseLabelData(courseId,courseName);
     }
 
 
     @FXML
-    public void handleButtonAction(ActionEvent event) {
-        Button clickedButton = (Button) event.getSource();
-        CourseButtonData buttonData = (CourseButtonData) clickedButton.getUserData();
-        Long courseId = buttonData.getCourseId();
-        String courseName = buttonData.getCourseName();
+    public void handleButtonAction(MouseEvent event) {
+        System.out.println("被典籍"+event);
+        ImageView clickedButton = (ImageView) event.getSource();
+        System.out.println("clickButton"+clickedButton);
+        CourseLabelData labelData = (CourseLabelData) clickedButton.getUserData();
+        System.out.println("labeldata"+labelData);
+        Long courseId = labelData.getCourseId();
+        String courseName = labelData.getCourseName();
         System.out.println("CourseName"+courseName);
         if (courseId != null) {
+            System.out.println("courseid"+courseId);
             showCourseDetails(courseId,event);
         } else {
             System.out.println("使用者可能未點擊");
         }
     }
 
-    private void showCourseDetails(Long courseId, ActionEvent actionevent) {
+    private void showCourseDetails(Long courseId, MouseEvent event) {
         String baseUrl = "http://localhost:8080/course";
         String serverUrl = baseUrl + "/" + courseId;
         try {
@@ -117,8 +140,8 @@ public class CourseItemController {
                 unitListController.setUnits(units);
 
                 Scene unitScene = new Scene(unitroot);
-                Stage currentStage = (Stage) ((Node) actionevent.getSource()).getScene().getWindow();
-
+                Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                unitScene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/globalStyles.css")).toExternalForm());
 
                 currentStage.setScene(unitScene);
                 currentStage.setTitle("Unit List");
@@ -155,11 +178,13 @@ public class CourseItemController {
 
 
     @FXML
-    public void handleGoBackButtonAction(ActionEvent actionEvent) {
+    public void handleGoBackButtonAction(MouseEvent actionEvent) {
         try {
+            System.out.println("返回上一頁(主畫面)");
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/ts.fxml"));
             Parent root = loader.load();
             Scene scene = new Scene(root);
+            scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/globalStyles.css")).toExternalForm());
             Stage currentStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
 
             TsController tsController = loader.getController();

@@ -8,9 +8,9 @@
 <?import javafx.scene.text.Text?>
 
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="150.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="150.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.QuizController">
    <children>
-      <Button layoutX="32.0" layoutY="157.0" mnemonicParsing="false" text="完成並提交">
+      <Button onAction="#handleButtonAction" layoutX="32.0" layoutY="157.0" mnemonicParsing="false" text="完成並提交">
          <font>
             <Font size="14.0" />
          </font>

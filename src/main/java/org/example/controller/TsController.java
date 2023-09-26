@@ -11,6 +11,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextArea;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import org.example.http.HttpClientGet;
 import org.example.http.HttpClientGetData;
@@ -20,8 +21,12 @@ import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class TsController {
+    @FXML
+    public ImageView logoutButtonView;
+    public ImageView courseTraining;
     @FXML
     private TextArea textArea;
     public static JsonNode jsonNodeForUser;
@@ -32,7 +37,18 @@ public class TsController {
 //        User user = new User();
         textArea.setText(info);
     }
+    public void initialize() {
+        logoutButtonView.setOnMouseClicked(event -> {
+            // 調用登出按鈕的處理程序
+            ActionEvent actionEvent = new ActionEvent(event.getSource(), event.getTarget());
+            handleLogoutButtonAction(actionEvent);
+        });
+        courseTraining.setOnMouseClicked(event -> {
+            ActionEvent actionEvent = new ActionEvent(event.getSource(), event.getTarget());
+            handleCourseTrainingClick(actionEvent);
+        });
 
+    }
     public void handleLogoutButtonAction(ActionEvent actionEvent) {
         String serverUrl = "http://localhost:8080/user/logout";
         HttpURLConnection connection = HttpClientGet.sendGetRequest(serverUrl);
@@ -141,6 +157,7 @@ public class TsController {
 
 
                 Scene courseItemScene = new Scene(courseroot);
+                courseItemScene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/globalStyles.css")).toExternalForm());
                 Stage currentStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
                 currentStage.setScene(courseItemScene);
                 currentStage.setTitle("Course Item");

@@ -1,10 +1,10 @@
 package org.example.modaldata;
 
-public class CourseButtonData {
+public class CourseLabelData {
     private Long courseId;
     private String courseName;
 
-    public CourseButtonData(Long courseId, String courseName) {
+    public CourseLabelData(Long courseId, String courseName) {
         this.courseId = courseId;
         this.courseName = courseName;
     }
