@@ -7,7 +7,7 @@
 <?import javafx.scene.text.Font?>
 
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1"fx:controller="org.example.controller.AnswerController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.AnswerController">
    <children>
       <Label layoutX="77.0" layoutY="68.0" text="你的答案">
          <font>
@@ -26,6 +26,6 @@
             <Font size="14.0" />
          </font>
       </Label>
-      <Button layoutX="117.0" layoutY="212.0" mnemonicParsing="false" prefHeight="54.0" prefWidth="121.0" text="繼續下個測驗內容" />
+      <Button onAction="#handleNextQuizButton" layoutX="117.0" layoutY="212.0" mnemonicParsing="false" prefHeight="54.0" prefWidth="121.0" text="繼續下個測驗內容" />
    </children>
 </Pane>

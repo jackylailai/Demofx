@@ -59,17 +59,17 @@
                   <Image url="@images/返回上一頁箭頭.png" />
                </image>
             </ImageView>
-            <Label layoutX="32.0" layoutY="654.0" styleClass="bold-label" text="測驗說明">
+            <Label layoutX="32.0" layoutY="654.0" styleClass="bold-label" text="訓練目的">
                <font>
                   <Font name="System Bold" size="19.0" />
                </font>
             </Label>
-            <Label layoutX="755.0" layoutY="654.0" styleClass="bold-label" text="測驗要點">
+            <Label layoutX="755.0" layoutY="654.0" styleClass="bold-label" text="本次接受令命令">
                <font>
                   <Font name="System Bold" size="19.0" />
                </font>
             </Label>
-            <Label layoutX="393.0" layoutY="654.0" styleClass="bold-label" text="測驗情境">
+            <Label layoutX="393.0" layoutY="654.0" styleClass="bold-label" text="需求條件">
                <font>
                   <Font name="System Bold Italic" size="19.0" />
                </font>

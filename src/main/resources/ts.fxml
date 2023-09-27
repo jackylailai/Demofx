@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -63,6 +64,21 @@
                   <Image url="@images/1-2連線課程點選.png" />
                </image>
             </ImageView>
+            <Label layoutX="194.0" layoutY="502.0" text="連線課程" textFill="WHITE">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <Label layoutX="858.0" layoutY="239.0" text="學員成績" textFill="WHITE">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <Label layoutX="566.0" layoutY="239.0" text="課程訓練" textFill="WHITE">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
          </children>
       </Pane>
       <ImageView fx:id="logoutButtonView" fitHeight="38.0" fitWidth="76.0" layoutX="980.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">

@@ -45,6 +45,7 @@ public class CourseItemController {
     @FXML
     private ImageView button1;
     public static List<Course> coursedata;
+    public static String courseNameTitle;
     @FXML
     private ImageView button2;
     private static String buttonString2;
@@ -108,13 +109,14 @@ public class CourseItemController {
 
     @FXML
     public void handleButtonAction(MouseEvent event) {
-        System.out.println("被典籍"+event);
+//        System.out.println("被點擊"+event);
         ImageView clickedButton = (ImageView) event.getSource();
         System.out.println("clickButton"+clickedButton);
         CourseLabelData labelData = (CourseLabelData) clickedButton.getUserData();
         System.out.println("labeldata"+labelData);
         Long courseId = labelData.getCourseId();
         String courseName = labelData.getCourseName();
+        courseNameTitle = courseName;
         System.out.println("CourseName"+courseName);
         if (courseId != null) {
             System.out.println("courseid"+courseId);

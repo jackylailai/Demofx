@@ -20,10 +20,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import static org.example.controller.CourseItemController.courseNameTitle;
 import static org.example.controller.CourseItemController.coursedata;
 
 public class UnitListController {
-    public static List<Unit> unitsdata;
+    public static List<Unit> unitsDataForUnitList;
     public Label label9;
     public Label label8;
     public Label label7;
@@ -33,6 +34,8 @@ public class UnitListController {
     public Label label3;
     public Label label2;
     public Label label1;
+    @FXML
+    public Label courseItemTitle;
     public ImageView button9;
     @FXML
     private ImageView button1;
@@ -67,8 +70,8 @@ public class UnitListController {
 //            button4.setText(units.get(3).getUnitName());
 //            button4.setUserData(units.get(3).getUnitId());
 
-            unitsdata=units;
-
+            unitsDataForUnitList=units;
+            courseItemTitle.setText(courseNameTitle);
             UnitLabelData labelData1 = createUnitData(units.get(0).getUnitId(),units.get(0).getUnitName());
             label1.setText(units.get(0).getUnitName());
             button1.setUserData(labelData1);

@@ -6,6 +6,7 @@ module Demofx {
     requires json.simple;
     requires com.fasterxml.jackson.databind;
     requires lombok;
+    requires javafx.media;
     exports org.example.vo;
     opens org.example;
     opens org.example.controller;

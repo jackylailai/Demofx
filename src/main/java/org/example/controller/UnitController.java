@@ -9,14 +9,17 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Rectangle2D;
+import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
+import javafx.scene.media.MediaView;
 import javafx.stage.FileChooser;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
@@ -24,6 +27,9 @@ import org.example.http.HttpClientGetData;
 import org.example.modaldata.UnitLabelData;
 import org.example.vo.Quiz;
 import org.example.vo.Unit;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+
 
 import java.io.File;
 import java.io.IOException;
@@ -32,9 +38,11 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
-import static org.example.controller.UnitListController.unitsdata;
+import static org.example.controller.UnitListController.unitsDataForUnitList;
+
 
 public class UnitController {
+    public static List<Unit> unitsData;
     public Label distext1;
     public Label distext2;
     public Label distext3;
@@ -56,6 +64,7 @@ public class UnitController {
     @FXML
     public void setUnits(List<Unit> units) {
         if (units != null) {
+            unitsData=units;
             System.out.println("傳進unit頁面"+units);
             distext1.setText(units.get(0).getDescContent1());
             button1.setUserData(units.get(0).getUnitId());
@@ -68,10 +77,6 @@ public class UnitController {
             System.out.println("imageurl"+units.get(0).getPictureUrl1());
             Image image = new Image("file:///" + units.get(0).getPictureUrl1());
             unitimage.setImage(image);
-
-
-
-
 
         }
     }
@@ -108,6 +113,8 @@ public class UnitController {
 
                 QuizController quizController = quizloader.getController();
                 quizController.setQuizs(quizzes);
+                Integer operation = 1;
+                quizController.setCustomProperty(operation);
 
                 Scene quizScene = new Scene(quizroot);
                 quizScene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/globalStyles.css")).toExternalForm());
@@ -158,7 +165,7 @@ public class UnitController {
             Stage currentStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
             scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/globalStyles.css")).toExternalForm());
             UnitListController unitListController = loader.getController();
-            unitListController.setUnits(unitsdata);
+            unitListController.setUnits(unitsDataForUnitList);
 
             currentStage.setScene(scene);
             currentStage.setTitle("Unit List");
@@ -167,21 +174,20 @@ public class UnitController {
         }
     }
 
-//    public void handleVideoButtonAction(MouseEvent mouseEvent) {
-//        FileChooser fileChooser = new FileChooser();
-//        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Video Files", "*.mp4", "*.avi"));
-//        File selectedFile = fileChooser.showOpenDialog(new Stage());
-//
-//        if (selectedFile != null) {
-//
-//            String filePath = selectedFile.toURI().toString();
-//            Media media = new Media(filePath);
-//            mediaPlayer = new MediaPlayer(media);
-//            mediaView.setMediaPlayer(mediaPlayer);
-//
-//
-//            mediaPlayer.play();
-//        }
-//    }
+    public void handleVideoButtonAction(MouseEvent mouseEvent) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/video.fxml"));
+        Parent root = loader.load();
+        Scene scene = new Scene(root);
+        Stage currentStage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
+        scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/globalStyles.css")).toExternalForm());
+
+        VideoController videoController = loader.getController();
+        videoController.initMediaPlayer("file:///z:/SSTP/demo/videos/DEMO圖資畫面.mp4");
+        System.out.println("videoScene"+scene);
+        currentStage.setScene(scene);
+        currentStage.setTitle("Video");
+        currentStage.show();
+    }
+
 
 }

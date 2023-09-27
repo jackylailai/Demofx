@@ -48,7 +48,7 @@ public class RecordController {
             throw new RuntimeException(e);
         }
 
-        RecordController answerController = answerloader.getController();
+        AnswerController answerController = answerloader.getController();
 //            answerController.setQuizs(quizzesdata);
 
         Scene answerScene = new Scene(answerroot);

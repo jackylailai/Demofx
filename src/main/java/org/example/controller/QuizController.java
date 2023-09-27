@@ -1,16 +1,15 @@
 package org.example.controller;
 
 import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import org.example.vo.Quiz;
-import org.example.vo.Unit;
 
 import java.io.IOException;
 import java.util.List;
@@ -18,6 +17,8 @@ import java.util.Objects;
 
 public class QuizController {
     public static List<Quiz> quizzesdata;
+    public static Integer operationCounts;
+    public Label operationLabel;
 
     public void setQuizs(List<Quiz> quiz) {
         quizzesdata=quiz;
@@ -56,5 +57,12 @@ public class QuizController {
         currentStage.setScene(recordScene);
         currentStage.setTitle("Record");
 
+    }
+
+
+    public void setCustomProperty(Integer operation) {
+        String operationText = "目前任務 : " + operation;
+        operationCounts = operation;
+        operationLabel.setText(operationText);
     }
 }
