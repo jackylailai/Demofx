@@ -20,7 +20,7 @@
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
         </content>
       </TitledPane>
-      <Text layoutX="51.0" layoutY="152.0" strokeType="OUTSIDE" strokeWidth="0.0" text="倒數計時" />
+      <Text fx:id="countDownText" layoutX="51.0" layoutY="152.0" strokeType="OUTSIDE" strokeWidth="0.0" text="倒數計時" />
       <Label fx:id="operationLabel" layoutX="3.0" layoutY="47.0" prefHeight="93.0" prefWidth="142.0" textAlignment="RIGHT" />
    </children>
 </Pane>

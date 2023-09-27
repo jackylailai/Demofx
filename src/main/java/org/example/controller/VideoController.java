@@ -22,11 +22,11 @@ public class VideoController {
 
     public void initMediaPlayer(String url) {
         Media media = new Media(url);
-
+        System.out.println();
         MediaPlayer mediaPlayer = new MediaPlayer(media);
 
         mediaView.setMediaPlayer(mediaPlayer);
-
+        System.out.println("有成功進入videocontroller");
         mediaPlayer.play();
     }
     @FXML
@@ -40,7 +40,7 @@ public class VideoController {
             UnitController unitController = loader.getController();
             unitController.setUnits(unitsData);
 
-            System.out.println(currentStage+":stage");
+            System.out.println(currentStage+":unitstage");
             currentStage.setScene(scene);
             currentStage.setTitle("Unit");
         } catch (IOException e) {

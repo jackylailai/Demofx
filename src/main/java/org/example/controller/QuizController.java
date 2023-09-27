@@ -1,5 +1,7 @@
 package org.example.controller;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Rectangle2D;
@@ -7,8 +9,10 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.text.Text;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import org.example.vo.Quiz;
 
 import java.io.IOException;
@@ -19,7 +23,27 @@ public class QuizController {
     public static List<Quiz> quizzesdata;
     public static Integer operationCounts;
     public Label operationLabel;
+    public Text countDownText;
+    private int countdown = 60;
+    private Timeline timeline;
 
+    public void initialize() {
+        timeline = new Timeline();
+        timeline.setCycleCount(Timeline.INDEFINITE);
+
+        KeyFrame keyFrame = new KeyFrame(Duration.seconds(1), this::updateCountdown);
+        timeline.getKeyFrames().add(keyFrame);
+        timeline.play();
+    }
+    private void updateCountdown(ActionEvent event) {
+        if (countdown > 0) {
+            countdown--;
+            countDownText.setText("倒數:"+countdown+"秒");
+        } else {
+            operationLabel.setText("時間到");
+            timeline.stop();
+        }
+    }
     public void setQuizs(List<Quiz> quiz) {
         quizzesdata=quiz;
         System.out.println(quiz+"資料進來quiz");

@@ -19,36 +19,71 @@ import static org.example.controller.QuizController.quizzesdata;
 
 public class AnswerController {
     public void handleNextQuizButton(ActionEvent event) throws IOException {
-        FXMLLoader quizloader = new FXMLLoader(getClass().getResource("/quiz.fxml"));
-        Parent quizroot = quizloader.load();
+        if( operationCounts < 3){
+            FXMLLoader quizloader = new FXMLLoader(getClass().getResource("/quiz.fxml"));
+            Parent quizroot = quizloader.load();
 
-        QuizController quizController = quizloader.getController();
-        quizController.setQuizs(quizzesdata);
-        operationCounts+=1;
-        quizController.setCustomProperty(operationCounts);
+            QuizController quizController = quizloader.getController();
+            quizController.setQuizs(quizzesdata);
+            operationCounts+=1;
+            quizController.setCustomProperty(operationCounts);
 
-        Scene quizScene = new Scene(quizroot);
-        quizScene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/globalStyles.css")).toExternalForm());
-        Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            Scene quizScene = new Scene(quizroot);
+            quizScene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/globalStyles.css")).toExternalForm());
+            Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
-        Screen secondScreen = Screen.getScreens().stream()
-                .filter(screen -> !screen.equals(Screen.getPrimary()))
-                .findFirst()
-                .orElse(Screen.getPrimary());
+            Screen secondScreen = Screen.getScreens().stream()
+                    .filter(screen -> !screen.equals(Screen.getPrimary()))
+                    .findFirst()
+                    .orElse(Screen.getPrimary());
 
-        System.out.println("quizScene"+quizScene);
-        currentStage.setWidth(200);
-        currentStage.setHeight(300);
+            System.out.println("quizScene"+quizScene);
+            currentStage.setWidth(200);
+            currentStage.setHeight(300);
 
-        Screen screen = Screen.getPrimary();
-        Rectangle2D secondScreenBounds = secondScreen.getBounds();
+            Screen screen = Screen.getPrimary();
+            Rectangle2D secondScreenBounds = secondScreen.getBounds();
 
-        double newX = secondScreenBounds.getMaxX() - 200;
-        double newY = secondScreenBounds.getMaxY() - 300;
-        currentStage.setX(newX);
-        currentStage.setY(newY);
-        currentStage.setAlwaysOnTop(true);
-        currentStage.setScene(quizScene);
-        currentStage.setTitle("Quiz List");
+            double newX = secondScreenBounds.getMaxX() - 200;
+            double newY = secondScreenBounds.getMaxY() - 300;
+            currentStage.setX(newX);
+            currentStage.setY(newY);
+            currentStage.setAlwaysOnTop(true);
+            currentStage.setScene(quizScene);
+            currentStage.setTitle("Quiz List");
+        }else{
+            FXMLLoader quiztestloader = new FXMLLoader(getClass().getResource("/quiztest.fxml"));
+            Parent quiztestroot = quiztestloader.load();
+
+            QuizTestController quizTestController = quiztestloader.getController();
+            quizTestController.setQuizTests(quizzesdata);
+//            operationCounts+=1;
+//            quizTestController.setCustomProperty(operationCounts);
+
+            Scene quizScene = new Scene(quiztestroot);
+            quizScene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/globalStyles.css")).toExternalForm());
+            Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+            Screen secondScreen = Screen.getScreens().stream()
+                    .filter(screen -> !screen.equals(Screen.getPrimary()))
+                    .findFirst()
+                    .orElse(Screen.getPrimary());
+
+            System.out.println("quizScene"+quizScene);
+            currentStage.setWidth(600);
+            currentStage.setHeight(600);
+
+            Screen screen = Screen.getPrimary();
+            Rectangle2D secondScreenBounds = secondScreen.getBounds();
+
+            double centerX = secondScreenBounds.getMinX() + secondScreenBounds.getWidth() / 2;
+            double centerY = secondScreenBounds.getMinY() + secondScreenBounds.getHeight() / 2;
+
+            currentStage.setX(centerX - currentStage.getWidth() / 2);
+            currentStage.setY(centerY - currentStage.getHeight() / 2);
+            currentStage.setAlwaysOnTop(true);
+            currentStage.setScene(quizScene);
+            currentStage.setTitle("Quiz Test List");
+        }
     }
 }
