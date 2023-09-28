@@ -38,6 +38,8 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
+import static org.example.Main.customFontForAll;
+import static org.example.Main.customFontForSmall;
 import static org.example.controller.UnitListController.unitsDataForUnitList;
 
 
@@ -67,10 +69,13 @@ public class UnitController {
             unitsData=units;
             System.out.println("傳進unit頁面"+units);
             distext1.setText(units.get(0).getDescContent1());
+            distext1.setFont(customFontForSmall);
             button1.setUserData(units.get(0).getUnitId());
             distext2.setText(units.get(0).getDescContent2());
+            distext2.setFont(customFontForSmall);
             button2.setUserData(units.get(0).getUnitId());
             distext3.setText(units.get(0).getDescContent3());
+            distext3.setFont(customFontForSmall);
             button3.setUserData(units.get(0).getUnitId());
             UnitLabelData labelData1 = createUnitData(units.get(0).getUnitId(),units.get(0).getUnitName());
             quizImage.setUserData(labelData1);

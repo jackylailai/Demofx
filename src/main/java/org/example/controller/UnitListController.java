@@ -20,6 +20,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import static org.example.Main.boldFontForAll;
+import static org.example.Main.customFontForAll;
 import static org.example.controller.CourseItemController.courseNameTitle;
 import static org.example.controller.CourseItemController.coursedata;
 
@@ -73,18 +75,22 @@ public class UnitListController {
             unitsDataForUnitList=units;
             courseItemTitle.setText(courseNameTitle);
             UnitLabelData labelData1 = createUnitData(units.get(0).getUnitId(),units.get(0).getUnitName());
+            label1.setFont(customFontForAll);
             label1.setText(units.get(0).getUnitName());
             button1.setUserData(labelData1);
 
             label2.setText(units.get(1).getUnitName());
+            label2.setFont(customFontForAll);
             UnitLabelData labelData2 = createUnitData(units.get(1).getUnitId(),units.get(1).getUnitName());
             button2.setUserData(labelData2);
 
             label3.setText(units.get(2).getUnitName());
+            label3.setFont(customFontForAll);
             UnitLabelData labelData3 = createUnitData(units.get(2).getUnitId(),units.get(2).getUnitName());
             button3.setUserData(labelData3);
 
             label4.setText(units.get(3).getUnitName());
+            label4.setFont(customFontForAll);
             UnitLabelData labelData4 = createUnitData(units.get(3).getUnitId(),units.get(3).getUnitName());
             button4.setUserData(labelData4);
 

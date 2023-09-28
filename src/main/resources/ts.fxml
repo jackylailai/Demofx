@@ -17,17 +17,17 @@
                   <Image url="@images/1-2背景.png" />
                </image>
             </ImageView>
-            <Text fill="#fcf9f9" layoutX="194.0" layoutY="539.0" strokeType="OUTSIDE" strokeWidth="0.0" text="連線課程">
+            <Text fx:id="text1" fill="#fcf9f9" layoutX="194.0" layoutY="539.0" strokeType="OUTSIDE" strokeWidth="0.0" text="連線課程">
                <font>
                   <Font size="20.0" />
                </font>
             </Text>
-            <Text fill="#ffecec" layoutX="566.0" layoutY="294.0" strokeType="OUTSIDE" strokeWidth="0.0" text="課程訓練">
+            <Text fx:id="text2" fill="#ffecec" layoutX="566.0" layoutY="294.0" strokeType="OUTSIDE" strokeWidth="0.0" text="課程訓練">
                <font>
                   <Font size="20.0" />
                </font>
             </Text>
-            <Text fill="#fcf9f9" layoutX="858.0" layoutY="291.0" strokeType="OUTSIDE" strokeWidth="0.0" text="學員成績">
+            <Text fx:id="text3" fill="#fcf9f9" layoutX="858.0" layoutY="291.0" strokeType="OUTSIDE" strokeWidth="0.0" text="學員成績">
                <font>
                   <Font size="20.0" />
                </font>

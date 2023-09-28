@@ -12,6 +12,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import org.example.http.HttpClientGet;
 import org.example.http.HttpClientGetData;
@@ -23,10 +24,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import static org.example.Main.*;
+
 public class TsController {
     @FXML
     public ImageView logoutButtonView;
     public ImageView courseTraining;
+    public Text text1;
+    public Text text2;
+    public Text text3;
     @FXML
     private TextArea textArea;
     public static JsonNode jsonNodeForUser;
@@ -36,6 +42,8 @@ public class TsController {
         String info = "學員 :   "+name;
 //        User user = new User();
         textArea.setText(info);
+        textArea.setFont(lightFontForAll);
+        textArea.setEditable(false);
     }
     public void initialize() {
         logoutButtonView.setOnMouseClicked(event -> {
@@ -47,6 +55,9 @@ public class TsController {
             ActionEvent actionEvent = new ActionEvent(event.getSource(), event.getTarget());
             handleCourseTrainingClick(actionEvent);
         });
+        text1.setFont(customFontForAll);
+        text2.setFont(customFontForAll);
+        text3.setFont(customFontForAll);
 
     }
     public void handleLogoutButtonAction(ActionEvent actionEvent) {

@@ -13,15 +13,27 @@ import javafx.scene.text.Font;
 import javafx.stage.StageStyle;
 import org.example.controller.LoginController;
 
+import java.io.InputStream;
 import java.util.Objects;
 
 public class Main extends Application {
     public static void main(String[] args) {
         launch(args);
     }
+    public static Font customFontForAll;
+    public static Font customFontForSmall;
+    public static Font boldFontForAll;
+    public static Font lightFontForAll;
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Font.loadFont(Objects.requireNonNull(Main.class.getResource("/resources/fonts/TaipeiSansTCBeta-Regular.ttf")).toExternalForm(), 1024 * 1024 * 50);
+        InputStream ttfPath = this.getClass().getResourceAsStream( "/fonts/TaipeiSansTCBeta-Regular.ttf" );
+        customFontForAll= Font.loadFont(ttfPath,24);
+        customFontForSmall = Font.loadFont(ttfPath,18);
+        InputStream ttfBoldPath = this.getClass().getResourceAsStream( "/fonts/TaipeiSansTCBeta-Bold.ttf" );
+        boldFontForAll= Font.loadFont(ttfBoldPath,24);
+        InputStream ttfLightPath = this.getClass().getResourceAsStream( "/fonts/TaipeiSansTCBeta-light.ttf" );
+        lightFontForAll= Font.loadFont(ttfLightPath,14);
+
         primaryStage.setResizable(false);
 //        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/login.fxml"));
 //        Parent root = fxmlLoader.load();

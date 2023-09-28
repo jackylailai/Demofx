@@ -21,6 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import static org.example.Main.customFontForAll;
 import static org.example.controller.TsController.jsonNodeForUser;
 
 public class CourseItemController {
@@ -72,26 +73,35 @@ public class CourseItemController {
             coursedata = courses;
             label1.setText(courses.get(0).getCourseName());
             button1.setUserData(labelData1);
+            label1.setFont(customFontForAll);
 
             label2.setText(courses.get(1).getCourseName());
             CourseLabelData labelData2 = createCourseData(courses.get(1).getCourseId(),courses.get(1).getCourseName());
             button2.setUserData(labelData2);
+            label2.setFont(customFontForAll);
 
             label3.setText(courses.get(2).getCourseName());
             CourseLabelData labelData3 = createCourseData(courses.get(2).getCourseId(),courses.get(2).getCourseName());
             button3.setUserData(labelData3);
+            label3.setFont(customFontForAll);
 
             label4.setText(courses.get(3).getCourseName());
             CourseLabelData labelData4 = createCourseData(courses.get(3).getCourseId(),courses.get(3).getCourseName());
             button4.setUserData(labelData4);
+            label4.setFont(customFontForAll);
+
 
             label5.setText(courses.get(4).getCourseName());
             CourseLabelData labelData5 = createCourseData(courses.get(4).getCourseId(),courses.get(4).getCourseName());
             button5.setUserData(labelData5);
+            label5.setFont(customFontForAll);
+
 
             label6.setText(courses.get(5).getCourseName());
             CourseLabelData labelData6 = createCourseData(courses.get(5).getCourseId(),courses.get(5).getCourseName());
             button6.setUserData(labelData6);
+            label6.setFont(customFontForAll);
+
         }
     }
     public void initialize() {
