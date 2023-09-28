@@ -119,23 +119,25 @@ public class UnitController {
                 Scene quizScene = new Scene(quizroot);
                 quizScene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/globalStyles.css")).toExternalForm());
                 Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
                 Screen secondScreen = Screen.getScreens().stream()
                         .filter(screen -> !screen.equals(Screen.getPrimary()))
                         .findFirst()
                         .orElse(Screen.getPrimary());
 
-                System.out.println("quizScene"+quizScene);
+                Rectangle2D secondScreenBounds = secondScreen.getBounds();
+
+                double windowWidth = 200;
+                double windowHeight = 300;
+
                 currentStage.setWidth(200);
                 currentStage.setHeight(300);
 
-                Screen screen = Screen.getPrimary();
-                Rectangle2D secondScreenBounds = secondScreen.getBounds();
+                double newX = secondScreenBounds.getMaxX() - windowWidth;
+                double newY = secondScreenBounds.getMaxY() - windowHeight;
 
-                double newX = secondScreenBounds.getMaxX() - 200;
-                double newY = secondScreenBounds.getMaxY() - 300;
                 currentStage.setX(newX);
                 currentStage.setY(newY);
+                System.out.println("quizScene"+quizScene);
                 currentStage.setAlwaysOnTop(true);
                 currentStage.setScene(quizScene);
                 currentStage.setTitle("Quiz List");
@@ -175,19 +177,30 @@ public class UnitController {
     }
 
     public void handleVideoButtonAction(MouseEvent mouseEvent) throws IOException {
+//        FXMLLoader loader = new FXMLLoader(getClass().getResource("/video.fxml"));
+//        Parent root = loader.load();
+//        Scene scene = new Scene(root);
+//        Stage currentStage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
+//        scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/globalStyles.css")).toExternalForm());
+//
+//        VideoController videoController = loader.getController();
+//        videoController.initMediaPlayer("file:///z:/SSTP/demo/videos/DEMO圖資畫面.mp4");
+//        System.out.println("videoScene"+scene);
+//        currentStage.setScene(scene);
+//        currentStage.setTitle("Video");
+//        currentStage.show();
+        Stage videoStage = new Stage();
+
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/video.fxml"));
         Parent root = loader.load();
         Scene scene = new Scene(root);
-        Stage currentStage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
         scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/globalStyles.css")).toExternalForm());
 
         VideoController videoController = loader.getController();
         videoController.initMediaPlayer("file:///z:/SSTP/demo/videos/DEMO圖資畫面.mp4");
-        System.out.println("videoScene"+scene);
-        currentStage.setScene(scene);
-        currentStage.setTitle("Video");
-        currentStage.show();
+
+        videoStage.setScene(scene);
+        videoStage.setTitle("Video");
+        videoStage.show();
     }
-
-
 }

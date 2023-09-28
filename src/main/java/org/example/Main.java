@@ -9,8 +9,11 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
+import javafx.scene.text.Font;
 import javafx.stage.StageStyle;
 import org.example.controller.LoginController;
+
+import java.util.Objects;
 
 public class Main extends Application {
     public static void main(String[] args) {
@@ -18,6 +21,7 @@ public class Main extends Application {
     }
     @Override
     public void start(Stage primaryStage) throws Exception {
+        Font.loadFont(Objects.requireNonNull(Main.class.getResource("/resources/fonts/TaipeiSansTCBeta-Regular.ttf")).toExternalForm(), 1024 * 1024 * 50);
         primaryStage.setResizable(false);
 //        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/login.fxml"));
 //        Parent root = fxmlLoader.load();

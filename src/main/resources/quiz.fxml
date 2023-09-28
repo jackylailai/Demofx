@@ -8,19 +8,19 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="150.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.QuizController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="200.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.QuizController">
    <children>
-      <Button layoutX="30.0" layoutY="155.0" mnemonicParsing="false" onAction="#handleButtonAction" text="完成並提交">
+      <Button layoutX="56.0" layoutY="194.0" mnemonicParsing="false" onAction="#handleButtonAction" text="完成並提交">
          <font>
             <Font size="14.0" />
          </font>
       </Button>
-      <TitledPane animated="false" layoutX="23.0" layoutY="14.0" prefHeight="24.0" prefWidth="100.0" text="當前測驗內容">
+      <TitledPane animated="false" layoutX="48.0" layoutY="53.0" prefHeight="24.0" prefWidth="100.0" text="當前測驗內容">
         <content>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
         </content>
       </TitledPane>
-      <Text fx:id="countDownText" layoutX="51.0" layoutY="152.0" strokeType="OUTSIDE" strokeWidth="0.0" text="倒數計時" />
-      <Label fx:id="operationLabel" layoutX="3.0" layoutY="47.0" prefHeight="93.0" prefWidth="142.0" textAlignment="RIGHT" />
+      <Text fx:id="countDownText" layoutX="76.0" layoutY="191.0" strokeType="OUTSIDE" strokeWidth="0.0" text="倒數計時" textAlignment="CENTER" />
+      <Label fx:id="operationLabel" layoutX="29.0" layoutY="86.0" prefHeight="93.0" prefWidth="142.0" textAlignment="CENTER" />
    </children>
 </Pane>

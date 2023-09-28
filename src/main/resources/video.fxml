@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.media.MediaView?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="960.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.VideoController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.VideoController">
    <children>
       <Button layoutX="485.0" layoutY="813.0" mnemonicParsing="false" onAction="#videoHandleBackButtonAction" prefHeight="57.0" prefWidth="110.0" text="返回上一頁" />
       <MediaView fx:id="mediaView" fitHeight="800.0" fitWidth="1080.0" layoutX="1.0" />
