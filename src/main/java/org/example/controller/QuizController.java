@@ -9,6 +9,10 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
+import javafx.scene.shape.Line;
 import javafx.scene.text.Text;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
@@ -24,6 +28,10 @@ public class QuizController {
     public static Integer operationCounts;
     public Label operationLabel;
     public Text countDownText;
+    public Circle secondCircle;
+    public Circle thirdCircle;
+    public Line secondLine;
+    public Line thirdLine;
     private int countdown = 60;
     private Timeline timeline;
 
@@ -38,9 +46,10 @@ public class QuizController {
     private void updateCountdown(ActionEvent event) {
         if (countdown > 0) {
             countdown--;
-            countDownText.setText("倒數:"+countdown+"秒");
+            countDownText.setText(countdown+"秒");
         } else {
-            operationLabel.setText("時間到");
+//            operationLabel.setText("時間到");
+            countDownText.setText("時間到");
             timeline.stop();
         }
     }
@@ -50,7 +59,7 @@ public class QuizController {
 
     }
 
-    public void handleButtonAction(ActionEvent actionEvent) throws IOException {
+    public void handleButtonAction(MouseEvent actionEvent) throws IOException {
         FXMLLoader recordloader = new FXMLLoader(getClass().getResource("/record.fxml"));
         Parent recordroot = recordloader.load();
 
@@ -67,14 +76,14 @@ public class QuizController {
                 .orElse(Screen.getPrimary());
 
         System.out.println("recordScene"+recordScene);
-        currentStage.setWidth(200);
-        currentStage.setHeight(300);
+        currentStage.setWidth(335);
+        currentStage.setHeight(245);
 
         Screen screen = Screen.getPrimary();
         Rectangle2D secondScreenBounds = secondScreen.getBounds();
 
-        double newX = secondScreenBounds.getMaxX() - 200;
-        double newY = secondScreenBounds.getMaxY() - 300;
+        double newX = secondScreenBounds.getMaxX() - 335;
+        double newY = secondScreenBounds.getMaxY() - 245;
         currentStage.setX(newX);
         currentStage.setY(newY);
         currentStage.setAlwaysOnTop(true);
@@ -87,6 +96,23 @@ public class QuizController {
     public void setCustomProperty(Integer operation) {
         String operationText = "目前任務 : " + operation;
         operationCounts = operation;
-        operationLabel.setText(operationText);
+        if(operation == 1){
+            operationLabel.setText(operationText);
+        } else if (operation==2) {
+            operationLabel.setText(operationText);
+//            Line.setStroke(Color.web("#fffdfd"));
+            //線要用stroke 圈用storke+fill
+            secondCircle.setFill(Color.web("#87ff18"));
+            secondCircle.setStroke(Color.web("#87ff18"));
+            thirdLine.setStroke(Color.web("87ff18"));
+            thirdCircle.setFill(Color.web("DARKGRAY"));
+        }
+        else {
+            secondCircle.setFill(Color.web("#87ff18"));
+            secondCircle.setStroke(Color.web("#87ff18"));
+            thirdLine.setStroke(Color.web("87ff18"));
+            thirdCircle.setFill(Color.web("87ff18"));
+            operationLabel.setText(operationText);
+        }
     }
 }

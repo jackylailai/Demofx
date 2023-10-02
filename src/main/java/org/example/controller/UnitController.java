@@ -131,11 +131,11 @@ public class UnitController {
 
                 Rectangle2D secondScreenBounds = secondScreen.getBounds();
 
-                double windowWidth = 200;
-                double windowHeight = 300;
+                double windowWidth = 335;
+                double windowHeight = 540;
 
-                currentStage.setWidth(200);
-                currentStage.setHeight(300);
+                currentStage.setWidth(335);
+                currentStage.setHeight(540);
 
                 double newX = secondScreenBounds.getMaxX() - windowWidth;
                 double newY = secondScreenBounds.getMaxY() - windowHeight;
@@ -147,7 +147,6 @@ public class UnitController {
                 currentStage.setScene(quizScene);
                 currentStage.setTitle("Quiz List");
             } else {
-
             }
         } catch (IOException e) {
             e.printStackTrace();

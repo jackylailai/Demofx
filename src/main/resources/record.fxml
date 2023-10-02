@@ -1,27 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
-
 <?import javafx.scene.control.Label?>
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="200.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.RecordController">
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="245.0" prefWidth="335.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.RecordController">
    <children>
-      <Text layoutX="-40.0" layoutY="109.0" strokeType="OUTSIDE" strokeWidth="0.0" text="以免影響成績" textAlignment="CENTER" wrappingWidth="280.0">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Text>
-      <Text layoutX="-40.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="自動擷取紀錄中" textAlignment="CENTER" wrappingWidth="280.0">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Text>
-      <Text layoutX="-40.0" layoutY="81.0" strokeType="OUTSIDE" strokeWidth="0.0" text="請勿進行任何操作" textAlignment="CENTER" wrappingWidth="280.0">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Text>
+<!--      <Text layoutX="-40.0" layoutY="109.0" strokeType="OUTSIDE" strokeWidth="0.0" text="以免影響成績" textAlignment="CENTER" wrappingWidth="280.0">-->
+<!--         <font>-->
+<!--            <Font size="18.0" />-->
+<!--         </font>-->
+<!--      </Text>-->
+<!--      <Text layoutX="-40.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="自動擷取紀錄中" textAlignment="CENTER" wrappingWidth="280.0">-->
+<!--         <font>-->
+<!--            <Font size="20.0" />-->
+<!--         </font>-->
+<!--      </Text>-->
+<!--      <Text layoutX="-40.0" layoutY="81.0" strokeType="OUTSIDE" strokeWidth="0.0" text="請勿進行任何操作" textAlignment="CENTER" wrappingWidth="280.0">-->
+<!--         <font>-->
+<!--            <Font size="18.0" />-->
+<!--         </font>-->
+<!--      </Text>-->
       <Label fx:id="timerLabel" layoutX="-40.0" layoutY="120.0" text="60" />
+      <ImageView fitHeight="245.0" fitWidth="335.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/測驗小視窗2.png" />
+         </image>
+      </ImageView>
    </children>
 </Pane>
