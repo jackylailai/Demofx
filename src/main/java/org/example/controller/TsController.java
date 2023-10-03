@@ -6,13 +6,17 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 import org.example.http.HttpClientGet;
 import org.example.http.HttpClientGetData;
@@ -34,7 +38,7 @@ public class TsController {
     public Text text2;
     public Text text3;
     @FXML
-    private TextArea textArea;
+    private Label textArea;
     public static JsonNode jsonNodeForUser;
     public void initializeUserData(JsonNode jsonNode) {
         jsonNodeForUser = jsonNode;
@@ -43,7 +47,7 @@ public class TsController {
 //        User user = new User();
         textArea.setText(info);
         textArea.setFont(lightFontForAll);
-        textArea.setEditable(false);
+//        textArea.setEditable(false);
     }
     public void initialize() {
         logoutButtonView.setOnMouseClicked(event -> {
@@ -216,5 +220,29 @@ public class TsController {
         }
 
         return courses;
+    }
+    public void handleScoreListButton(MouseEvent actionEvent) throws IOException {
+        FXMLLoader scorelistloader = new FXMLLoader(getClass().getResource("/scorelist.fxml"));
+        Parent scorelistroot = scorelistloader.load();
+
+
+        Scene scorelistScene = new Scene(scorelistroot);
+        scorelistScene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/globalStyles.css")).toExternalForm());
+        Stage currentStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+
+        Screen secondScreen = Screen.getScreens().stream()
+                .filter(screen -> !screen.equals(Screen.getPrimary()))
+                .findFirst()
+                .orElse(Screen.getPrimary());
+
+        System.out.println("scorelistScene"+scorelistScene);
+
+
+        Screen screen = Screen.getPrimary();
+        Rectangle2D secondScreenBounds = secondScreen.getVisualBounds();
+
+        currentStage.setAlwaysOnTop(true);
+        currentStage.setScene(scorelistScene);
+        currentStage.setTitle("ScoreList");
     }
 }

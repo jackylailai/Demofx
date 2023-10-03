@@ -75,6 +75,7 @@ public class TestDFCS {
                         System.out.println("操作結果"+extractedText);
                         return extractedText;
                     }
+
             }
 
         } catch (FindFailed e) {

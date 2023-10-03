@@ -32,6 +32,7 @@ public class QuizController {
     public Circle thirdCircle;
     public Line secondLine;
     public Line thirdLine;
+    public Circle firstCircle;
     private int countdown = 60;
     private Timeline timeline;
 
@@ -102,16 +103,24 @@ public class QuizController {
             operationLabel.setText(operationText);
 //            Line.setStroke(Color.web("#fffdfd"));
             //線要用stroke 圈用storke+fill
-            secondCircle.setFill(Color.web("#87ff18"));
-            secondCircle.setStroke(Color.web("#87ff18"));
-            thirdLine.setStroke(Color.web("87ff18"));
-            thirdCircle.setFill(Color.web("DARKGRAY"));
+            firstCircle.setStroke(Color.web("#87ff18"));
+            firstCircle.setFill(Color.web("#87ff18"));
+            secondLine.setStroke(Color.web("#87ff18"));
+            secondCircle.setFill(Color.web("DARKGRAY"));
+            secondCircle.setStroke(Color.web("DARKGRAY"));
+            thirdLine.setStroke(Color.web("#fffdfd"));
+            thirdCircle.setFill(Color.web("#fffdfd"));
+            thirdCircle.setStroke(Color.web("#fffdfd"));
         }
         else {
+            firstCircle.setStroke(Color.web("#87ff18"));
+            firstCircle.setFill(Color.web("#87ff18"));
+            secondLine.setStroke(Color.web("#87ff18"));
             secondCircle.setFill(Color.web("#87ff18"));
             secondCircle.setStroke(Color.web("#87ff18"));
-            thirdLine.setStroke(Color.web("87ff18"));
-            thirdCircle.setFill(Color.web("87ff18"));
+            thirdLine.setStroke(Color.web("#87ff18"));
+            thirdCircle.setFill(Color.web("DARKGRAY"));
+            thirdCircle.setStroke(Color.web("DARKGRAY"));
             operationLabel.setText(operationText);
         }
     }

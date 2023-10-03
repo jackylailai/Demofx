@@ -13,8 +13,11 @@ public class Attendance implements Serializable {
     private Long attendanceId;
     private Long courseId;
     private Long unitId;
-    private String date;
+    private Long contentId;
+    private Long quizId;
+    private Date attendanceDate;
     private Integer team;
+
     private Integer role;
     private Integer score;
 
@@ -23,6 +26,30 @@ public class Attendance implements Serializable {
     private Long longDate;
     private Date createDate;
     private Date updateDate;
+
+    public Long getContentId() {
+        return contentId;
+    }
+
+    public void setContentId(Long contentId) {
+        this.contentId = contentId;
+    }
+
+    public Long getQuizId() {
+        return quizId;
+    }
+
+    public void setQuizId(Long quizId) {
+        this.quizId = quizId;
+    }
+
+    public Date getAttendanceDate() {
+        return attendanceDate;
+    }
+
+    public void setAttendanceDate(Date attendanceDate) {
+        this.attendanceDate = attendanceDate;
+    }
 
     public Long getId() {
         return id;
@@ -64,13 +91,6 @@ public class Attendance implements Serializable {
         this.unitId = unitId;
     }
 
-    public String getDate() {
-        return date;
-    }
-
-    public void setDate(String date) {
-        this.date = date;
-    }
 
     public Integer getTeam() {
         return team;

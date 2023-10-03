@@ -18,12 +18,12 @@
             <Image url="@images/測驗小視窗3背景圖.png" />
          </image>
       </ImageView>
-      <Label fx:id="yourAnswer" ellipsisString="" layoutX="59.0" layoutY="202.0" prefHeight="44.0" prefWidth="62.0" textOverrun="CLIP">
+      <Label fx:id="yourAnswer" ellipsisString="" layoutX="42.0" layoutY="149.0" prefHeight="44.0" prefWidth="95.0" textAlignment="JUSTIFY" textOverrun="CLIP">
          <font>
             <Font size="31.0" />
          </font>
       </Label>
-      <Label fx:id="answer" layoutX="220.0" layoutY="224.0" prefHeight="44.0" prefWidth="62.0">
+      <Label fx:id="answer" layoutX="201.0" layoutY="149.0" prefHeight="44.0" prefWidth="95.0" textAlignment="JUSTIFY">
          <font>
             <Font size="34.0" />
          </font>
@@ -34,7 +34,7 @@
             <Image url="@images/繼續下個工作內容預設.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="62.0" fitWidth="66.0" layoutX="220.0" layoutY="140.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="62.0" fitWidth="66.0" layoutX="215.0" layoutY="140.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@images/測驗小視窗3背景圖.png" />
          </image>

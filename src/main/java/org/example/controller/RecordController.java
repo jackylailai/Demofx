@@ -8,6 +8,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
@@ -31,9 +32,10 @@ public class RecordController {
         Duration duration = Duration.seconds(5);
         KeyFrame keyFrame = new KeyFrame(duration, event -> {
             System.out.println("Timer finished. Perform window transition here.");
+
             String extractedText = TestDFCS.dfcsmock();
             System.out.println("Extracted Text: " + extractedText);
-            openNewWindow(currentStage,extractedText);
+            openNewWindow(currentStage, extractedText);
         });
         Timeline timeline = new Timeline(keyFrame);
         timeline.setCycleCount(1);
