@@ -74,11 +74,13 @@ public class UnitListController {
 
             unitsDataForUnitList=units;
             courseItemTitle.setText(courseNameTitle);
+            courseItemTitle.setFont(boldFontForAll);
+            System.out.println(courseItemTitle.getFont().getName()+courseItemTitle.getFont().getSize()+", coursetitle data");
             UnitLabelData labelData1 = createUnitData(units.get(0).getUnitId(),units.get(0).getUnitName());
             label1.setFont(customFontForAll);
             label1.setText(units.get(0).getUnitName());
             button1.setUserData(labelData1);
-
+            System.out.println("unitlist font"+label1.getFont().getSize()+label1.getFont().getName());
             label2.setText(units.get(1).getUnitName());
             label2.setFont(customFontForAll);
             UnitLabelData labelData2 = createUnitData(units.get(1).getUnitId(),units.get(1).getUnitName());

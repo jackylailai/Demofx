@@ -15,11 +15,15 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
 import javafx.scene.media.MediaView;
+import javafx.scene.text.Font;
+import javafx.scene.text.TextAlignment;
 import javafx.stage.FileChooser;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
@@ -45,11 +49,14 @@ import static org.example.controller.UnitListController.unitsDataForUnitList;
 
 public class UnitController {
     public static List<Unit> unitsData;
-    public Label distext1;
-    public Label distext2;
-    public Label distext3;
+    public TextArea distext1;
+    public TextArea distext2;
+    public TextArea distext3;
     public StackPane imageStackPane;
     public ImageView quizImage;
+    public Label title3;
+    public Label title2;
+    public Label title1;
     @FXML
     private ImageView unitimage;
     @FXML
@@ -61,7 +68,46 @@ public class UnitController {
     @FXML
     private ImageView button3;
 
-    public void handleButtonAction(ActionEvent actionEvent) {
+    public void initialize() {
+        addMouseHoverHandler(button1,distext1,title1);
+        addMouseHoverHandler(button2,distext2,title2);
+        addMouseHoverHandler(button3,distext3,title3);
+    }
+
+    private void addMouseHoverHandler(ImageView imageView,TextArea textArea,Label title) {
+        imageView.setOnMousePressed(event -> {
+            double currentScaleX = imageView.getScaleX();
+            double currentScaleY = imageView.getScaleY();
+            double translateY = imageView.getBoundsInParent().getHeight() * (1.0-3.0) / 2.0;
+            textArea.setFont(new Font(customFontForAll.getFamily(), textArea.getFont().getSize() * 1.2));
+            System.out.println(textArea.getFont().getName()+textArea.getFont().getSize()+",data");
+            title.setFont(new Font(title.getFont().getName(), title.getFont().getSize() * 1.2));
+//            imageView.setScaleY(newScaleY);
+            imageView.setTranslateY(translateY);
+            textArea.setTranslateY(translateY*1.8);
+            title.setTranslateY(translateY*1.8);
+            imageView.setScaleX(currentScaleX * 1);
+            imageView.setScaleY(currentScaleY * 3);
+            textArea.setPrefHeight(textArea.getPrefHeight() * 3);
+//            label.setScaleY(newScaleY);
+//            title.setScaleY(newScaleY);
+
+        });
+
+        imageView.setOnMouseReleased(event -> {
+            textArea.setFont(new Font(textArea.getFont().getName(), textArea.getFont().getSize() / 1.2));
+            title.setFont(new Font(title.getFont().getName(), title.getFont().getSize() / 1.2));
+            System.out.println(textArea.getFont().getName()+textArea.getFont().getSize()+",回來變小之後data");
+            imageView.setScaleX(1.0); // 恢复到原始大小
+            imageView.setScaleY(1.0);
+            imageView.setTranslateY(0.0); // 重置垂直方向上的位移
+            textArea.setTranslateY(0.0);
+            title.setTranslateY(0.0);
+            textArea.setScaleY(1.0);
+            title.setScaleY(1.0);
+            textArea.setPrefHeight(textArea.getPrefHeight() / 3);
+
+        });
     }
     @FXML
     public void setUnits(List<Unit> units) {
@@ -69,20 +115,25 @@ public class UnitController {
             unitsData=units;
             System.out.println("傳進unit頁面"+units);
             distext1.setText(units.get(0).getDescContent1());
-            distext1.setFont(customFontForSmall);
+            distext1.setFont(Font.font(customFontForAll.getFamily(), 18));
+            distext1.setWrapText(true);
+            System.out.println("distext font"+distext1.getFont().getSize()+distext1.getFont().getName());
             button1.setUserData(units.get(0).getUnitId());
             distext2.setText(units.get(0).getDescContent2());
-            distext2.setFont(customFontForSmall);
+            distext2.setFont(Font.font(customFontForAll.getFamily(), 18));
+            distext2.setWrapText(true);
             button2.setUserData(units.get(0).getUnitId());
+            System.out.println("distext2 font"+distext2.getFont().getSize()+distext2.getFont().getName());
             distext3.setText(units.get(0).getDescContent3());
-            distext3.setFont(customFontForSmall);
+            distext3.setWrapText(true);
+            distext3.setFont(Font.font(customFontForAll.getFamily(), 18));
             button3.setUserData(units.get(0).getUnitId());
+            System.out.println("distext3 font"+distext3.getFont().getSize()+distext3.getFont().getName());
             UnitLabelData labelData1 = createUnitData(units.get(0).getUnitId(),units.get(0).getUnitName());
             quizImage.setUserData(labelData1);
             System.out.println("imageurl"+units.get(0).getPictureUrl1());
             Image image = new Image("file:///" + units.get(0).getPictureUrl1());
             unitimage.setImage(image);
-
         }
     }
 

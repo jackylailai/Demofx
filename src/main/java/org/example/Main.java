@@ -29,6 +29,7 @@ public class Main extends Application {
         InputStream ttfPath = this.getClass().getResourceAsStream( "/fonts/TaipeiSansTCBeta-Regular.ttf" );
         customFontForAll= Font.loadFont(ttfPath,24);
         customFontForSmall = Font.loadFont(ttfPath,18);
+        System.out.println("small,"+customFontForSmall);
         InputStream ttfBoldPath = this.getClass().getResourceAsStream( "/fonts/TaipeiSansTCBeta-Bold.ttf" );
         boldFontForAll= Font.loadFont(ttfBoldPath,24);
         InputStream ttfLightPath = this.getClass().getResourceAsStream( "/fonts/TaipeiSansTCBeta-light.ttf" );
