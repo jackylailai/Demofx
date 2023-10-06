@@ -55,7 +55,7 @@ public class AnswerController {
             currentStage.setScene(quizScene);
             currentStage.setTitle("Quiz List");
         }else{
-            FXMLLoader quiztestloader = new FXMLLoader(getClass().getResource("/quiztest.fxml"));
+            FXMLLoader quiztestloader = new FXMLLoader(getClass().getResource("/quiztest2.fxml"));
             Parent quiztestroot = quiztestloader.load();
 
             QuizTestController quizTestController = quiztestloader.getController();

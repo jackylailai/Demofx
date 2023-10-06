@@ -13,10 +13,7 @@ import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -134,6 +131,7 @@ public class UnitController {
             System.out.println("imageurl"+units.get(0).getPictureUrl1());
             Image image = new Image("file:///" + units.get(0).getPictureUrl1());
             unitimage.setImage(image);
+
         }
     }
 

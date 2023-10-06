@@ -1,11 +1,11 @@
 package org.example.controller;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import org.example.vo.Quiz;
@@ -18,7 +18,7 @@ public class QuizTestController {
     public void setQuizTests(List<Quiz> quizzesdata) {
     }
 
-    public void handleNextButton(ActionEvent actionEvent) throws IOException {
+    public void handleNextButton(MouseEvent actionEvent) throws IOException {
         FXMLLoader scorelistloader = new FXMLLoader(getClass().getResource("/scorelist.fxml"));
         Parent scorelistroot = scorelistloader.load();
 

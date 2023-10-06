@@ -7,8 +7,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import org.example.http.HttpClientGetData;
 import org.example.modaldata.UnitLabelData;
@@ -19,10 +21,20 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import static org.example.Main.customFontForAll;
 import static org.example.controller.CourseItemController.coursedata;
 import static org.example.controller.TsController.jsonNodeForUser;
 
 public class ScoreListController {
+    public Label scorelist;
+    public Label scoredetails;
+
+    public void initialize(){
+        scorelist.setText("成績單列表");
+        scorelist.setFont(Font.font(customFontForAll.getFamily(), 24));
+        scoredetails.setText("成績單總表");
+        scoredetails.setFont(Font.font(customFontForAll.getFamily(), 24));
+    }
     public void handleGoBackButtonAction(MouseEvent mouseEvent) {
         try {
             System.out.println("返回上一頁(主畫面)");
@@ -52,7 +64,7 @@ public class ScoreListController {
 //        if (scoreId != null) {
             showUnitDetails(event);
 //        } else {
-            System.out.println("使用者可能未點擊");
+//            System.out.println("使用者可能未點擊");
 //        }
     }
 

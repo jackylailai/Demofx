@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
@@ -16,20 +17,22 @@
             <Image url="@images/返回上一頁.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="30.0" fitWidth="35.0" layoutX="284.0" layoutY="828.0"  onMouseClicked="#handleGoBackButtonAction" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;">
+      <ImageView fitHeight="30.0" fitWidth="35.0" layoutX="284.0" layoutY="828.0" onMouseClicked="#handleGoBackButtonAction" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;">
          <image>
             <Image url="@images/返回上一頁箭頭.png" />
          </image>
       </ImageView>
-      <ImageView id="1" fitHeight="142.0" fitWidth="265.0" layoutX="149.0" layoutY="196.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView  id="1" fitHeight="142.0" fitWidth="265.0" layoutX="149.0" layoutY="196.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@images/課程項目與課程列表選框.png" />
          </image>
       </ImageView>
-      <ImageView id="2"  onMouseClicked="#handleGoScore" fitHeight="142.0" fitWidth="265.0" layoutX="403.0" layoutY="196.0" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;">
+      <ImageView  id="2" fitHeight="142.0" fitWidth="265.0" layoutX="403.0" layoutY="196.0" onMouseClicked="#handleGoScore" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;">
          <image>
             <Image url="@images/課程項目與課程列表選框.png" />
          </image>
       </ImageView>
+      <Label id="1" fx:id="scorelist" layoutX="220.0" layoutY="239.0" prefHeight="56.0" prefWidth="128.0" />
+      <Label id="2" fx:id="scoredetails" layoutX="476.0" layoutY="239.0" prefHeight="56.0" prefWidth="128.0" />
    </children>
 </Pane>
