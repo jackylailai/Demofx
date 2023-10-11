@@ -59,7 +59,7 @@
                </image>
             </ImageView>
       <!--      <Button fx:id="" layoutX="211.0" layoutY="591.0" onAction="#handleCourseTrainingClick" prefHeight="16.0" prefWidth="16.0" />-->
-            <ImageView id="online" fitHeight="293.0" fitWidth="304.0" layoutX="50.0" layoutY="437.0" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;">
+            <ImageView onMouseClicked="#handleOnlineButton" id="online" fitHeight="293.0" fitWidth="304.0" layoutX="50.0" layoutY="437.0" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;">
                <image>
                   <Image url="@images/1-2連線課程點選.png" />
                </image>

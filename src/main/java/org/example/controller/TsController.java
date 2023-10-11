@@ -245,4 +245,29 @@ public class TsController {
         currentStage.setScene(scorelistScene);
         currentStage.setTitle("ScoreList");
     }
+
+    public void handleOnlineButton(MouseEvent mouseEvent) throws IOException {
+        FXMLLoader onlineloader = new FXMLLoader(getClass().getResource("/onlinewaiting.fxml"));
+        Parent onlineroot = onlineloader.load();
+
+        OnlineController onlineController = onlineloader.getController();
+        Scene onlineScene = new Scene(onlineroot);
+        onlineScene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/globalStyles.css")).toExternalForm());
+        Stage currentStage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
+        onlineController.setUnits(currentStage);
+        Screen secondScreen = Screen.getScreens().stream()
+                .filter(screen -> !screen.equals(Screen.getPrimary()))
+                .findFirst()
+                .orElse(Screen.getPrimary());
+
+        System.out.println("onlineScene"+onlineScene);
+
+
+        Screen screen = Screen.getPrimary();
+        Rectangle2D secondScreenBounds = secondScreen.getVisualBounds();
+
+        currentStage.setAlwaysOnTop(true);
+        currentStage.setScene(onlineScene);
+        currentStage.setTitle("Online waiting");
+    }
 }

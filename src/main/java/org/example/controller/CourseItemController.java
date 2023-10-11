@@ -21,10 +21,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import static org.example.Main.customFontForAll;
 import static org.example.controller.TsController.jsonNodeForUser;
 
 public class CourseItemController {
+    private static final Logger logger = LoggerFactory.getLogger(CourseItemController.class);
 
     public Label label9;
     public Label label8;
@@ -130,6 +134,7 @@ public class CourseItemController {
         System.out.println("CourseName"+courseName);
         if (courseId != null) {
             System.out.println("courseid"+courseId);
+            logger.info("This is an info message.");
             showCourseDetails(courseId,event);
         } else {
             System.out.println("使用者可能未點擊");

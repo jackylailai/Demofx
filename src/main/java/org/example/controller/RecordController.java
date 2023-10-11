@@ -40,7 +40,7 @@ public class RecordController {
         Timeline timeline = new Timeline(keyFrame);
         timeline.setCycleCount(1);
         timeline.play();
-}
+    }
 
     private void openNewWindow(Stage stage, String extractedText) {
         FXMLLoader answerloader = new FXMLLoader(getClass().getResource("/answer.fxml"));

@@ -1,17 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.media.MediaView?>
+<?import javafx.scene.text.Font?>
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.VideoController">
    <children>
-      <MediaView fx:id="mediaView" fitHeight="800.0" fitWidth="1080.0" layoutX="1.0" />
-      <ImageView id="pause" fitHeight="142.0" fitWidth="266.0" layoutX="409.0" layoutY="578.0" onMouseClicked="#handlePauseButton" pickOnBounds="true" preserveRatio="true">
+      <MediaView fx:id="mediaView" fitHeight="720.0" fitWidth="1080.0" layoutX="1.0" />
+      <ImageView id="pause" fitHeight="87.0" fitWidth="177.0" layoutX="459.0" layoutY="619.0" onMouseClicked="#handlePauseButton" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@images/課程項目與課程列表選框.png" />
          </image>
       </ImageView>
+      <Label layoutX="496.0" layoutY="648.0" text="播放/暫停" textAlignment="CENTER">
+         <font>
+            <Font name="System Bold Italic" size="22.0" />
+         </font>
+      </Label>
    </children>
 </Pane>
