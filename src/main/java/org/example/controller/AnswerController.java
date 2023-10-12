@@ -20,6 +20,9 @@ import static org.example.controller.QuizController.quizzesdata;
 public class AnswerController {
     public Label yourAnswer;
     public Label answer;
+    public Label yourAnswer2;
+    public Label answer2;
+    public Label yourAnswer3;
 
     public void handleNextQuizButton(MouseEvent event) throws IOException {
         if( operationCounts < 3){
@@ -73,8 +76,8 @@ public class AnswerController {
                     .orElse(Screen.getPrimary());
 
             System.out.println("quizScene"+quizScene);
-            currentStage.setWidth(600);
-            currentStage.setHeight(600);
+            currentStage.setWidth(335);
+            currentStage.setHeight(540);
 
             Screen screen = Screen.getPrimary();
             Rectangle2D secondScreenBounds = secondScreen.getBounds();
@@ -92,5 +95,7 @@ public class AnswerController {
 
     public void setExtractedText(String extractedText) {
         yourAnswer.setText(extractedText);
+        yourAnswer2.setText(extractedText);
+        yourAnswer3.setText(extractedText);
     }
 }

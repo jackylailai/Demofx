@@ -22,7 +22,7 @@
             <Image url="@images/返回上一頁箭頭.png" />
          </image>
       </ImageView>
-      <ImageView  id="1" fitHeight="142.0" fitWidth="265.0" layoutX="149.0" layoutY="196.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView  id="1" fitHeight="142.0" fitWidth="265.0" layoutX="149.0" layoutY="196.0" onMouseClicked="#handleGoGradeList" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;">
          <image>
             <Image url="@images/課程項目與課程列表選框.png" />
          </image>

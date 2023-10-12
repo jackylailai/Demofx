@@ -79,7 +79,7 @@
             <Font name="System Bold" size="46.0" />
          </font>
       </Text>
-      <Label fx:id="label1" layoutX="222.0" layoutY="238.0" text="111111" textAlignment="CENTER">
+      <Label fx:id="label1" layoutX="222.0" layoutY="238.0" textAlignment="CENTER">
          <font>
             <Font size="24.0" />
          </font>
@@ -94,27 +94,27 @@
             <Font size="24.0" />
          </font>
       </Label>
-      <Label fx:id="label6" layoutX="750.0" layoutY="386.0" text="111111" textAlignment="CENTER">
+      <Label fx:id="label6" layoutX="750.0" layoutY="386.0" textAlignment="CENTER">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <Label fx:id="label3" layoutX="762.0" layoutY="238.0" text="111111" textAlignment="CENTER">
+      <Label fx:id="label3" layoutX="762.0" layoutY="238.0" textAlignment="CENTER">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <Label fx:id="label2" layoutX="499.0" layoutY="238.0" text="111111" textAlignment="CENTER">
+      <Label fx:id="label2" layoutX="499.0" layoutY="238.0" textAlignment="CENTER">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <Label fx:id="label5" layoutX="498.0" layoutY="386.0" text="111111" textAlignment="CENTER">
+      <Label fx:id="label5" layoutX="498.0" layoutY="386.0" textAlignment="CENTER">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <Label fx:id="label4" layoutX="222.0" layoutY="386.0" text="111111" textAlignment="CENTER">
+      <Label fx:id="label4" layoutX="222.0" layoutY="386.0" textAlignment="CENTER">
          <font>
             <Font size="24.0" />
          </font>

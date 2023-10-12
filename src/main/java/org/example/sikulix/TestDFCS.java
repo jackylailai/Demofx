@@ -40,6 +40,41 @@ public class TestDFCS {
                         return extractedText;
                     }
                 case 2:
+                    if (screen.exists(signalIntensityPattern.similar(0.7), 5) != null) {
+                        System.out.println("找到signalintensity");
+                        screen.wait(signalIntensityPattern, 5);
+//                        screen.find(signalIntensityPattern).click();
+                        Region signalIntensityRegion = screen.find(signalIntensityPattern);
+                        int offsetX = 115;  // 向右位移的像素值
+                        int offsetY = 0;  // 向下位移的像素值
+                        int newX = signalIntensityRegion.getX() + offsetX;//抓到位置後位移到該xy
+                        int newY = signalIntensityRegion.getY() + offsetY;
+                        int newWidth = 70;//先給個default宣告
+                        int newHeight = 40;
+                        Region newRegion = new Region(newX, newY, newWidth, newHeight);//設定最後要擷取的範圍
+                        newRegion.highlight(3);
+                        String extractedText = newRegion.text();
+                        System.out.println("操作結果"+extractedText);
+                        return extractedText;
+                    }
+//                    if (screen.exists(startFrequencyPattern.similar(0.7), 5) != null) {
+//                        System.out.println("found startFrequencyPattern");
+//                        screen.wait(startFrequencyPattern, 5);
+////                        screen.find(startFrequencyPattern).click();
+//                        Region startFrequencyRegion = screen.find(startFrequencyPattern);
+//                        int offsetX = 85;  // 向右位移的像素值
+//                        int offsetY = 5;  // 向下位移的像素值
+//                        int newX = startFrequencyRegion.getX() + offsetX;//抓到位置後位移到該xy
+//                        int newY = startFrequencyRegion.getY() + offsetY;
+//                        int newWidth = 70;//先給個default宣告
+//                        int newHeight = 40;
+//                        Region newRegion = new Region(newX, newY, newWidth, newHeight);//設定最後要擷取的範圍
+//                        newRegion.highlight(3);
+//                        String extractedText = newRegion.text();
+//                        System.out.println("操作結果"+extractedText);
+//                        return extractedText;
+//                    }
+                case 3:
                     if (screen.exists(startFrequencyPattern.similar(0.7), 5) != null) {
                         System.out.println("found startFrequencyPattern");
                         screen.wait(startFrequencyPattern, 5);
@@ -54,10 +89,8 @@ public class TestDFCS {
                         Region newRegion = new Region(newX, newY, newWidth, newHeight);//設定最後要擷取的範圍
                         newRegion.highlight(3);
                         String extractedText = newRegion.text();
-                        System.out.println("操作結果"+extractedText);
-                        return extractedText;
+                        System.out.println("操作結果起始頻率:"+extractedText);
                     }
-                case 3:
                     if (screen.exists(limitFrequencyPattern.similar(0.7), 5) != null) {
                         System.out.println("found limitFrequencyPattern");
                         screen.wait(limitFrequencyPattern, 5);
@@ -72,7 +105,7 @@ public class TestDFCS {
                         Region newRegion = new Region(newX, newY, newWidth, newHeight);//設定最後要擷取的範圍
                         newRegion.highlight(3);
                         String extractedText = newRegion.text();
-                        System.out.println("操作結果"+extractedText);
+                        System.out.println("操作結果終止頻率:"+extractedText);
                         return extractedText;
                     }
 

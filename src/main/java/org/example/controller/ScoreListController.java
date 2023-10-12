@@ -99,6 +99,25 @@ public class ScoreListController {
             e.printStackTrace();
         }
     }
+
+    public void handleGoGradeList(MouseEvent mouseEvent) throws IOException {
+        FXMLLoader gradelistloader = new FXMLLoader(getClass().getResource("/gradelist.fxml"));
+        Parent gradelistroot = gradelistloader.load();
+
+        GradeListController gradelistController = gradelistloader.getController();
+//                scoreController.setScores(scores);
+
+        Scene gradelistScene = new Scene(gradelistroot);
+        gradelistScene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/globalStyles.css")).toExternalForm());
+        Stage currentStage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
+
+
+        System.out.println("gradelist"+gradelistScene);
+
+        currentStage.setScene(gradelistScene);
+        currentStage.setTitle("Gradelist");
+
+    }
 //    private List<Unit> parseUnitsJson(String jsonResponse) {
 //        List<Unit> units = new ArrayList<>();
 //        ObjectMapper objectMapper = new ObjectMapper();
