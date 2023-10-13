@@ -8,6 +8,7 @@ module Demofx {
     requires lombok;
     requires javafx.media;
     requires org.slf4j;
+    requires java.desktop;
     exports org.example.vo;
     opens org.example;
     opens org.example.controller;

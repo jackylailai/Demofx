@@ -33,7 +33,7 @@ public class RecordController {
         KeyFrame keyFrame = new KeyFrame(duration, event -> {
             System.out.println("Timer finished. Perform window transition here.");
 
-            String extractedText = TestDFCS.dfcsmock();
+            List<String> extractedText = TestDFCS.dfcsmock();
             System.out.println("Extracted Text: " + extractedText);
             openNewWindow(currentStage, extractedText);
         });
@@ -42,7 +42,7 @@ public class RecordController {
         timeline.play();
     }
 
-    private void openNewWindow(Stage stage, String extractedText) {
+    private void openNewWindow(Stage stage, List<String> extractedText) {
         FXMLLoader answerloader = new FXMLLoader(getClass().getResource("/answer.fxml"));
         Parent answerroot = null;
         try {
@@ -65,13 +65,13 @@ public class RecordController {
 
         System.out.println("answerScene"+answerScene);
         currentStage.setWidth(335);
-        currentStage.setHeight(400);
+        currentStage.setHeight(425);
 
         Screen screen = Screen.getPrimary();
         Rectangle2D secondScreenBounds = secondScreen.getVisualBounds();
 //
         double centerX = secondScreenBounds.getMinX() + (secondScreenBounds.getWidth() - 335) / 2;
-        double centerY = secondScreenBounds.getMinY() + (secondScreenBounds.getHeight() - 400) / 2;
+        double centerY = secondScreenBounds.getMinY() + (secondScreenBounds.getHeight() - 425) / 2;
         currentStage.setX(centerX);
         currentStage.setY(centerY);
         currentStage.setAlwaysOnTop(true);

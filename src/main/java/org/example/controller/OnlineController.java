@@ -8,6 +8,10 @@ import javafx.geometry.Rectangle2D;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyCodeCombination;
+import javafx.scene.input.KeyCombination;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -23,6 +27,18 @@ public class OnlineController {
 
         // 在初始化控制器时设置stage字段
         public void initialize() {
+            KeyCombination keyCombination = new KeyCodeCombination(KeyCode.X, KeyCombination.CONTROL_DOWN);
+//            Scene currentScene = timerLabel.getScene();
+//            System.out.println(currentScene+"cusce");
+            Scene currentScene = stage.getScene();
+
+            System.out.println(currentScene+"timelabel");
+//            currentScene.addEventHandler(KeyEvent.KEY_PRESSED, event -> {
+//                if (keyCombination.match(event)) {
+//                   System.out.println("按下ctrl+k");
+//                }
+//            });
+
         }
         public void setUnits(Stage currentStage) {
             Duration duration = Duration.seconds(5);
@@ -34,7 +50,6 @@ public class OnlineController {
             timeline.setCycleCount(1);
             timeline.play();
         }
-
     private void openNewOnlineUnitsWindow(Stage currentStage) {
         FXMLLoader onlineUnitsLoader = new FXMLLoader(getClass().getResource("/unit2.fxml"));
         Parent onlineUnitsRoot = null;

@@ -10,10 +10,13 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
+import org.example.modaldata.UnitLabelData;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Objects;
 
+import static org.example.Main.customFontForAll;
 import static org.example.controller.QuizController.operationCounts;
 import static org.example.controller.QuizController.quizzesdata;
 
@@ -93,9 +96,28 @@ public class AnswerController {
         }
     }
 
-    public void setExtractedText(String extractedText) {
-        yourAnswer.setText(extractedText);
-        yourAnswer2.setText(extractedText);
-        yourAnswer3.setText(extractedText);
+    public void setExtractedText(List<String> extractedText) {
+
+        if (!extractedText.isEmpty()) {
+            String firstElement = extractedText.get(0);
+            System.out.println("第一個答案: " + firstElement);
+            yourAnswer.setText(firstElement);
+            yourAnswer.setFont(customFontForAll);
+        }
+
+        if (extractedText.size() >= 2) {
+            String secondElement = extractedText.get(1);
+            System.out.println("第二個答案: " + secondElement);
+            yourAnswer2.setText(secondElement);
+            yourAnswer2.setFont(customFontForAll);
+        }
+//        System.out.println("Current font size: " + yourAnswer.getFont().getSize());
+//        yourAnswer.setText(extractedText);
+//        yourAnswer.setFont(customFontForAll);
+//        System.out.println("New font size: " + yourAnswer.getFont().getSize());
+//        yourAnswer2.setText(extractedText);
+//        yourAnswer2.setFont(customFontForAll);
+//        yourAnswer3.setText(extractedText);
+//        yourAnswer3.setFont(customFontForAll);
     }
 }
