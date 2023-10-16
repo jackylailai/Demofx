@@ -68,16 +68,22 @@ public class GradeListController {
         TableColumn<Student, String> idColumn = new TableColumn<>("學號");
         TableColumn<Student, String> taskColumn = new TableColumn<>("任務");
         TableColumn<Student, String> scoreColumn = new TableColumn<>("成績");
+        TableColumn<Student, String> totalTestColumn = new TableColumn<>("總共題目");
+        TableColumn<Student, String> correctColumn = new TableColumn<>("答對題目");
 
-        nameColumn.setPrefWidth(180);
-        idColumn.setPrefWidth(180);
-        taskColumn.setPrefWidth(180);
-        scoreColumn.setPrefWidth(180);
+        nameColumn.setPrefWidth(120);
+        idColumn.setPrefWidth(120);
+        taskColumn.setPrefWidth(120);
+        scoreColumn.setPrefWidth(120);
+        totalTestColumn.setPrefWidth(120);
+        correctColumn.setPrefWidth(120);
 
         nameColumn.setResizable(false);
         idColumn.setResizable(false);
         taskColumn.setResizable(false);
         scoreColumn.setResizable(false);
+        totalTestColumn.setResizable(false);
+        correctColumn.setResizable(false);
 
 
 // Associate columns with data properties (if not already defined in FXML)
@@ -85,25 +91,39 @@ public class GradeListController {
         idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
         taskColumn.setCellValueFactory(new PropertyValueFactory<>("task"));
         scoreColumn.setCellValueFactory(new PropertyValueFactory<>("score"));
+        totalTestColumn.setCellValueFactory(new PropertyValueFactory<>("totalTest"));
+        correctColumn.setCellValueFactory(new PropertyValueFactory<>("correct"));
 
 // Set up cell factories to allow editing (if needed)
         nameColumn.setCellFactory(TextFieldTableCell.forTableColumn());
         idColumn.setCellFactory(TextFieldTableCell.forTableColumn());
         taskColumn.setCellFactory(TextFieldTableCell.forTableColumn());
         scoreColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+        totalTestColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+        correctColumn.setCellFactory(TextFieldTableCell.forTableColumn());
 
         String name = jsonNodeForUser.get("name").asText();
 //        String info = "學員 :   "+name;
 // Add columns to the TableView
-        tableView.getColumns().addAll(nameColumn, idColumn, taskColumn, scoreColumn);
+        tableView.getColumns().addAll(nameColumn, idColumn, taskColumn, scoreColumn,totalTestColumn, correctColumn);
 
 // Create data for the TableView
         ObservableList<Student> data = FXCollections.observableArrayList(
-                new Student(name, "67890", "信號搜索", "95"),
-                new Student(name, "67890", "信號追蹤", "88"),
-                new Student(name, "67890", "信號監視", "75")
+                new Student(name, "67890", "信號搜索", "95","2","1"),
+                new Student(name, "67890", "信號追蹤", "88","2","1"),
+                new Student(name, "67890", "信號監視", "75","2","1")
         );
 // Set the data to the TableView
+        tableView.setOnMouseClicked(event -> {
+            if (event.getClickCount() == 2) { // Double-click detection
+                Student selectedItem = tableView.getSelectionModel().getSelectedItem();
+                if (selectedItem != null) {
+                    // Perform navigation or open a new screen based on the selected item
+                    System.out.println("Selected: " + selectedItem);
+                    // You can open a new window or scene here
+                }
+            }
+        });
         tableView.setItems(data);
     }
     public void handleGoBackButtonAction(MouseEvent mouseEvent) {

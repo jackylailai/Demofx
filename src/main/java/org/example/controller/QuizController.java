@@ -56,8 +56,7 @@ public class QuizController {
     }
     public void setQuizs(List<Quiz> quiz) {
         quizzesdata=quiz;
-        System.out.println(quiz+"資料進來quiz");
-
+        System.out.println(quiz+"資料進來quizzesdata");
     }
 
     public void handleButtonAction(MouseEvent actionEvent) throws IOException {

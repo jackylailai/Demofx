@@ -20,7 +20,7 @@
             <Font name="System Bold" size="24.0" />
          </font>
       </Label>
-      <TextArea layoutX="71.0" layoutY="35.0" prefHeight="100.0" prefWidth="222.0" style="-fx-faint-focus-color: transparent; -fx-focus-color: transparent; -fx-text-box-border: transparent; -fx-background-color: rgba(255, 255, 255, 0.5); -fx-background-insets: 0;" />
+      <TextArea id="q1" fx:id="question1" layoutX="71.0" layoutY="35.0" prefHeight="100.0" prefWidth="222.0" style="-fx-faint-focus-color: transparent; -fx-focus-color: transparent; -fx-text-box-border: transparent; -fx-background-color: rgba(255, 255, 255, 0.5); -fx-background-insets: 0;" />
       <Label layoutX="24.0" layoutY="153.0" text="A1.">
          <font>
             <Font name="System Bold" size="24.0" />
@@ -31,19 +31,19 @@
             <Font name="System Bold" size="24.0" />
          </font>
       </Label>
-      <TextArea layoutX="71.0" layoutY="215.0" prefHeight="100.0" prefWidth="222.0" style="-fx-faint-focus-color: transparent;-fx-focus-color: transparent; -fx-text-box-border: transparent; -fx-background-color: -fx-control-inner-background;     -fx-background-insets: 0;" />
+      <TextArea id="q2" fx:id="question2" layoutX="71.0" layoutY="215.0" prefHeight="100.0" prefWidth="222.0" style="-fx-faint-focus-color: transparent;-fx-focus-color: transparent; -fx-text-box-border: transparent; -fx-background-color: -fx-control-inner-background;     -fx-background-insets: 0;" />
       <Label layoutX="24.0" layoutY="336.0" text="A2.">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
       </Label>
-      <TextField layoutX="71.0" layoutY="332.0" prefHeight="46.0" prefWidth="169.0" promptText="請輸入是/否" style="-fx-background-color: rgba(255, 255, 255, 0.5); -fx-font-size: 18px; -fx-pref-height: 40px; -fx-padding: 5px;" />
-      <ImageView onMouseClicked="#handleNextButton" style="-fx-cursor: hand;" fitHeight="70.0" fitWidth="170.0" layoutX="83.0" layoutY="426.0" pickOnBounds="true" preserveRatio="true">
+      <TextField id="a2" layoutX="71.0" layoutY="332.0" prefHeight="46.0" prefWidth="169.0" promptText="請輸入是/否" style="-fx-background-color: rgba(255, 255, 255, 0.5); -fx-font-size: 18px; -fx-pref-height: 40px; -fx-padding: 5px;" />
+      <ImageView fitHeight="70.0" fitWidth="170.0" layoutX="83.0" layoutY="426.0" onMouseClicked="#handleNextButton" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;">
          <image>
             <Image url="@images/完成並提交預設.png" />
          </image>
       </ImageView>
-      <TextField layoutX="71.0" layoutY="149.0" prefHeight="46.0" prefWidth="169.0" promptText="僅能填入數字" style="-fx-background-color: rgba(255, 255, 255, 0.5); -fx-font-size: 18px; -fx-pref-height: 40px; -fx-padding: 5px;" />
+      <TextField id="a1" layoutX="71.0" layoutY="149.0" prefHeight="46.0" prefWidth="169.0" promptText="僅能填入數字" style="-fx-background-color: rgba(255, 255, 255, 0.5); -fx-font-size: 18px; -fx-pref-height: 40px; -fx-padding: 5px;" />
       <Label layoutX="236.0" layoutY="156.0" text="輛/小時">
          <font>
             <Font name="System Bold" size="20.0" />

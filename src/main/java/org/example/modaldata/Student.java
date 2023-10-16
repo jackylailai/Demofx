@@ -8,12 +8,16 @@ public class Student {
     private final StringProperty id = new SimpleStringProperty();
     private final StringProperty task = new SimpleStringProperty();
     private final StringProperty score = new SimpleStringProperty();
+    private final StringProperty totalTest = new SimpleStringProperty();
+    private final StringProperty correct = new SimpleStringProperty();
 
-    public Student(String name, String id, String task, String score) {
+    public Student(String name, String id, String task, String score, String totalTest, String correct) {
         this.name.set(name);
         this.id.set(id);
         this.task.set(task);
         this.score.set(score);
+        this.totalTest.set(totalTest);
+        this.correct.set(correct);
     }
 
     public String getName() {
@@ -62,5 +66,28 @@ public class Student {
 
     public void setScore(String score) {
         this.score.set(score);
+    }
+    public String getTotalTest() {
+        return totalTest.get();
+    }
+
+    public StringProperty totalTestProperty() {
+        return totalTest;
+    }
+
+    public void setTotalTest(String totalTest) {
+        this.totalTest.set(totalTest);
+    }
+
+    public String getCorrect() {
+        return correct.get();
+    }
+
+    public StringProperty correctProperty() {
+        return correct;
+    }
+
+    public void setCorrect(String correct) {
+        this.correct.set(correct);
     }
 }

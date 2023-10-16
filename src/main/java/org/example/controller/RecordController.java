@@ -3,9 +3,11 @@ package org.example.controller;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Rectangle2D;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -17,6 +19,7 @@ import org.example.sikulix.TestDFCS;
 import org.example.vo.Quiz;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -35,7 +38,39 @@ public class RecordController {
 
             List<String> extractedText = TestDFCS.dfcsmock();
             System.out.println("Extracted Text: " + extractedText);
-            openNewWindow(currentStage, extractedText);
+            if (extractedText == null ) {
+//                Platform.runLater(() -> {
+//
+//                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/login.fxml"));
+//                    Parent loginRoot = null;
+//                    try {
+//                        loginRoot = loader.load();
+//                    } catch (IOException e) {
+//                        e.printStackTrace();
+//                    }
+//                    LoginController loginController = loader.getController();
+//                    loginController.setPrimaryStage(currentStage);
+//                    Scene loginScene = new Scene(loginRoot);
+//                    System.out.println("es stage"+currentStage);
+//                    currentStage.setScene(loginScene);
+//                    currentStage.setTitle("Login");
+//                });
+                Platform.runLater(() -> {
+                    Alert alert = new Alert(Alert.AlertType.WARNING);
+                    alert.setTitle("錯誤");
+                    alert.setHeaderText("發生錯誤");
+                    alert.setContentText("發生錯誤，請勿影響操作並立即通知教官。");
+
+                    alert.showAndWait();
+                    String errorText = "錯誤";
+                    List<String> errorTextList = new ArrayList<>();
+                    errorTextList.add(errorText);
+                    openNewWindow(currentStage, errorTextList);
+                });
+            } else {
+                openNewWindow(currentStage, extractedText);
+            }
+//            openNewWindow(currentStage, extractedText);
         });
         Timeline timeline = new Timeline(keyFrame);
         timeline.setCycleCount(1);

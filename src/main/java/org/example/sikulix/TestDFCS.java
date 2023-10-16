@@ -83,6 +83,7 @@ public class TestDFCS {
                         extractedTextList.add(extractedHighText);
                         return extractedTextList;
                     }
+                    return extractedTextList;
 //                    if (screen.exists(signalIntensityPattern.similar(0.7), 5) != null) {
 //                        System.out.println("找到signalintensity");
 //                        screen.wait(signalIntensityPattern, 5);
@@ -119,6 +120,7 @@ public class TestDFCS {
                         extractedTextList.add(extractedText);
                         return extractedTextList;
                     }
+                    return extractedTextList;
 //                    if (screen.exists(startFrequencyPattern.similar(0.7), 5) != null) {
 //                        System.out.println("found startFrequencyPattern");
 //                        screen.wait(startFrequencyPattern, 5);
@@ -172,11 +174,18 @@ public class TestDFCS {
                         extractedTextList.add(extractedText);
                         return extractedTextList;
                     }
+                    return extractedTextList;
 
             }
 
         } catch (FindFailed e) {
-            throw new RuntimeException(e);
+//            throw new RuntimeException(e);
+            return null;
+        }catch (NullPointerException e) {
+            e.printStackTrace();
+            List<String> errorList = new ArrayList<>();
+            errorList.add("NullPointerException");
+            return errorList;
         }
         return null;
     }

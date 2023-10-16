@@ -27,12 +27,11 @@ public class OnlineController {
 
         // 在初始化控制器时设置stage字段
         public void initialize() {
-            KeyCombination keyCombination = new KeyCodeCombination(KeyCode.X, KeyCombination.CONTROL_DOWN);
+//            KeyCombination keyCombination = new KeyCodeCombination(KeyCode.X, KeyCombination.CONTROL_DOWN);
 //            Scene currentScene = timerLabel.getScene();
 //            System.out.println(currentScene+"cusce");
-            Scene currentScene = stage.getScene();
-
-            System.out.println(currentScene+"timelabel");
+//            Scene currentScene = stage.getScene();
+//            System.out.println(currentScene+"timelabel");
 //            currentScene.addEventHandler(KeyEvent.KEY_PRESSED, event -> {
 //                if (keyCombination.match(event)) {
 //                   System.out.println("按下ctrl+k");

@@ -5,17 +5,57 @@ import javafx.geometry.Rectangle2D;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.TextArea;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.text.Font;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
+import org.example.modaldata.UnitLabelData;
 import org.example.vo.Quiz;
 
 import java.io.IOException;
 import java.util.List;
 import java.util.Objects;
 
+import static org.example.Main.customFontForAll;
+
 public class QuizTestController {
+    public TextArea question1;
+    public TextArea question2;
+    public static List<Quiz> quizzes;
+
     public void setQuizTests(List<Quiz> quizzesdata) {
+        if (quizzesdata != null) {
+            quizzes=quizzesdata;
+            System.out.println("傳進unit頁面"+quizzes);
+            Quiz quiz1 = quizzesdata.get(0);
+            if (quiz1.getTofQuiz() == 1) {
+                question1.setText(quiz1.getContent());
+                question1.setFont(Font.font(customFontForAll.getFamily(), 18));
+                question1.setWrapText(true);
+                System.out.println("是非"+quiz1.getTofQuiz());
+
+            } else if (quiz1.getTofQuiz() == 2) {
+                question1.setText(quiz1.getContent());
+                question1.setFont(Font.font(customFontForAll.getFamily(), 18));
+                question1.setWrapText(true);
+                System.out.println(quiz1.getTofQuiz());
+            }
+
+            Quiz quiz2 = quizzesdata.get(1);
+            if (quiz2.getTofQuiz() == 1) {
+
+                question2.setText(quiz2.getContent());
+                question2.setFont(Font.font(customFontForAll.getFamily(), 18));
+                question2.setWrapText(true);
+
+            } else if (quiz2.getEssayQuiz() == 1) {
+                question2.setText("問答題:"+quiz2.getContent());
+                question2.setFont(Font.font(customFontForAll.getFamily(), 18));
+                question2.setWrapText(true);
+            }
+        }
     }
 
     public void handleNextButton(MouseEvent actionEvent) throws IOException {

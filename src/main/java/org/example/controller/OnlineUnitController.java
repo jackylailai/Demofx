@@ -247,7 +247,7 @@ public class OnlineUnitController {
         scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/globalStyles.css")).toExternalForm());
 
         VideoController videoController = loader.getController();
-        videoController.initMediaPlayer("file:///z:/SSTP/demo/videos/DEMO圖資畫面.mp4");
+        videoController.initMediaPlayer("file:///z:/SSTP/demo/videos/偵蒐demo1-1015.mp4");
 
         videoStage.setScene(scene);
         videoStage.setTitle("Video");
