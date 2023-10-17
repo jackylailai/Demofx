@@ -1,19 +1,19 @@
 package org.example.sikulix;
 
 import org.example.utils.ImagePath;
-import org.sikuli.script.FindFailed;
-import org.sikuli.script.Pattern;
-import org.sikuli.script.Region;
-import org.sikuli.script.Screen;
+import org.sikuli.script.*;
 
 import java.awt.image.BufferedImage;
-import java.util.ArrayList;
-import java.util.List;
+import java.io.File;
+import java.util.*;
 
 import static org.example.controller.QuizController.operationCounts;
+import static org.example.controller.TsController.jsonNodeForUser;
+import static org.example.controller.UnitController.unitsData;
 
 
 public class TestDFCS {
+    public static Map<String, String> screenshotMap = new HashMap<>();
     public static List<String> dfcsmock() {
 //        StringBuilder sb = new StringBuilder();
         List<String> extractedTextList = new ArrayList<>();
@@ -81,6 +81,31 @@ public class TestDFCS {
 //                        screen.find(signalIntensityPattern).click();
                         extractedTextList.add(extractedText);
                         extractedTextList.add(extractedHighText);
+
+
+                        newY = subtractionRegion.getY()- 190;
+                        Region screenRegion = new Region(subtractionRegion.getX(),newY,600,500);
+                        screenRegion.highlight(3);
+                        String screenshotsPath = "C:\\serverdb\\screenshots";
+
+                        File screenshotsDirectory = new File(screenshotsPath);
+                        if (!screenshotsDirectory.exists()) {
+                            screenshotsDirectory.mkdirs();
+                        }
+                        Screen screenShot = new Screen();
+                        ScreenImage regionImage = screenShot.capture(screenRegion);
+                        String screenshotName = jsonNodeForUser.get("name").asText() +"Unit"+unitsData.get(0).getUnitId();
+                        long timestamp = System.currentTimeMillis();
+//                        String customScreenshotName = generateCustomScreenshotName(screenshotName);
+//                        String screenshotPath = screenshotsPath + File.separator + customScreenshotName + ".png";
+                        String screenshotPath = screenshotsPath + File.separator + screenshotName + timestamp + ".png";
+
+                        String codingName = screenshotName+timestamp;
+                        screenshotMap.put(screenshotName, screenshotPath);
+                        System.out.println(screenshotMap);
+                        System.out.println(screenshotPath+"::::screenshotPath");
+                        regionImage.save(screenshotsPath,codingName);
+
                         return extractedTextList;
                     }
                     return extractedTextList;

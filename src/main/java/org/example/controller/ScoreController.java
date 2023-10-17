@@ -1,20 +1,92 @@
 package org.example.controller;
 
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
+import org.sikuli.script.ScreenImage;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import static org.example.controller.TsController.jsonNodeForUser;
+import static org.example.controller.UnitController.unitsData;
+import static org.example.sikulix.TestDFCS.screenshotMap;
 
 public class ScoreController {
+    public ImageView screenshot;
+//    public void initialize(){
+//
+//        String screenshotName = jsonNodeForUser.get("name").asText() +"Unit"+unitsData.get(0).getUnitId();
+//        String filename = screenshotMap.get(screenshotName);
+//        try {
+//            if (filename != null) {
+//                String imagePath = "file:" + filename;
+//                Image image = new Image(filename);
+//                screenshot.setImage(image);
+//                System.out.println(image);
+//                System.out.println(filename);
+//            } else {
+//                Platform.runLater(() -> {
+//                    Alert alert = new Alert(Alert.AlertType.WARNING);
+//                    alert.setTitle("警告");
+//                    alert.setHeaderText("發生錯誤");
+//                    alert.setContentText("尚未考試或找不到相關截圖");
+//                    alert.showAndWait();
+//
+//                });
+//
+//            }
+//        } catch (NullPointerException e) {
+//            e.printStackTrace();
+//        }
+//
+//    }
+    public void initialize() {
+        String screenshotName = jsonNodeForUser.get("name").asText() + "Unit" + getUnitIdSafely();
+        String filename = screenshotMap.get(screenshotName);
+
+        try {
+            if (filename != null) {
+                String imagePath = "file:" + filename;
+                Image image = new Image(filename);
+                screenshot.setImage(image);
+            } else {
+                // 如果 filename 为 null，显示警告消息
+                throw new NullPointerException("尚未考試或找不到相關截圖");
+            }
+        } catch (NullPointerException e) {
+            showWarningAlert();
+        }
+    }
+
+    private Long getUnitIdSafely() {
+        if (unitsData == null || unitsData.isEmpty()) {
+            showWarningAlert();
+        }
+        return unitsData.get(0).getUnitId();
+    }
+
+    private void showWarningAlert() {
+        Platform.runLater(() -> {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("警告");
+            alert.setHeaderText("發生錯誤");
+            alert.setContentText("尚未考試或找不到相關截圖");
+            alert.showAndWait();
+        });
+    }
+
     public void handleGoBackButtonAction(MouseEvent mouseEvent) {
         try {
             FXMLLoader scorelistloader = new FXMLLoader(getClass().getResource("/scorelist.fxml"));

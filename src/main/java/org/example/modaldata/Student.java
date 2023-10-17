@@ -1,5 +1,7 @@
 package org.example.modaldata;
 
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
@@ -9,9 +11,9 @@ public class Student {
     private final StringProperty task = new SimpleStringProperty();
     private final StringProperty score = new SimpleStringProperty();
     private final StringProperty totalTest = new SimpleStringProperty();
-    private final StringProperty correct = new SimpleStringProperty();
+    private final StringProperty correct = new SimpleStringProperty(); // 修改为字符串类型
 
-    public Student(String name, String id, String task, String score, String totalTest, String correct) {
+    public Student(String name, String id, String task, String score, String totalTest, String correct) { // 修改为字符串类型
         this.name.set(name);
         this.id.set(id);
         this.task.set(task);
@@ -67,6 +69,7 @@ public class Student {
     public void setScore(String score) {
         this.score.set(score);
     }
+
     public String getTotalTest() {
         return totalTest.get();
     }

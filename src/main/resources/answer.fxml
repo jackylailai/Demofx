@@ -45,7 +45,7 @@
                         <Font size="31.0" />
                      </font>
                   </Label>
-                  <Label fx:id="answer2" layoutX="203.0" layoutY="14.0" prefHeight="44.0" prefWidth="95.0" textAlignment="JUSTIFY">
+                  <Label fx:id="answer" layoutX="213.0" layoutY="14.0" prefHeight="44.0" prefWidth="95.0" textAlignment="JUSTIFY">
                      <font>
                         <Font size="34.0" />
                      </font>
@@ -55,7 +55,12 @@
                         <Font size="31.0" />
                      </font>
                   </Label>
-                  <Label fx:id="answer" layoutX="203.0" layoutY="94.0" prefHeight="44.0" prefWidth="95.0" textAlignment="JUSTIFY">
+                  <Label fx:id="answer2" layoutX="213.0" layoutY="84.0" prefHeight="44.0" prefWidth="95.0" textAlignment="JUSTIFY">
+                     <font>
+                        <Font size="34.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="answer3" layoutX="217.0" layoutY="189.0" prefHeight="44.0" prefWidth="95.0" textAlignment="JUSTIFY">
                      <font>
                         <Font size="34.0" />
                      </font>

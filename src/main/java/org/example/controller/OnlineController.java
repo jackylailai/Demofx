@@ -5,25 +5,30 @@ import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Rectangle2D;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyCodeCombination;
-import javafx.scene.input.KeyCombination;
-import javafx.scene.input.KeyEvent;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.*;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
+import java.awt.*;
 import java.io.IOException;
 import java.util.Objects;
 
 
 public class OnlineController {
         public Label timerLabel;
-        @FXML
+        public ImageView groupDone;
+    public Label groupDoneLabel;
+    @FXML
         private Stage stage;
+//        @FXML
+//        private Image jumpButton;
 
         // 在初始化控制器时设置stage字段
         public void initialize() {
@@ -37,19 +42,24 @@ public class OnlineController {
 //                   System.out.println("按下ctrl+k");
 //                }
 //            });
-
+            groupDone.setVisible(false);
+            groupDoneLabel.setVisible(false);
         }
         public void setUnits(Stage currentStage) {
             Duration duration = Duration.seconds(5);
+
             KeyFrame keyFrame = new KeyFrame(duration, event -> {
                 System.out.println("Timer finished. Perform window transition here.");
-                openNewOnlineUnitsWindow(currentStage);
+//                openNewOnlineUnitsWindow(currentStage);
+                groupDone.setVisible(true);
+                groupDoneLabel.setVisible(true);
             });
             Timeline timeline = new Timeline(keyFrame);
             timeline.setCycleCount(1);
             timeline.play();
         }
-    private void openNewOnlineUnitsWindow(Stage currentStage) {
+    @FXML
+    private void openNewOnlineUnitsWindow(MouseEvent event) {
         FXMLLoader onlineUnitsLoader = new FXMLLoader(getClass().getResource("/unit2.fxml"));
         Parent onlineUnitsRoot = null;
         try {
@@ -61,7 +71,7 @@ public class OnlineController {
 //        OnlineUnitsController onlineUnitsController = onlineUnitsLoader.getController();
         Scene onlineUnitsScene = new Scene(onlineUnitsRoot);
         onlineUnitsScene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/globalStyles.css")).toExternalForm());
-
+        Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Screen secondScreen = Screen.getScreens().stream()
                 .filter(screen -> !screen.equals(Screen.getPrimary()))
                 .findFirst()

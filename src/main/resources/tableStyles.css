@@ -1,0 +1,33 @@
+
+.table-view {
+    -fx-background-color: transparent;
+    -fx-border-color: #ccc; /* 外框顏色 */
+    -fx-border-width: 2px; /* 外框寬度 */
+    -fx-border-radius: 5px; /* 外框圓角半徑 */
+}
+
+.table-view .column-header-background {
+    -fx-background-color: #333;
+}
+
+.table-view .column-header, .table-cell {
+    -fx-alignment: center;
+    -fx-font-size: 18px;
+    -fx-text-fill: #fff;
+}
+.table-column-cell, .table-row-cell {
+    -fx-background-color: #555;
+    -fx-table-cell-border-color: #ccc; /* 分隔線顏色 */
+    -fx-table-cell-border-width: 1px; /* 分隔線寬度 */
+    -fx-table-cell-border-style: solid solid solid solid; /* 添加水平分隔线 */
+}
+
+.button {
+    -fx-background-color: #0072e3;
+    -fx-text-fill: #fff;
+    -fx-font-size: 16px;
+}
+
+.button:hover {
+    -fx-background-color: #0055ad;
+}

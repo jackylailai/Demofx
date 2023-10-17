@@ -32,7 +32,7 @@ public class ScoreListController {
     public void initialize(){
         scorelist.setText("成績單列表");
         scorelist.setFont(Font.font(customFontForAll.getFamily(), 24));
-        scoredetails.setText("成績單總表");
+        scoredetails.setText("成績詳情");
         scoredetails.setFont(Font.font(customFontForAll.getFamily(), 24));
     }
     public void handleGoBackButtonAction(MouseEvent mouseEvent) {
@@ -109,6 +109,7 @@ public class ScoreListController {
 
         Scene gradelistScene = new Scene(gradelistroot);
         gradelistScene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/globalStyles.css")).toExternalForm());
+        gradelistScene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/tableStyles.css")).toExternalForm());
         Stage currentStage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
 
 

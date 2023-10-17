@@ -6,11 +6,10 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
-import org.example.modaldata.UnitLabelData;
+import lombok.Getter;
 
 import java.io.IOException;
 import java.util.List;
@@ -21,20 +20,22 @@ import static org.example.controller.QuizController.operationCounts;
 import static org.example.controller.QuizController.quizzesdata;
 
 public class AnswerController {
+    public static int correctAnswerCount = 0;
     public Label yourAnswer;
     public Label answer;
     public Label yourAnswer2;
     public Label answer2;
     public Label yourAnswer3;
+    public Label answer3;
 
     public void handleNextQuizButton(MouseEvent event) throws IOException {
-        if( operationCounts < 3){
+        if (operationCounts < 3) {
             FXMLLoader quizloader = new FXMLLoader(getClass().getResource("/quiz.fxml"));
             Parent quizroot = quizloader.load();
 
             QuizController quizController = quizloader.getController();
             quizController.setQuizs(quizzesdata);
-            operationCounts+=1;
+            operationCounts += 1;
             quizController.setCustomProperty(operationCounts);
 
             Scene quizScene = new Scene(quizroot);
@@ -46,7 +47,7 @@ public class AnswerController {
                     .findFirst()
                     .orElse(Screen.getPrimary());
 
-            System.out.println("quizScene"+quizScene);
+            System.out.println("quizScene" + quizScene);
             currentStage.setWidth(335);
             currentStage.setHeight(540);
 
@@ -60,7 +61,7 @@ public class AnswerController {
             currentStage.setAlwaysOnTop(true);
             currentStage.setScene(quizScene);
             currentStage.setTitle("Quiz List");
-        }else{
+        } else {
             FXMLLoader quiztestloader = new FXMLLoader(getClass().getResource("/quiztest2.fxml"));
             Parent quiztestroot = quiztestloader.load();
 
@@ -78,7 +79,7 @@ public class AnswerController {
                     .findFirst()
                     .orElse(Screen.getPrimary());
 
-            System.out.println("quizScene"+quizScene);
+            System.out.println("quizScene" + quizScene);
             currentStage.setWidth(335);
             currentStage.setHeight(540);
 
@@ -111,6 +112,7 @@ public class AnswerController {
             yourAnswer2.setText(secondElement);
             yourAnswer2.setFont(customFontForAll);
         }
+
 //        System.out.println("Current font size: " + yourAnswer.getFont().getSize());
 //        yourAnswer.setText(extractedText);
 //        yourAnswer.setFont(customFontForAll);
@@ -120,4 +122,45 @@ public class AnswerController {
 //        yourAnswer3.setText(extractedText);
 //        yourAnswer3.setFont(customFontForAll);
     }
+
+    public void setAnswerText(List<String> answerText, List<String> extractedText) {
+        if (answerText.size() == 2) {
+            answer.setText(answerText.get(0));
+            answer.setFont(customFontForAll);
+            answer2.setText(answerText.get(1));
+            answer2.setFont(customFontForAll);
+
+            String userAnswer1 = extractedText.get(0);
+            String userAnswer2 = extractedText.get(1);
+
+            String correctAnswer1 = answerText.get(0);
+            String correctAnswer2 = answerText.get(1);
+
+            if (userAnswer1.equals(correctAnswer1) && userAnswer2.equals(correctAnswer2)) {
+                System.out.println("2題答對");
+                correctAnswerCount += 2;
+            } else if (userAnswer1.equals(correctAnswer1) || userAnswer2.equals(correctAnswer2)) {
+                System.out.println("1題答對");
+                correctAnswerCount++;
+            } else {
+                System.out.println("全錯");
+            }
+        } else {
+            answer.setText(answerText.get(0));
+            answer.setFont(customFontForAll);
+            System.out.println("答案一個");
+            String userAnswer1 = extractedText.get(0);
+            String correctAnswer1 = answerText.get(0);
+            if (userAnswer1.equals(correctAnswer1)) {
+                System.out.println("2題答對");
+                correctAnswerCount++;
+            } else {
+                System.out.println("全錯");
+
+            }
+        }
+        System.out.println(correctAnswerCount+"總計答對題數");
+    }
+
+
 }

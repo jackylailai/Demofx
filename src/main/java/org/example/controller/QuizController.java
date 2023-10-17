@@ -19,6 +19,9 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 import org.example.vo.Quiz;
 
+import javax.swing.*;
+import java.awt.*;
+import java.io.File;
 import java.io.IOException;
 import java.util.List;
 import java.util.Objects;
@@ -37,6 +40,19 @@ public class QuizController {
     private Timeline timeline;
 
     public void initialize() {
+//        String shortcutPath = "C:\\Users\\Public\\Desktop\\Google Chrome.lnk";
+//
+//        try {
+//            File shortcutFile = new File(shortcutPath);
+//            if (shortcutFile.exists()) {
+//                Desktop.getDesktop().open(shortcutFile);
+////                minimizeWindow("Google Chrome");
+//            } else {
+//                System.out.println("Shortcut file does not exist.");
+//            }
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
         timeline = new Timeline();
         timeline.setCycleCount(Timeline.INDEFINITE);
 
@@ -44,6 +60,18 @@ public class QuizController {
         timeline.getKeyFrames().add(keyFrame);
         timeline.play();
     }
+//    private static void minimizeWindow(String windowTitle) {
+//        Frame[] frames = Frame.getFrames();
+//        for (Frame frame : frames) {
+//            if (frame instanceof JFrame) {
+//                JFrame jFrame = (JFrame) frame;
+//                if (jFrame.getTitle().equals(windowTitle)) {
+//                    jFrame.setState(Frame.ICONIFIED); // 最小化窗口
+//                    return;
+//                }
+//            }
+//        }
+//    }
     private void updateCountdown(ActionEvent event) {
         if (countdown > 0) {
             countdown--;

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
 
-<?import javafx.scene.control.TextField?>
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="960.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.ScoreController">
    <children>
       <ImageView fitHeight="960.0" fitWidth="1080.0" pickOnBounds="true" preserveRatio="true">
@@ -27,6 +27,11 @@
             <Image url="@images/返回上一頁箭頭.png" />
          </image>
       </ImageView>
-      <TextField layoutX="381.0" layoutY="131.0" prefHeight="23.0" prefWidth="382.0" style="-fx-background-color: rgba(53,89,119,0.0);"/>
+      <TextField layoutX="381.0" layoutY="131.0" prefHeight="23.0" prefWidth="382.0" style="-fx-background-color: rgba(53,89,119,0.0);" />
+      <ImageView fitHeight="691.0" fitWidth="529.0" layoutX="471.0" layoutY="171.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/測驗小視窗1背景圖.png" />
+         </image></ImageView>
+      <ImageView id="screenshot" fx:id="screenshot" fitHeight="656.0" fitWidth="473.0" layoutX="449.0" layoutY="188.0" pickOnBounds="true" preserveRatio="true" />
    </children>
 </Pane>

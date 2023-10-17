@@ -7,7 +7,6 @@ import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Rectangle2D;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -22,6 +21,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+
+import static org.example.controller.QuizController.operationCounts;
 
 public class RecordController {
     public Label timerLabel;
@@ -89,6 +90,22 @@ public class RecordController {
         AnswerController answerController = answerloader.getController();
 //            answerController.setQuizs(quizzesdata);
         answerController.setExtractedText(extractedText);
+        if(operationCounts==1){
+            List<String> answerOper1=new ArrayList<>();
+            answerOper1.add("400");
+            answerOper1.add("500");
+            answerController.setAnswerText(answerOper1,extractedText);
+        }else if (operationCounts==2){
+            List<String> answerOper2=new ArrayList<>();
+            answerOper2.add("-70");
+            answerController.setAnswerText(answerOper2, extractedText);
+        }else{
+            List<String> answerOper3=new ArrayList<>();
+            answerOper3.add("450");
+            answerOper3.add("470");
+            answerController.setAnswerText(answerOper3, extractedText);
+        }
+
         Scene answerScene = new Scene(answerroot);
         answerScene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/globalStyles.css")).toExternalForm());
         Stage currentStage = stage;

@@ -21,6 +21,8 @@ import org.example.modaldata.Student;
 import java.io.IOException;
 import java.util.Objects;
 
+
+import static org.example.controller.AnswerController.correctAnswerCount;
 import static org.example.controller.TsController.jsonNodeForUser;
 
 public class GradeListController {
@@ -107,11 +109,13 @@ public class GradeListController {
 // Add columns to the TableView
         tableView.getColumns().addAll(nameColumn, idColumn, taskColumn, scoreColumn,totalTestColumn, correctColumn);
 
+        System.out.println(correctAnswerCount);
+        String counts = Integer.toString(correctAnswerCount);
 // Create data for the TableView
         ObservableList<Student> data = FXCollections.observableArrayList(
-                new Student(name, "67890", "信號搜索", "95","2","1"),
-                new Student(name, "67890", "信號追蹤", "88","2","1"),
-                new Student(name, "67890", "信號監視", "75","2","1")
+                new Student(name, "67890", "信號搜索", "95","5",counts),
+                new Student(name, "67890", "信號追蹤", "88","2",""),
+                new Student(name, "67890", "信號監視", "75","2","")
         );
 // Set the data to the TableView
         tableView.setOnMouseClicked(event -> {
