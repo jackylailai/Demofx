@@ -35,6 +35,7 @@ public class TestDFCS {
         BufferedImage limitFrequencyImage = imagePath.loadImage(path + "終止頻率.png");
         BufferedImage startFrequencyImage = imagePath.loadImage(path + "起始頻率.png");
         BufferedImage subtractionImage = imagePath.loadImage(path + "無廣播抑制.png");
+        BufferedImage deleteAngleImage = imagePath.loadImage(path + "剔除角度.png");
         if (chromeImage == null || signalIntensityImage == null || limitFrequencyImage == null
                 || startFrequencyImage == null || subtractionImage == null) {
             // 處理無法讀取圖像的情況
@@ -45,9 +46,10 @@ public class TestDFCS {
             Pattern chromePattern = new Pattern(chromeImage);
 
             Pattern signalIntensityPattern = new Pattern(signalIntensityImage);
-            Pattern limitFrequencyPattern = new Pattern(limitFrequencyImage);
-            Pattern startFrequencyPattern = new Pattern(startFrequencyImage);
+//            Pattern limitFrequencyPattern = new Pattern(limitFrequencyImage);
+//            Pattern startFrequencyPattern = new Pattern(startFrequencyImage);
             Pattern subtractionPattern = new Pattern(subtractionImage);
+            Pattern deleteAnglePattern = new Pattern(deleteAngleImage);
             System.out.println(chromePattern);
 
             screen.find(chromePattern).click();
@@ -82,9 +84,9 @@ public class TestDFCS {
                         extractedTextList.add(extractedText);
                         extractedTextList.add(extractedHighText);
 
-
-                        newY = subtractionRegion.getY()- 190;
-                        Region screenRegion = new Region(subtractionRegion.getX(),newY,600,500);
+                        newX =subtractionRegion.getX()-10;
+                        newY = subtractionRegion.getY()- 180;
+                        Region screenRegion = new Region(newX,newY,625,530);
                         screenRegion.highlight(3);
                         String screenshotsPath = "C:\\serverdb\\screenshots";
 
@@ -94,7 +96,7 @@ public class TestDFCS {
                         }
                         Screen screenShot = new Screen();
                         ScreenImage regionImage = screenShot.capture(screenRegion);
-                        String screenshotName = jsonNodeForUser.get("name").asText() +"Unit"+unitsData.get(0).getUnitId();
+                        String screenshotName = jsonNodeForUser.get("name").asText() +"UnitFirst"+unitsData.get(0).getUnitId();
                         long timestamp = System.currentTimeMillis();
 //                        String customScreenshotName = generateCustomScreenshotName(screenshotName);
 //                        String screenshotPath = screenshotsPath + File.separator + customScreenshotName + ".png";
@@ -109,23 +111,6 @@ public class TestDFCS {
                         return extractedTextList;
                     }
                     return extractedTextList;
-//                    if (screen.exists(signalIntensityPattern.similar(0.7), 5) != null) {
-//                        System.out.println("找到signalintensity");
-//                        screen.wait(signalIntensityPattern, 5);
-////                        screen.find(signalIntensityPattern).click();
-//                        Region signalIntensityRegion = screen.find(signalIntensityPattern);
-//                        int offsetX = 115;  // 向右位移的像素值
-//                        int offsetY = 0;  // 向下位移的像素值
-//                        int newX = signalIntensityRegion.getX() + offsetX;//抓到位置後位移到該xy
-//                        int newY = signalIntensityRegion.getY() + offsetY;
-//                        int newWidth = 70;//先給個default宣告
-//                        int newHeight = 40;
-//                        Region newRegion = new Region(newX, newY, newWidth, newHeight);//設定最後要擷取的範圍
-//                        newRegion.highlight(3);
-//                        String extractedText = newRegion.text();
-//                        System.out.println("操作結果"+extractedText);
-//                        return extractedText;
-//                    }
                 case 2:
                     if (screen.exists(signalIntensityPattern.similar(0.7), 5) != null) {
                         System.out.println("找到signalintensity");
@@ -146,57 +131,54 @@ public class TestDFCS {
                         return extractedTextList;
                     }
                     return extractedTextList;
-//                    if (screen.exists(startFrequencyPattern.similar(0.7), 5) != null) {
-//                        System.out.println("found startFrequencyPattern");
-//                        screen.wait(startFrequencyPattern, 5);
-////                        screen.find(startFrequencyPattern).click();
-//                        Region startFrequencyRegion = screen.find(startFrequencyPattern);
-//                        int offsetX = 85;  // 向右位移的像素值
-//                        int offsetY = 5;  // 向下位移的像素值
-//                        int newX = startFrequencyRegion.getX() + offsetX;//抓到位置後位移到該xy
-//                        int newY = startFrequencyRegion.getY() + offsetY;
-//                        int newWidth = 70;//先給個default宣告
-//                        int newHeight = 40;
-//                        Region newRegion = new Region(newX, newY, newWidth, newHeight);//設定最後要擷取的範圍
-//                        newRegion.highlight(3);
-//                        String extractedText = newRegion.text();
-//                        System.out.println("操作結果"+extractedText);
-//                        return extractedText;
-//                    }
                 case 3:
-                    if (screen.exists(startFrequencyPattern.similar(0.7), 5) != null) {
-                        System.out.println("found startFrequencyPattern");
-                        screen.wait(startFrequencyPattern, 5);
-//                        screen.find(startFrequencyPattern).click();
-                        Region startFrequencyRegion = screen.find(startFrequencyPattern);
+                    if (screen.exists(deleteAnglePattern.similar(0.7), 5) != null) {
+                        System.out.println("found deleteAnglePattern");
+                        screen.wait(deleteAnglePattern, 5);
+//                screen.find(deleteAnglePattern).click();
+                        Region deleteAngleRegion = screen.find(deleteAnglePattern);
                         int offsetX = 85;  // 向右位移的像素值
-                        int offsetY = 5;  // 向下位移的像素值
-                        int newX = startFrequencyRegion.getX() + offsetX;//抓到位置後位移到該xy
-                        int newY = startFrequencyRegion.getY() + offsetY;
+                        int offsetY = 50;  // 向下位移的像素值
+                        int newX = deleteAngleRegion.getX() + offsetX;//抓到位置後位移到該xy
+                        int newY = deleteAngleRegion.getY() + offsetY;
                         int newWidth = 70;//先給個default宣告
-                        int newHeight = 40;
+                        int newHeight = 38;
                         Region newRegion = new Region(newX, newY, newWidth, newHeight);//設定最後要擷取的範圍
                         newRegion.highlight(3);
                         String extractedText = newRegion.text();
-                        System.out.println("操作結果起始頻率:"+extractedText);
+                        System.out.println("操作結果"+extractedText);
                         extractedTextList.add(extractedText);
-                    }
-                    if (screen.exists(limitFrequencyPattern.similar(0.7), 5) != null) {
-                        System.out.println("found limitFrequencyPattern");
-                        screen.wait(limitFrequencyPattern, 5);
-//                        screen.find(limitFrequencyPattern).click();
-                        Region limitFrequencyRegion = screen.find(limitFrequencyPattern);
-                        int offsetX = 75;  // 向右位移的像素值
-                        int offsetY = 0;  // 向下位移的像素值
-                        int newX = limitFrequencyRegion.getX() + offsetX;//抓到位置後位移到該xy
-                        int newY = limitFrequencyRegion.getY() + offsetY;
-                        int newWidth = 70;//先給個default宣告
-                        int newHeight = 40;
-                        Region newRegion = new Region(newX, newY, newWidth, newHeight);//設定最後要擷取的範圍
-                        newRegion.highlight(3);
-                        String extractedText = newRegion.text();
-                        System.out.println("操作結果終止頻率:"+extractedText);
-                        extractedTextList.add(extractedText);
+                        int secondRegionNewX = newX + 130;
+                        Region secondRegion = new Region(secondRegionNewX, newY, newWidth, newHeight);//設定最後要擷取的範圍
+                        secondRegion.highlight(3);
+                        String secondRegionExtractedText = secondRegion.text();
+                        System.out.println("操作結果"+secondRegionExtractedText);
+                        extractedTextList.add(secondRegionExtractedText);
+
+
+                        int screenRegionX = deleteAngleRegion.getX()-15;
+                        int screenRegionY = deleteAngleRegion.getY()-270;
+                        Region screenRegion = new Region(screenRegionX,screenRegionY,610,370);
+                        screenRegion.highlight(3);
+                        String screenshotsPath = "C:\\serverdb\\screenshots";
+
+                        File screenshotsDirectory = new File(screenshotsPath);
+                        if (!screenshotsDirectory.exists()) {
+                            screenshotsDirectory.mkdirs();
+                        }
+                        Screen screenShot = new Screen();
+                        ScreenImage regionImage = screenShot.capture(screenRegion);
+                        String screenshotName = jsonNodeForUser.get("name").asText() +"UnitThird"+unitsData.get(0).getUnitId();
+                        long timestamp = System.currentTimeMillis();
+//                        String customScreenshotName = generateCustomScreenshotName(screenshotName);
+//                        String screenshotPath = screenshotsPath + File.separator + customScreenshotName + ".png";
+                        String screenshotPath = screenshotsPath + File.separator + screenshotName + timestamp + ".png";
+
+                        String codingName = screenshotName+timestamp;
+                        screenshotMap.put(screenshotName, screenshotPath);
+                        System.out.println(screenshotMap);
+                        System.out.println(screenshotPath+"::::screenshotPath");
+                        regionImage.save(screenshotsPath,codingName);
                         return extractedTextList;
                     }
                     return extractedTextList;

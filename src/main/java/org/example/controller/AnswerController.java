@@ -129,22 +129,23 @@ public class AnswerController {
             answer.setFont(customFontForAll);
             answer2.setText(answerText.get(1));
             answer2.setFont(customFontForAll);
-
             String userAnswer1 = extractedText.get(0);
-            String userAnswer2 = extractedText.get(1);
 
             String correctAnswer1 = answerText.get(0);
             String correctAnswer2 = answerText.get(1);
-
-            if (userAnswer1.equals(correctAnswer1) && userAnswer2.equals(correctAnswer2)) {
-                System.out.println("2題答對");
-                correctAnswerCount += 2;
-            } else if (userAnswer1.equals(correctAnswer1) || userAnswer2.equals(correctAnswer2)) {
-                System.out.println("1題答對");
-                correctAnswerCount++;
-            } else {
-                System.out.println("全錯");
+            if (extractedText.size() > 1) {
+                String userAnswer2 = extractedText.get(1);
+                if (userAnswer1.equals(correctAnswer1) && userAnswer2.equals(correctAnswer2)) {
+                    System.out.println("2題答對");
+                    correctAnswerCount += 2;
+                } else if (userAnswer1.equals(correctAnswer1) || userAnswer2.equals(correctAnswer2)) {
+                    System.out.println("1題答對");
+                    correctAnswerCount++;
+                } else {
+                    System.out.println("全錯");
+                }
             }
+
         } else {
             answer.setText(answerText.get(0));
             answer.setFont(customFontForAll);

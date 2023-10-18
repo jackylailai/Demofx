@@ -250,8 +250,9 @@ public class UnitController {
         scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/globalStyles.css")).toExternalForm());
 
         VideoController videoController = loader.getController();
-        videoController.initMediaPlayer("file:///z:/SSTP/demo/videos/DEMO圖資畫面.mp4");
+        videoController.initMediaPlayer("file:///z:/SSTP/demo/videos/demo1單機版.mp4");
 
+        videoStage.setAlwaysOnTop(true);
         videoStage.setScene(scene);
         videoStage.setTitle("Video");
         videoStage.show();

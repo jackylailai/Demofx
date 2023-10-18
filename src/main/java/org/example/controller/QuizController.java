@@ -40,19 +40,20 @@ public class QuizController {
     private Timeline timeline;
 
     public void initialize() {
-//        String shortcutPath = "C:\\Users\\Public\\Desktop\\Google Chrome.lnk";
-//
-//        try {
-//            File shortcutFile = new File(shortcutPath);
-//            if (shortcutFile.exists()) {
-//                Desktop.getDesktop().open(shortcutFile);
-////                minimizeWindow("Google Chrome");
-//            } else {
-//                System.out.println("Shortcut file does not exist.");
-//            }
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
+        String shortcutPath = "C:\\Users\\Public\\Desktop\\Google Chrome.lnk";
+        if (operationCounts == null) {
+            try {
+                File shortcutFile = new File(shortcutPath);
+                if (shortcutFile.exists()) {
+                    Desktop.getDesktop().open(shortcutFile);
+                    //                minimizeWindow("Google Chrome");
+                } else {
+                    System.out.println("Shortcut file does not exist.");
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
         timeline = new Timeline();
         timeline.setCycleCount(Timeline.INDEFINITE);
 

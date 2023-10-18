@@ -14,6 +14,8 @@ import javafx.stage.Screen;
 import javafx.stage.Stage;
 import org.sikuli.script.ScreenImage;
 
+import java.awt.*;
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -53,7 +55,7 @@ public class ScoreController {
 //
 //    }
     public void initialize() {
-        String screenshotName = jsonNodeForUser.get("name").asText() + "Unit" + getUnitIdSafely();
+        String screenshotName = jsonNodeForUser.get("name").asText() + "UnitFirst" + getUnitIdSafely();
         String filename = screenshotMap.get(screenshotName);
 
         try {
@@ -113,6 +115,22 @@ public class ScoreController {
             currentStage.setTitle("ScoreList");
         } catch (IOException e) {
             throw new RuntimeException(e);
+        }
+    }
+
+    public void handleOutputButtonAction(MouseEvent mouseEvent) {
+        String pdfFilePath = "C:\\serverdb\\準則鑑測簽證卡.pdf";
+
+        File pdfFile = new File(pdfFilePath);
+
+        if (pdfFile.exists()) {
+            try {
+                Desktop.getDesktop().browse(pdfFile.toURI());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } else {
+            System.out.println("指定的PDF文件不存在。");
         }
     }
 }

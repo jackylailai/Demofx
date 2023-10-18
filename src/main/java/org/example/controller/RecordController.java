@@ -29,7 +29,6 @@ public class RecordController {
     @FXML
     private Stage stage;
 
-    // 在初始化控制器时设置stage字段
     public void initialize() {
     }
     public void setQuizs(List<Quiz> quizzesdata, Stage currentStage) {
@@ -39,7 +38,7 @@ public class RecordController {
 
             List<String> extractedText = TestDFCS.dfcsmock();
             System.out.println("Extracted Text: " + extractedText);
-            if (extractedText == null ) {
+            if (extractedText == null || extractedText.isEmpty() ) {
 //                Platform.runLater(() -> {
 //
 //                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/login.fxml"));
@@ -56,11 +55,12 @@ public class RecordController {
 //                    currentStage.setScene(loginScene);
 //                    currentStage.setTitle("Login");
 //                });
+                System.out.println("判斷extractedText裡面沒東西");
                 Platform.runLater(() -> {
                     Alert alert = new Alert(Alert.AlertType.WARNING);
                     alert.setTitle("錯誤");
                     alert.setHeaderText("發生錯誤");
-                    alert.setContentText("發生錯誤，請勿影響操作並立即通知教官。");
+                    alert.setContentText("發生錯誤，無相關資訊，請勿影響操作並立即通知教官。");
 
                     alert.showAndWait();
                     String errorText = "錯誤";
@@ -69,6 +69,7 @@ public class RecordController {
                     openNewWindow(currentStage, errorTextList);
                 });
             } else {
+                System.out.println("判斷extractedText裡面有東西:"+extractedText);
                 openNewWindow(currentStage, extractedText);
             }
 //            openNewWindow(currentStage, extractedText);
@@ -101,8 +102,8 @@ public class RecordController {
             answerController.setAnswerText(answerOper2, extractedText);
         }else{
             List<String> answerOper3=new ArrayList<>();
-            answerOper3.add("450");
-            answerOper3.add("470");
+            answerOper3.add("100");
+            answerOper3.add("270");
             answerController.setAnswerText(answerOper3, extractedText);
         }
 

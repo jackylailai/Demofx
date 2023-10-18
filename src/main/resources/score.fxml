@@ -33,5 +33,15 @@
             <Image url="@images/測驗小視窗1背景圖.png" />
          </image></ImageView>
       <ImageView id="screenshot" fx:id="screenshot" fitHeight="656.0" fitWidth="473.0" layoutX="449.0" layoutY="188.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView id="print" fitHeight="61.0" fitWidth="40.0" layoutX="951.0" layoutY="767.0" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;">
+         <image>
+            <Image url="@images/列印預設.png" />
+         </image>
+      </ImageView>
+      <ImageView id="output"  onMouseClicked="#handleOutputButtonAction" fitHeight="65.0" fitWidth="40.0" layoutX="951.0" layoutY="689.0" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;">
+         <image>
+            <Image url="@images/匯出預設.png" />
+         </image>
+      </ImageView>
    </children>
 </Pane>

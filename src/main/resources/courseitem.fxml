@@ -94,12 +94,12 @@
             <Font size="24.0" />
          </font>
       </Label>
-      <Label fx:id="label6" layoutX="750.0" layoutY="386.0" textAlignment="CENTER">
+      <Label fx:id="label6" layoutX="735.0" layoutY="386.0" prefHeight="32.0" prefWidth="155.0" textAlignment="JUSTIFY" wrapText="true">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <Label fx:id="label3" layoutX="762.0" layoutY="238.0" textAlignment="CENTER">
+      <Label fx:id="label3" layoutX="732.0" layoutY="222.0" prefHeight="79.0" prefWidth="155.0" textAlignment="CENTER" wrapText="true">
          <font>
             <Font size="24.0" />
          </font>

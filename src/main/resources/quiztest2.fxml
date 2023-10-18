@@ -20,7 +20,7 @@
             <Font name="System Bold" size="24.0" />
          </font>
       </Label>
-      <TextArea id="q1" fx:id="question1" layoutX="71.0" layoutY="35.0" prefHeight="100.0" prefWidth="222.0" style="-fx-faint-focus-color: transparent; -fx-focus-color: transparent; -fx-text-box-border: transparent; -fx-background-color: rgba(255, 255, 255, 0.5); -fx-background-insets: 0;" />
+      <TextArea id="q1" fx:id="question1" editable="false" layoutX="71.0" layoutY="35.0" prefHeight="100.0" prefWidth="222.0" style="-fx-faint-focus-color: transparent; -fx-focus-color: transparent; -fx-text-box-border: transparent; -fx-background-color: rgba(255, 255, 255, 0.5); -fx-background-insets: 0;" />
       <Label layoutX="24.0" layoutY="153.0" text="A1.">
          <font>
             <Font name="System Bold" size="24.0" />
@@ -31,7 +31,7 @@
             <Font name="System Bold" size="24.0" />
          </font>
       </Label>
-      <TextArea id="q2" fx:id="question2" layoutX="71.0" layoutY="215.0" prefHeight="100.0" prefWidth="222.0" style="-fx-faint-focus-color: transparent;-fx-focus-color: transparent; -fx-text-box-border: transparent; -fx-background-color: -fx-control-inner-background;     -fx-background-insets: 0;" />
+      <TextArea id="q2" fx:id="question2" editable="false" layoutX="71.0" layoutY="215.0" prefHeight="100.0" prefWidth="222.0" style="-fx-faint-focus-color: transparent;-fx-focus-color: transparent; -fx-text-box-border: transparent; -fx-background-color: -fx-control-inner-background;     -fx-background-insets: 0;" />
       <Label layoutX="24.0" layoutY="336.0" text="A2.">
          <font>
             <Font name="System Bold" size="24.0" />
