@@ -6,7 +6,6 @@ import javafx.geometry.Rectangle2D;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.collections.FXCollections;
@@ -16,7 +15,7 @@ import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
-import org.example.modaldata.Student;
+import org.example.modeldata.Student;
 
 import java.io.IOException;
 import java.util.Objects;
@@ -113,7 +112,7 @@ public class GradeListController {
         String counts = Integer.toString(correctAnswerCount);
 // Create data for the TableView
         ObservableList<Student> data = FXCollections.observableArrayList(
-                new Student(name, "67890", "信號搜索", "0","5",counts),
+                new Student(name, "67890", "信號搜索", "0","7",counts),
                 new Student(name, "67890", "信號追蹤", "0","2",""),
                 new Student(name, "67890", "信號監視", "0","2","")
         );

@@ -1,28 +1,19 @@
 package org.example.controller;
 
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
-import org.example.http.HttpClientGetData;
-import org.example.modaldata.UnitLabelData;
-import org.example.vo.Unit;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
 import static org.example.Main.customFontForAll;
-import static org.example.controller.CourseItemController.coursedata;
 import static org.example.controller.TsController.jsonNodeForUser;
 
 public class ScoreListController {

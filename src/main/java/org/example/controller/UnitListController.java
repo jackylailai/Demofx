@@ -12,7 +12,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import org.example.http.HttpClientGetData;
-import org.example.modaldata.UnitLabelData;
+import org.example.modeldata.UnitLabelData;
 import org.example.vo.Unit;
 
 import java.io.IOException;

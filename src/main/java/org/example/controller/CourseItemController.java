@@ -12,7 +12,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import org.example.http.HttpClientGetData;
-import org.example.modaldata.CourseLabelData;
+import org.example.modeldata.CourseLabelData;
 import org.example.vo.Course;
 import org.example.vo.Unit;
 

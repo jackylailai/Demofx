@@ -12,6 +12,6 @@ module Demofx {
     exports org.example.vo;
     opens org.example;
     opens org.example.controller;
-    opens org.example.modaldata to javafx.base;
+    opens org.example.modeldata to javafx.base;
 //    opens org.example.handler; // <- package 請跟著自己的專案結構改變
 }

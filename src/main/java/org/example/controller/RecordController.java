@@ -1,6 +1,9 @@
 package org.example.controller;
 
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Platform;
@@ -11,18 +14,23 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import org.example.http.HttpClientGetData;
 import org.example.sikulix.TestDFCS;
+import org.example.vo.Operation;
 import org.example.vo.Quiz;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
 import static org.example.controller.QuizController.operationCounts;
+import static org.example.controller.QuizController.quizzesdata;
 
 public class RecordController {
     public Label timerLabel;
@@ -87,26 +95,46 @@ public class RecordController {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+        List<Quiz> quiz=quizzesdata;
+        System.out.println(quiz+"資料進來quizzesdata");
+        Long unitId = quiz.get(0).getUnitId();
+        List<Operation> operation= showOperationDetails(unitId);
+
 
         AnswerController answerController = answerloader.getController();
-//            answerController.setQuizs(quizzesdata);
         answerController.setExtractedText(extractedText);
-        if(operationCounts==1){
-            List<String> answerOper1=new ArrayList<>();
-            answerOper1.add("400");
-            answerOper1.add("500");
-            answerController.setAnswerText(answerOper1,extractedText);
-        }else if (operationCounts==2){
-            List<String> answerOper2=new ArrayList<>();
-            answerOper2.add("-70");
-            answerController.setAnswerText(answerOper2, extractedText);
-        }else{
-            List<String> answerOper3=new ArrayList<>();
-            answerOper3.add("100");
-            answerOper3.add("270");
-            answerController.setAnswerText(answerOper3, extractedText);
-        }
 
+
+        if (operationCounts == 1) {
+            try {
+                List<String> answerOper1 = new ArrayList<>();
+                answerOper1.add(operation.get(0).getAnswer());
+                answerOper1.add(operation.get(1).getAnswer());
+                System.out.println("answerOper" + answerOper1.get(0));
+                answerController.setAnswerText(answerOper1, extractedText);
+            } catch (NullPointerException e) {
+                System.err.println("operation為null");
+            }
+        } else if (operationCounts == 2) {
+            try {
+                List<String> answerOper2 = new ArrayList<>();
+                answerOper2.add(operation.get(2).getAnswer());
+                System.out.println("answerOper" + answerOper2.get(0));
+                answerController.setAnswerText(answerOper2, extractedText);
+            } catch (NullPointerException e) {
+                System.err.println("operation為null");
+            }
+        } else {
+            try {
+                List<String> answerOper3 = new ArrayList<>();
+                answerOper3.add(operation.get(3).getAnswer());
+                answerOper3.add(operation.get(4).getAnswer());
+                System.out.println("answerOper" + answerOper3.get(0));
+                answerController.setAnswerText(answerOper3, extractedText);
+            } catch (NullPointerException e) {
+                System.err.println("operation為null");
+            }
+        }
         Scene answerScene = new Scene(answerroot);
         answerScene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/globalStyles.css")).toExternalForm());
         Stage currentStage = stage;
@@ -132,8 +160,31 @@ public class RecordController {
         currentStage.setTitle("Answer");
         System.out.println("Timer finished. Perform window transition here.");
     }
+    private List<Operation> showOperationDetails(Long unitId) {
+        String baseUrl = "http://localhost:8080/operation";
+        String serverUrl = baseUrl + "/" + unitId;
+
+        String jsonResponse = HttpClientGetData.sendGetRequest(serverUrl);
+        if (jsonResponse != null) {
+            System.out.println("jsonResponse進入parse前" + jsonResponse);
+            List<Operation> operation = (List<Operation>) parseOperationJson(jsonResponse);
+            System.out.println("operation parse後" + operation);
+            return operation;
+        }
+        return null;
+    }
+    private List<Operation> parseOperationJson(String jsonResponse) {
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        try {
+            return objectMapper.readValue(jsonResponse, new TypeReference<List<Operation>>() {});
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+        return Collections.emptyList();}
 }
-//    public void setQuizs(List<Quiz> quizzesdata) {
+
+//    public void setOperations(List<Quiz> quizzesdata) {
 //        Duration duration = Duration.seconds(5);
 //        KeyFrame keyFrame = new KeyFrame(duration, event -> {
 //            FXMLLoader answerloader = new FXMLLoader(getClass().getResource("/answer.fxml"));

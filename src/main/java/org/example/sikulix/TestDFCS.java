@@ -117,8 +117,8 @@ public class TestDFCS {
                         screen.wait(signalIntensityPattern, 5);
 //                        screen.find(signalIntensityPattern).click();
                         Region signalIntensityRegion = screen.find(signalIntensityPattern);
-                        int offsetX = 115;  // 向右位移的像素值
-                        int offsetY = 0;  // 向下位移的像素值
+                        int offsetX = 113;  // 向右位移的像素值
+                        int offsetY = 2;  // 向下位移的像素值
                         int newX = signalIntensityRegion.getX() + offsetX;//抓到位置後位移到該xy
                         int newY = signalIntensityRegion.getY() + offsetY;
                         int newWidth = 70;//先給個default宣告

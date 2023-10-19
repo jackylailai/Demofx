@@ -12,13 +12,10 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
-import org.sikuli.script.ScreenImage;
 
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
 import static org.example.controller.TsController.jsonNodeForUser;
@@ -26,45 +23,20 @@ import static org.example.controller.UnitController.unitsData;
 import static org.example.sikulix.TestDFCS.screenshotMap;
 
 public class ScoreController {
+    private static String thirdFilename;
     public ImageView screenshot;
-//    public void initialize(){
-//
-//        String screenshotName = jsonNodeForUser.get("name").asText() +"Unit"+unitsData.get(0).getUnitId();
-//        String filename = screenshotMap.get(screenshotName);
-//        try {
-//            if (filename != null) {
-//                String imagePath = "file:" + filename;
-//                Image image = new Image(filename);
-//                screenshot.setImage(image);
-//                System.out.println(image);
-//                System.out.println(filename);
-//            } else {
-//                Platform.runLater(() -> {
-//                    Alert alert = new Alert(Alert.AlertType.WARNING);
-//                    alert.setTitle("警告");
-//                    alert.setHeaderText("發生錯誤");
-//                    alert.setContentText("尚未考試或找不到相關截圖");
-//                    alert.showAndWait();
-//
-//                });
-//
-//            }
-//        } catch (NullPointerException e) {
-//            e.printStackTrace();
-//        }
-//
-//    }
     public void initialize() {
         String screenshotName = jsonNodeForUser.get("name").asText() + "UnitFirst" + getUnitIdSafely();
         String filename = screenshotMap.get(screenshotName);
-
+        String screenshotThirdName = jsonNodeForUser.get("name").asText() + "UnitThird" + getUnitIdSafely();
+        thirdFilename = screenshotMap.get(screenshotThirdName);
         try {
             if (filename != null) {
                 String imagePath = "file:" + filename;
+                System.out.println(imagePath);
                 Image image = new Image(filename);
                 screenshot.setImage(image);
             } else {
-                // 如果 filename 为 null，显示警告消息
                 throw new NullPointerException("尚未考試或找不到相關截圖");
             }
         } catch (NullPointerException e) {
@@ -132,5 +104,12 @@ public class ScoreController {
         } else {
             System.out.println("指定的PDF文件不存在。");
         }
+    }
+
+    public void handleDeleteSignalButtonAction(MouseEvent mouseEvent) {
+        String imagePath = "file:" + thirdFilename;
+        System.out.println(imagePath);
+        Image image = new Image(thirdFilename);
+        screenshot.setImage(image);
     }
 }

@@ -67,6 +67,7 @@ public class LoginController {
                     TsController tsController = tsLoader.getController();
                     tsController.initializeUserData(jsonNode);
                     System.out.println("這裡是登入確認是學生的訊息 primary stage" + primaryStage);
+                    primaryStage.setAlwaysOnTop(true);
                     primaryStage.setScene(tsScene);
                     primaryStage.setTitle("TS");
                 } else if (level == 2) {

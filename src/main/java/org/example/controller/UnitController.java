@@ -2,14 +2,10 @@ package org.example.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import javafx.application.Platform;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Rectangle2D;
-import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -18,29 +14,21 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
-import javafx.scene.media.MediaView;
 import javafx.scene.text.Font;
-import javafx.scene.text.TextAlignment;
-import javafx.stage.FileChooser;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import org.example.http.HttpClientGetData;
-import org.example.modaldata.UnitLabelData;
+import org.example.modeldata.UnitLabelData;
 import org.example.vo.Quiz;
 import org.example.vo.Unit;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
 
 
-import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
 import static org.example.Main.customFontForAll;
-import static org.example.Main.customFontForSmall;
 import static org.example.controller.UnitListController.unitsDataForUnitList;
 
 
@@ -131,7 +119,6 @@ public class UnitController {
             System.out.println("imageurl"+units.get(0).getPictureUrl1());
             Image image = new Image("file:///" + units.get(0).getPictureUrl1());
             unitimage.setImage(image);
-
         }
     }
 

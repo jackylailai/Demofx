@@ -1,4 +1,4 @@
-package org.example.modaldata;
+package org.example.modeldata;
 
 public class UnitLabelData {
     private Long unitId;

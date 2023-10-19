@@ -7,12 +7,10 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Font;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
-import org.example.modaldata.UnitLabelData;
 import org.example.vo.Quiz;
 
 import java.io.IOException;
@@ -21,7 +19,6 @@ import java.util.Objects;
 
 import static org.example.Main.customFontForAll;
 import static org.example.controller.AnswerController.correctAnswerCount;
-import static org.example.controller.QuizController.quizzesdata;
 
 public class QuizTestController {
     public TextArea question1;
