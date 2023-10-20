@@ -12,6 +12,7 @@ import javafx.stage.Stage;
 import javafx.scene.text.Font;
 import javafx.stage.StageStyle;
 import org.example.controller.LoginController;
+import org.example.netty.server.NettyClient;
 
 import java.io.InputStream;
 import java.util.Objects;
@@ -36,16 +37,6 @@ public class Main extends Application {
         lightFontForAll= Font.loadFont(ttfLightPath,14);
 
         primaryStage.setResizable(false);
-//        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/login.fxml"));
-//        Parent root = fxmlLoader.load();
-//
-//        LoginController loginController = fxmlLoader.getController();
-//        loginController.setPrimaryStage(primaryStage);
-//        System.out.println("primary stage"+primaryStage);
-//        Scene scene = new Scene(root);
-//        primaryStage.setScene(scene);
-//        primaryStage.setTitle("SSTP Demo");
-//        primaryStage.show();
         Screen secondScreen = Screen.getScreens().stream()
                 .filter(screen -> !screen.equals(Screen.getPrimary()))
                 .findFirst()
@@ -75,5 +66,9 @@ public class Main extends Application {
 
         primaryStage.setTitle("SSTP Demo");
         primaryStage.show();
+
+        NettyClient nettyClient = new NettyClient();
+        // Connect to the server when the application starts
+        nettyClient.connectToServer();
     }
 }

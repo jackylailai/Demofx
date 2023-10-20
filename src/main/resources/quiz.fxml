@@ -49,12 +49,12 @@
             <Font size="16.0" />
          </font>
       </Label>
-      <Label id="1" layoutX="230.0" layoutY="249.0" prefHeight="65.0" prefWidth="71.0" text="剔除信號參數" textAlignment="CENTER" wrapText="true">
+      <Label id="2" layoutX="230.0" layoutY="249.0" prefHeight="65.0" prefWidth="71.0" text="剔除信號參數" textAlignment="CENTER" wrapText="true">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>
       </Label>
-      <Label id="1" layoutX="137.0" layoutY="270.0" text="截收準位" wrapText="true">
+      <Label id="3" layoutX="137.0" layoutY="270.0" text="截收準位" wrapText="true">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>

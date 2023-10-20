@@ -9,6 +9,10 @@ module Demofx {
     requires javafx.media;
     requires org.slf4j;
     requires java.desktop;
+    requires io.netty.handler;
+    requires io.netty.transport;
+    requires io.netty.buffer;
+    requires io.netty.common;
     exports org.example.vo;
     opens org.example;
     opens org.example.controller;

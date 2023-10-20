@@ -47,16 +47,7 @@ public class ScoreListController {
 
     @FXML
     public void handleGoScore(MouseEvent event) {
-//        ImageView clickedButton = (ImageView) event.getSource();
-//        UnitLabelData buttonData = (UnitLabelData) clickedButton.getUserData();
-//        Long scoreId = (Long) buttonData.getUnitId();
-//        String scoreName = buttonData.getUnitName();
-//        System.out.println("scoreName"+scoreName);
-//        if (scoreId != null) {
             showUnitDetails(event);
-//        } else {
-//            System.out.println("使用者可能未點擊");
-//        }
     }
 
     private void showUnitDetails(MouseEvent event) {

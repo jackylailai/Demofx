@@ -58,7 +58,33 @@ public class OnlineUnitController {
         addMouseHoverHandler(button3,distext3,title3);
 //        setUnits(units);
     }
-
+    @FXML
+    public void setUnits(List<Unit> units) {
+        if (units != null) {
+            unitsData = units;
+            System.out.println("傳進unit頁面" + units);
+            distext1.setText(units.get(0).getDescContent1());
+            distext1.setFont(Font.font(customFontForAll.getFamily(), 18));
+            distext1.setWrapText(true);
+            System.out.println("distext font" + distext1.getFont().getSize() + distext1.getFont().getName());
+            button1.setUserData(units.get(0).getUnitId());
+            distext2.setText(units.get(0).getDescContent2());
+            distext2.setFont(Font.font(customFontForAll.getFamily(), 18));
+            distext2.setWrapText(true);
+            button2.setUserData(units.get(0).getUnitId());
+            System.out.println("distext2 font" + distext2.getFont().getSize() + distext2.getFont().getName());
+            distext3.setText(units.get(0).getDescContent3());
+            distext3.setWrapText(true);
+            distext3.setFont(Font.font(customFontForAll.getFamily(), 18));
+            button3.setUserData(units.get(0).getUnitId());
+            System.out.println("distext3 font" + distext3.getFont().getSize() + distext3.getFont().getName());
+            UnitLabelData labelData1 = createUnitData(units.get(0).getUnitId(), units.get(0).getUnitName());
+            quizImage.setUserData(labelData1);
+            System.out.println("imageurl" + units.get(0).getPictureUrl1());
+            Image image = new Image("file:///" + units.get(0).getPictureUrl1());
+            unitimage.setImage(image);
+        }
+    }
     private void addMouseHoverHandler(ImageView imageView,TextArea textArea,Label title) {
         imageView.setOnMousePressed(event -> {
             double currentScaleX = imageView.getScaleX();
@@ -94,32 +120,6 @@ public class OnlineUnitController {
 
         });
     }
-    @FXML
-    public void setUnits(List<Unit> units) {
-        if (units != null) {
-            unitsData=units;
-            System.out.println("傳進unit頁面"+units);
-            distext1.setText(units.get(0).getDescContent1());
-            distext1.setFont(Font.font(customFontForAll.getFamily(), 18));
-            distext1.setWrapText(true);
-            System.out.println("distext font"+distext1.getFont().getSize()+distext1.getFont().getName());
-            button1.setUserData(units.get(0).getUnitId());
-            distext2.setText(units.get(0).getDescContent2());
-            distext2.setFont(Font.font(customFontForAll.getFamily(), 18));
-            distext2.setWrapText(true);
-            button2.setUserData(units.get(0).getUnitId());
-            System.out.println("distext2 font"+distext2.getFont().getSize()+distext2.getFont().getName());
-            distext3.setText(units.get(0).getDescContent3());
-            distext3.setWrapText(true);
-            distext3.setFont(Font.font(customFontForAll.getFamily(), 18));
-            button3.setUserData(units.get(0).getUnitId());
-            System.out.println("distext3 font"+distext3.getFont().getSize()+distext3.getFont().getName());
-            UnitLabelData labelData1 = createUnitData(units.get(0).getUnitId(),units.get(0).getUnitName());
-            quizImage.setUserData(labelData1);
-            System.out.println("imageurl"+units.get(0).getPictureUrl1());
-            Image image = new Image("file:///" + units.get(0).getPictureUrl1());
-            unitimage.setImage(image);
-        }
 //            unitsData=units;
 //            System.out.println("傳進unit頁面"+units);
 //            String str1= "這支影片用來介紹偵蒐測項軟體-信號偵蒐測向課程 - 信號搜索單元。\n" +
@@ -151,7 +151,7 @@ public class OnlineUnitController {
 ////            System.out.println("imageurl"+units.get(0).getPictureUrl1());
 //            Image image = new Image("file:///" + "Z:\\\\SSTP\\\\demo\\\\images\\\\dfcs.jpg");
 //            unitimage.setImage(image);
-    }
+
 
     private UnitLabelData createUnitData(Long unitId, String unitName) {
         return new UnitLabelData(unitId,unitName);
