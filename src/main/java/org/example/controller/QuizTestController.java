@@ -19,6 +19,9 @@ import java.util.Objects;
 
 import static org.example.Main.customFontForAll;
 import static org.example.controller.AnswerController.correctAnswerCount;
+import static org.example.controller.UnitController.onlineControlCounts;
+import static org.example.netty.handler.ClientHandler.ctxFromHandler;
+import static org.example.netty.handler.ClientHandler.sendMessageToServer;
 
 public class QuizTestController {
     public TextArea question1;
@@ -110,6 +113,5 @@ public class QuizTestController {
         currentStage.setAlwaysOnTop(true);
         currentStage.setScene(scorelistScene);
         currentStage.setTitle("ScoreList");
-        System.out.println("Timer finished. Perform window transition here.");
     }
 }

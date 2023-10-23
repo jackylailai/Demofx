@@ -46,6 +46,7 @@ public class UnitController {
     private ImageView unitimage;
     @FXML
     private ImageView button1;
+    public static int onlineControlCounts;
 
     @FXML
     private ImageView button2;
@@ -83,9 +84,9 @@ public class UnitController {
             textArea.setFont(new Font(textArea.getFont().getName(), textArea.getFont().getSize() / 1.2));
             title.setFont(new Font(title.getFont().getName(), title.getFont().getSize() / 1.2));
             System.out.println(textArea.getFont().getName()+textArea.getFont().getSize()+",回來變小之後data");
-            imageView.setScaleX(1.0); // 恢复到原始大小
+            imageView.setScaleX(1.0);
             imageView.setScaleY(1.0);
-            imageView.setTranslateY(0.0); // 重置垂直方向上的位移
+            imageView.setTranslateY(0.0);
             textArea.setTranslateY(0.0);
             title.setTranslateY(0.0);
             textArea.setScaleY(1.0);
@@ -156,7 +157,7 @@ public class UnitController {
                 quizController.setQuizs(quizzes);
                 Integer operation = 1;
                 quizController.setCustomProperty(operation);
-
+                onlineControlCounts=0;//開始定義不考試1
                 Scene quizScene = new Scene(quizroot);
                 quizScene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/globalStyles.css")).toExternalForm());
                 Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();

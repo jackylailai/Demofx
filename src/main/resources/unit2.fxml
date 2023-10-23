@@ -101,17 +101,12 @@
                   <Font name="System Bold Italic" size="26.0" />
                </font>
             </Label>
-            <Label layoutX="57.0" layoutY="337.0" text="小明" textFill="WHITE">
+            <Label layoutX="57.0" layoutY="337.0" text="Jacky" textFill="WHITE">
                <font>
                   <Font name="System Bold Italic" size="20.0" />
                </font>
             </Label>
-            <Label layoutX="130.0" layoutY="337.0" text="大明" textFill="WHITE">
-               <font>
-                  <Font name="System Bold Italic" size="20.0" />
-               </font>
-            </Label>
-            <Label layoutX="201.0" layoutY="337.0" text="阿明" textFill="WHITE">
+            <Label layoutX="130.0" layoutY="337.0" text="杰倫Chou" textFill="WHITE">
                <font>
                   <Font name="System Bold Italic" size="20.0" />
                </font>
@@ -126,6 +121,11 @@
                   <Font name="System Bold Italic" size="26.0" />
                </font>
             </Label>
+            <ImageView id="blockImage" fx:id="blockImage" fitHeight="843.0" fitWidth="957.0" layoutX="62.0" layoutY="48.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/1-2箭頭ja.png" />
+               </image>
+            </ImageView>
 
          </children>
       </Pane>

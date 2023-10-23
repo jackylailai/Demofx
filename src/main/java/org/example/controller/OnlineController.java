@@ -96,6 +96,7 @@ public class OnlineController {
         OnlineUnitController onlineUnitsController = onlineUnitsLoader.getController();
         try{
             List<Unit> units = showUnitDetails(39L);
+            System.out.println("unit list for online : "+units);
             onlineUnitsController.setUnits(units);
         }catch (NullPointerException e){
             throw new RuntimeException(e);

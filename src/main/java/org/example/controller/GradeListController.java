@@ -112,9 +112,9 @@ public class GradeListController {
         String counts = Integer.toString(correctAnswerCount);
 // Create data for the TableView
         ObservableList<Student> data = FXCollections.observableArrayList(
-                new Student(name, "67890", "信號搜索", "0","7",counts),
-                new Student(name, "67890", "信號追蹤", "0","2",""),
-                new Student(name, "67890", "信號監視", "0","2","")
+                new Student(name, "67890", "信號搜索", "無","7",counts),
+                new Student(name, "67890", "信號追蹤", "無","2",""),
+                new Student(name, "67890", "信號監視", "無","2","")
         );
 // Set the data to the TableView
         tableView.setOnMouseClicked(event -> {

@@ -3,6 +3,7 @@ package org.example.controller;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.example.netty.handler.ClientHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Rectangle2D;
@@ -29,10 +30,13 @@ import java.util.List;
 import java.util.Objects;
 
 import static org.example.Main.customFontForAll;
+import static org.example.controller.UnitController.onlineControlCounts;
+import static org.example.controller.UnitController.unitsData;
 import static org.example.controller.UnitListController.unitsDataForUnitList;
+import static org.example.netty.handler.ClientHandler.ctxFromHandler;
+import static org.example.netty.handler.ClientHandler.sendMessageToServer;
 
 public class OnlineUnitController {
-    public static List<Unit> unitsData;
     public TextArea distext1;
     public TextArea distext2;
     public TextArea distext3;
@@ -41,6 +45,11 @@ public class OnlineUnitController {
     public Label title3;
     public Label title2;
     public Label title1;
+    @FXML
+    public static ImageView blockImageForStatic;
+    public ImageView blockImage;
+    public static Long unitIdFromOnlineUnit;
+    public static MouseEvent eventFromOnlineUnit;
     @FXML
     private ImageView unitimage;
     @FXML
@@ -57,11 +66,13 @@ public class OnlineUnitController {
         addMouseHoverHandler(button2,distext2,title2);
         addMouseHoverHandler(button3,distext3,title3);
 //        setUnits(units);
+        blockImageForStatic=blockImage;
+        blockImage.setVisible(false);
     }
     @FXML
     public void setUnits(List<Unit> units) {
         if (units != null) {
-            unitsData = units;
+            unitsData =units;
             System.out.println("傳進unit頁面" + units);
             distext1.setText(units.get(0).getDescContent1());
             distext1.setFont(Font.font(customFontForAll.getFamily(), 18));
@@ -157,39 +168,51 @@ public class OnlineUnitController {
         return new UnitLabelData(unitId,unitName);
     }
 
+
     @FXML
     public void handleQuizButtonAction(MouseEvent event) {
         ImageView clickedButton = (ImageView) event.getSource();
         UnitLabelData buttonData = (UnitLabelData) clickedButton.getUserData();
         Long unitId = (Long) buttonData.getUnitId();
-        System.out.println("點擊開始測驗"+unitId);
-        if (unitId != null) {
-            showQuizDetails(unitId,event);
-        } else {
-            System.out.println("使用者可能未點擊");
-        }
+        eventFromOnlineUnit=event;
+        unitIdFromOnlineUnit=unitId;
+        sendMessageToServer("get",ctxFromHandler);
+        System.out.println("點擊開始測驗UnitId"+unitId);
+//        if (unitId != null) {
+//            showQuizDetails(unitId,event);
+//        } else {
+//            System.out.println("使用者可能未點擊");
+//        }
     }
 
-    private void showQuizDetails(Long unitId, MouseEvent event) {
+    public static void showQuizDetails(Long unitId, MouseEvent event,int onlineControl) {
         String baseUrl = "http://localhost:8080/quiz";
         String serverUrl = baseUrl + "/" + unitId;
         try {
 
             String jsonResponse = HttpClientGetData.sendGetRequest(serverUrl);
-            if (jsonResponse!=null) {
-                System.out.println("jsonResponse進入parse前"+jsonResponse);
+            if (jsonResponse != null) {
+                System.out.println("jsonResponse進入parse前" + jsonResponse);
                 List<Quiz> quizzes = (List<Quiz>) parseQuizzesJson(jsonResponse);
-                System.out.println("quizzes parse後"+quizzes);
-                FXMLLoader quizloader = new FXMLLoader(getClass().getResource("/quiz.fxml"));
+                System.out.println("quizzes parse後" + quizzes);
+                FXMLLoader quizloader = new FXMLLoader(OnlineUnitController.class.getResource("/quiz.fxml"));
                 Parent quizroot = quizloader.load();
 
                 QuizController quizController = quizloader.getController();
                 quizController.setQuizs(quizzes);
-                Integer operation = 1;
-                quizController.setCustomProperty(operation);
+                if(onlineControl==2){
+                    Integer operation = 3;
+                    quizController.setCustomProperty(operation);
+                }else{
+                    Integer operation = 1;
+                    quizController.setCustomProperty(operation);
+                }
+
+
+                onlineControlCounts+=1;
 
                 Scene quizScene = new Scene(quizroot);
-                quizScene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/globalStyles.css")).toExternalForm());
+                quizScene.getStylesheets().add(Objects.requireNonNull(OnlineUnitController.class.getResource("/globalStyles.css")).toExternalForm());
                 Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 Screen secondScreen = Screen.getScreens().stream()
                         .filter(screen -> !screen.equals(Screen.getPrimary()))
@@ -209,7 +232,7 @@ public class OnlineUnitController {
 
                 currentStage.setX(newX);
                 currentStage.setY(newY);
-                System.out.println("quizScene"+quizScene);
+                System.out.println("quizScene" + quizScene);
                 currentStage.setAlwaysOnTop(true);
                 currentStage.setScene(quizScene);
                 currentStage.setTitle("Quiz List");
@@ -219,7 +242,7 @@ public class OnlineUnitController {
             e.printStackTrace();
         }
     }
-    private List<Quiz> parseQuizzesJson(String jsonResponse) {
+    private static List<Quiz> parseQuizzesJson(String jsonResponse) {
 
         ObjectMapper objectMapper = new ObjectMapper();
         try {
@@ -228,7 +251,20 @@ public class OnlineUnitController {
             e.printStackTrace();
         }
         return Collections.emptyList();}
-
+    public static void blockImageFunc(){
+        if(blockImageForStatic==null){
+            System.out.println("block is null");
+        }else {
+            blockImageForStatic.setVisible(true);
+        }
+    }
+    public static void displayImageFunc(){
+        if(blockImageForStatic==null){
+            System.out.println("block is null");
+        }else {
+            blockImageForStatic.setVisible(false);
+        }
+    }
     @FXML
     public void handleGoBackButtonAction(MouseEvent actionEvent) {
         try {
