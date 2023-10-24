@@ -20,7 +20,7 @@ import static org.example.controller.UnitController.unitsData;
 public class VideoController {
     @FXML
     private MediaView mediaView;
-    private MediaPlayer mediaPlayer;
+    MediaPlayer mediaPlayer;
     private boolean isPlaying = false;
     public void initMediaPlayer(String url) {
         Media media = new Media(url);

@@ -23,6 +23,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
@@ -38,8 +40,13 @@ public class QuizController {
     public Circle firstCircle;
     private int countdown = 60;
     private Timeline timeline;
+    public static String testTime;
 
     public void initialize() {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date currentDate = new Date();
+        testTime= dateFormat.format(currentDate);
+        System.out.println(testTime+":::::testTime");
         String shortcutPath = "C:\\Users\\Public\\Desktop\\Google Chrome.lnk";
         if (operationCounts == null) {
             try {

@@ -1,6 +1,7 @@
 package org.example.vo;
 
 import lombok.Data;
+import lombok.Getter;
 import lombok.experimental.Accessors;
 import java.io.Serializable;
 import java.util.Date;
@@ -10,12 +11,13 @@ import java.util.Date;
 public class User implements Serializable{
     private Long id;
     private String name;
-    private Long grade;
     private String username;
     private String password;
     private String oAuthKey;
     private Long studentId;
     private int studentBatch;
+    private int grade;
+    private String studentUnit;
     private int level;
     private String ip;
     private long longDate;
@@ -38,13 +40,6 @@ public class User implements Serializable{
         this.name = name;
     }
 
-    public Long getGrade() {
-        return grade;
-    }
-
-    public void setGrade(Long grade) {
-        this.grade = grade;
-    }
 
     public String getUsername() {
         return username;
@@ -124,5 +119,11 @@ public class User implements Serializable{
 
     public void setUpdateDate(Date updateDate) {
         this.updateDate = updateDate;
+    }
+    public void setGrade(int grade) {
+        this.grade = grade;
+    }
+    public int getGrade(){
+        return grade;
     }
 }

@@ -30,8 +30,7 @@ import java.util.List;
 import java.util.Objects;
 
 import static org.example.Main.customFontForAll;
-import static org.example.controller.UnitController.onlineControlCounts;
-import static org.example.controller.UnitController.unitsData;
+import static org.example.controller.UnitController.*;
 import static org.example.controller.UnitListController.unitsDataForUnitList;
 import static org.example.netty.handler.ClientHandler.ctxFromHandler;
 import static org.example.netty.handler.ClientHandler.sendMessageToServer;
@@ -68,6 +67,7 @@ public class OnlineUnitController {
 //        setUnits(units);
         blockImageForStatic=blockImage;
         blockImage.setVisible(false);
+        informationDetail="號手";
     }
     @FXML
     public void setUnits(List<Unit> units) {
@@ -310,5 +310,11 @@ public class OnlineUnitController {
         videoStage.setScene(scene);
         videoStage.setTitle("Video");
         videoStage.show();
+
+        videoStage.setOnCloseRequest(event -> {
+            if (videoController.mediaPlayer != null) {
+                videoController.mediaPlayer.stop();
+            }
+        });
     }
 }

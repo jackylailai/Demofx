@@ -53,11 +53,13 @@ public class UnitController {
 
     @FXML
     private ImageView button3;
+    public static String informationDetail;
 
     public void initialize() {
         addMouseHoverHandler(button1,distext1,title1);
         addMouseHoverHandler(button2,distext2,title2);
         addMouseHoverHandler(button3,distext3,title3);
+        informationDetail="單機";
     }
 
     private void addMouseHoverHandler(ImageView imageView,TextArea textArea,Label title) {
@@ -244,5 +246,11 @@ public class UnitController {
         videoStage.setScene(scene);
         videoStage.setTitle("Video");
         videoStage.show();
+
+        videoStage.setOnCloseRequest(event -> {
+            if (videoController.mediaPlayer != null) {
+                videoController.mediaPlayer.stop();
+            }
+        });
     }
 }
