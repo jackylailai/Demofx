@@ -884,7 +884,7 @@ public final class GraphicsContext {
      * Saves the following attributes onto a stack.
      * <ul>
      *     <li>Global Alpha</li>
-     *     <li>Global Blend Operation</li>
+     *     <li>Global Blend Oper</li>
      *     <li>Transform</li>
      *     <li>Fill Paint</li>
      *     <li>Stroke Paint</li>
@@ -913,7 +913,7 @@ public final class GraphicsContext {
      *
      * <ul>
      *     <li>Global Alpha</li>
-     *     <li>Global Blend Operation</li>
+     *     <li>Global Blend Oper</li>
      *     <li>Transform</li>
      *     <li>Fill Paint</li>
      *     <li>Stroke Paint</li>

@@ -25,15 +25,19 @@ import org.example.vo.Quiz;
 import org.example.vo.Unit;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
 import static org.example.Main.customFontForAll;
+import static org.example.controller.QuizController.testTime;
 import static org.example.controller.UnitController.*;
 import static org.example.controller.UnitListController.unitsDataForUnitList;
 import static org.example.netty.handler.ClientHandler.ctxFromHandler;
 import static org.example.netty.handler.ClientHandler.sendMessageToServer;
+import static org.example.netty.server.NettyClient.localhostip;
 
 public class OnlineUnitController {
     public TextArea distext1;
@@ -174,8 +178,10 @@ public class OnlineUnitController {
         ImageView clickedButton = (ImageView) event.getSource();
         UnitLabelData buttonData = (UnitLabelData) clickedButton.getUserData();
         Long unitId = (Long) buttonData.getUnitId();
+
         eventFromOnlineUnit=event;
         unitIdFromOnlineUnit=unitId;
+        //傳入test1 get
         sendMessageToServer("get",ctxFromHandler);
         System.out.println("點擊開始測驗UnitId"+unitId);
 //        if (unitId != null) {
@@ -186,7 +192,7 @@ public class OnlineUnitController {
     }
 
     public static void showQuizDetails(Long unitId, MouseEvent event,int onlineControl) {
-        String baseUrl = "http://localhost:8080/quiz";
+        String baseUrl = "http://"+localhostip+":8080/quiz";
         String serverUrl = baseUrl + "/" + unitId;
         try {
 
@@ -203,41 +209,54 @@ public class OnlineUnitController {
                 if(onlineControl==2){
                     Integer operation = 3;
                     quizController.setCustomProperty(operation);
+                    System.out.println(onlineControlCounts+":::::onlinecotrolcounts這邊應該要是2");
+                    onlineControlCounts=2;
+                    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                    Date currentDate = new Date();
+                    testTime= dateFormat.format(currentDate);
+                    System.out.println(testTime+":::::test2Time");
                 }else{
+                    //剛開始test1進入
+                    onlineControlCounts=1;
+                    System.out.println(onlineControlCounts+"::operationcontrol=1:::onlinecotrolcounts這邊應該要是1");
                     Integer operation = 1;
                     quizController.setCustomProperty(operation);
                 }
 
 
-                onlineControlCounts+=1;
 
-                Scene quizScene = new Scene(quizroot);
-                quizScene.getStylesheets().add(Objects.requireNonNull(OnlineUnitController.class.getResource("/globalStyles.css")).toExternalForm());
-                Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                Screen secondScreen = Screen.getScreens().stream()
-                        .filter(screen -> !screen.equals(Screen.getPrimary()))
-                        .findFirst()
-                        .orElse(Screen.getPrimary());
+                try {
+                    Scene quizScene = new Scene(quizroot);
+                    quizScene.getStylesheets().add(Objects.requireNonNull(OnlineUnitController.class.getResource("/globalStyles.css")).toExternalForm());
+                    Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                    Screen secondScreen = Screen.getScreens().stream()
+                            .filter(screen -> !screen.equals(Screen.getPrimary()))
+                            .findFirst()
+                            .orElse(Screen.getPrimary());
 
-                Rectangle2D secondScreenBounds = secondScreen.getBounds();
+                    Rectangle2D secondScreenBounds = secondScreen.getBounds();
 
-                double windowWidth = 335;
-                double windowHeight = 540;
+                    double windowWidth = 335;
+                    double windowHeight = 540;
 
-                currentStage.setWidth(335);
-                currentStage.setHeight(540);
+                    currentStage.setWidth(335);
+                    currentStage.setHeight(540);
 
-                double newX = secondScreenBounds.getMaxX() - windowWidth;
-                double newY = secondScreenBounds.getMaxY() - windowHeight;
+                    double newX = secondScreenBounds.getMaxX() - windowWidth;
+                    double newY = secondScreenBounds.getMaxY() - windowHeight;
 
-                currentStage.setX(newX);
-                currentStage.setY(newY);
-                System.out.println("quizScene" + quizScene);
-                currentStage.setAlwaysOnTop(true);
-                currentStage.setScene(quizScene);
-                currentStage.setTitle("Quiz List");
-            } else {
+                    currentStage.setX(newX);
+                    currentStage.setY(newY);
+                    System.out.println("quizScene" + quizScene);
+                    currentStage.setAlwaysOnTop(true);
+                    currentStage.setScene(quizScene);
+                    currentStage.setTitle("Quiz List");
+                }catch (NullPointerException e) {
+                    // 處理NullPointerException，例如記錄錯誤或執行其他操作
+                    System.out.println("null point error");
+                }
             }
+
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -304,8 +323,9 @@ public class OnlineUnitController {
         scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/globalStyles.css")).toExternalForm());
 
         VideoController videoController = loader.getController();
-        videoController.initMediaPlayer("file:///z:/SSTP/demo/videos/demo1多人版.mp4");
+        videoController.initMediaPlayer("file:///c:/SSTP/demo/videos/demo1多人版.mp4");
 
+        System.out.println(videoController);
         videoStage.setAlwaysOnTop(true);
         videoStage.setScene(scene);
         videoStage.setTitle("Video");

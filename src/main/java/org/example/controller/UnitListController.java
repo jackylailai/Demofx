@@ -24,6 +24,7 @@ import static org.example.Main.boldFontForAll;
 import static org.example.Main.customFontForAll;
 import static org.example.controller.CourseItemController.courseNameTitle;
 import static org.example.controller.CourseItemController.coursedata;
+import static org.example.netty.server.NettyClient.localhostip;
 
 public class UnitListController {
     public static List<Unit> unitsDataForUnitList;
@@ -123,7 +124,7 @@ public class UnitListController {
     }
     
     private void showUnitDetails(Long courseId, MouseEvent event) {
-        String baseUrl = "http://localhost:8080/unit";
+        String baseUrl = "http://"+localhostip+":8080/unit";
         String serverUrl = baseUrl + "/" + courseId;
         try {
 

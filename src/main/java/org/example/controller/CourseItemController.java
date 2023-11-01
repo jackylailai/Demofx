@@ -26,6 +26,7 @@ import org.slf4j.LoggerFactory;
 
 import static org.example.Main.customFontForAll;
 import static org.example.controller.TsController.jsonNodeForUser;
+import static org.example.netty.server.NettyClient.localhostip;
 
 public class CourseItemController {
     private static final Logger logger = LoggerFactory.getLogger(CourseItemController.class);
@@ -99,12 +100,12 @@ public class CourseItemController {
             CourseLabelData labelData5 = createCourseData(courses.get(4).getCourseId(),courses.get(4).getCourseName());
             button5.setUserData(labelData5);
             label5.setFont(customFontForAll);
-
-
-            label6.setText(courses.get(5).getCourseName());
-            CourseLabelData labelData6 = createCourseData(courses.get(5).getCourseId(),courses.get(5).getCourseName());
-            button6.setUserData(labelData6);
-            label6.setFont(customFontForAll);
+//
+//
+//            label6.setText(courses.get(5).getCourseName());
+//            CourseLabelData labelData6 = createCourseData(courses.get(5).getCourseId(),courses.get(5).getCourseName());
+//            button6.setUserData(labelData6);
+//            label6.setFont(customFontForAll);
 
         }
     }
@@ -142,7 +143,7 @@ public class CourseItemController {
     }
 
     private void showCourseDetails(Long courseId, MouseEvent event) {
-        String baseUrl = "http://localhost:8080/course";
+        String baseUrl = "http://"+localhostip+":8080/course";
         String serverUrl = baseUrl + "/" + courseId;
         try {
 

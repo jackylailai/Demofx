@@ -43,10 +43,6 @@ public class QuizController {
     public static String testTime;
 
     public void initialize() {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        Date currentDate = new Date();
-        testTime= dateFormat.format(currentDate);
-        System.out.println(testTime+":::::testTime");
         String shortcutPath = "C:\\Users\\Public\\Desktop\\Google Chrome.lnk";
         if (operationCounts == null) {
             try {
@@ -130,12 +126,16 @@ public class QuizController {
 
 
     public void setCustomProperty(Integer operation) {
-        String operationText = "目前任務 : " + operation;
+//        String operationText = "目前任務 : " + operation;
         operationCounts = operation;
         if(operation == 1){
-            operationLabel.setText(operationText);
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            Date currentDate = new Date();
+            testTime= dateFormat.format(currentDate);
+            System.out.println(testTime+":::::test1Time");
+//            operationLabel.setText(operationText);
         } else if (operation==2) {
-            operationLabel.setText(operationText);
+//            operationLabel.setText(operationText);
 //            Line.setStroke(Color.web("#fffdfd"));
             //線要用stroke 圈用storke+fill
             firstCircle.setStroke(Color.web("#87ff18"));
@@ -156,7 +156,7 @@ public class QuizController {
             thirdLine.setStroke(Color.web("#87ff18"));
             thirdCircle.setFill(Color.web("DARKGRAY"));
             thirdCircle.setStroke(Color.web("DARKGRAY"));
-            operationLabel.setText(operationText);
+//            operationLabel.setText(operationText);
         }
     }
 }

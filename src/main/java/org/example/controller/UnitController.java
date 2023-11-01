@@ -30,6 +30,7 @@ import java.util.Objects;
 
 import static org.example.Main.customFontForAll;
 import static org.example.controller.UnitListController.unitsDataForUnitList;
+import static org.example.netty.server.NettyClient.localhostip;
 
 
 public class UnitController {
@@ -143,7 +144,7 @@ public class UnitController {
     }
 
     private void showQuizDetails(Long unitId, MouseEvent event) {
-        String baseUrl = "http://localhost:8080/quiz";
+        String baseUrl = "http://"+localhostip+":8080/quiz";
         String serverUrl = baseUrl + "/" + unitId;
         try {
 
@@ -159,7 +160,7 @@ public class UnitController {
                 quizController.setQuizs(quizzes);
                 Integer operation = 1;
                 quizController.setCustomProperty(operation);
-                onlineControlCounts=0;//開始定義不考試1
+                onlineControlCounts=0;//開始定義不是線上考試
                 Scene quizScene = new Scene(quizroot);
                 quizScene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/globalStyles.css")).toExternalForm());
                 Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -240,7 +241,7 @@ public class UnitController {
         scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/globalStyles.css")).toExternalForm());
 
         VideoController videoController = loader.getController();
-        videoController.initMediaPlayer("file:///z:/SSTP/demo/videos/demo1單機版.mp4");
+        videoController.initMediaPlayer("file:///c:/SSTP/demo/videos/demo1單機版.mp4");
 
         videoStage.setAlwaysOnTop(true);
         videoStage.setScene(scene);

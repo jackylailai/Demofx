@@ -29,6 +29,8 @@ import java.net.URL;
 import java.util.*;
 import java.util.List;
 
+import static org.example.netty.server.NettyClient.localhostip;
+
 
 public class OnlineController {
     public Label timerLabel;
@@ -126,7 +128,7 @@ public class OnlineController {
     public void onlineControl(ResponseCallback callback) {
             try {
                 System.out.println("訊息開始寄出去");
-                URL url = new URL("http://localhost:8080/user/online-controller");
+                URL url = new URL("http://"+localhostip+":8080/user/online-controller");
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
                 connection.setRequestMethod("GET");
 
@@ -144,7 +146,7 @@ public class OnlineController {
             }
     }
     private List<Unit> showUnitDetails(Long courseId) {
-        String baseUrl = "http://localhost:8080/unit";
+        String baseUrl = "http://"+localhostip+":8080/unit";
         String serverUrl = baseUrl + "/" + courseId;
 
         String jsonResponse = HttpClientGetData.sendGetRequest(serverUrl);

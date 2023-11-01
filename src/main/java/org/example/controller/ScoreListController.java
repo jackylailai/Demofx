@@ -64,12 +64,13 @@ public class ScoreListController {
                 Parent scoreroot = scoreloader.load();
 
                 ScoreController scoreController = scoreloader.getController();
-//                scoreController.setScores(scores);
+
 
                 Scene scoreScene = new Scene(scoreroot);
                 scoreScene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/globalStyles.css")).toExternalForm());
                 Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
+                scoreController.initialize(currentStage);
                 System.out.println("scoreScene"+scoreScene);
 
                 currentStage.setScene(scoreScene);

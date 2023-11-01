@@ -7,9 +7,11 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Modality;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 
@@ -18,6 +20,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Objects;
 
+import static org.example.Main.*;
 import static org.example.controller.TsController.jsonNodeForUser;
 import static org.example.controller.UnitController.unitsData;
 import static org.example.sikulix.TestDFCS.screenshotMap;
@@ -25,11 +28,25 @@ import static org.example.sikulix.TestDFCS.screenshotMap;
 public class ScoreController {
     private static String thirdFilename;
     public ImageView screenshot;
-    public void initialize() {
+    public Label label3;
+    public Label subtitle;
+    public Label label2;
+    public Label label4;
+    public Label label1;
+    private static Stage newCurrentStage;
+
+    public void initialize(Stage currentStage) {
+        newCurrentStage=currentStage;
         String screenshotName = jsonNodeForUser.get("name").asText() + "UnitFirst" + getUnitIdSafely();
         String filename = screenshotMap.get(screenshotName);
         String screenshotThirdName = jsonNodeForUser.get("name").asText() + "UnitThird" + getUnitIdSafely();
         thirdFilename = screenshotMap.get(screenshotThirdName);
+
+        subtitle.setFont(customFontForMiddle);
+        label1.setFont(customFontForMiddle);
+        label2.setFont(customFontForMiddle);
+        label3.setFont(customFontForMiddle);
+        label4.setFont(customFontForMiddle);
         try {
             if (filename != null) {
                 String imagePath = "file:" + filename;
@@ -57,6 +74,10 @@ public class ScoreController {
             alert.setTitle("警告");
             alert.setHeaderText("發生錯誤");
             alert.setContentText("尚未考試或找不到相關截圖");
+
+            alert.initModality(Modality.WINDOW_MODAL);
+            alert.initOwner(newCurrentStage);
+
             alert.showAndWait();
         });
     }

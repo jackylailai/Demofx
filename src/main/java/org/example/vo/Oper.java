@@ -4,13 +4,13 @@ import lombok.Data;
 import java.util.Date;
 
 @Data
-public class Operation {
+public class Oper {
     private Long id;
     private Long operId;
     private Long unitId;
     private Long contentId;
     private String title;
-    private String titleCH;
+    private String titleCh;
     private String answer;
     private Integer group1;
     private Integer group2;
@@ -61,12 +61,12 @@ public class Operation {
         this.title = title;
     }
 
-    public String getTitleCH() {
-        return titleCH;
+    public String getTitleCh() {
+        return titleCh;
     }
 
-    public void setTitleCH(String titleCH) {
-        this.titleCH = titleCH;
+    public void setTitleCh(String titleCh) {
+        this.titleCh = titleCh;
     }
 
     public String getAnswer() {

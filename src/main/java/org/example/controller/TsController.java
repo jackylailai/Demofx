@@ -2,6 +2,7 @@ package org.example.controller;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import javafx.animation.TranslateTransition;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -12,23 +13,23 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
+import javafx.stage.Modality;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import org.example.http.HttpClientGet;
 import org.example.http.HttpClientGetData;
 import org.example.vo.Course;
 
 import java.io.IOException;
 import java.net.HttpURLConnection;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 import static org.example.Main.*;
+import static org.example.netty.server.NettyClient.localhostip;
 
 public class TsController {
     @FXML
@@ -37,13 +38,23 @@ public class TsController {
     public Text text1;
     public Text text2;
     public Text text3;
+    public Label labeltitle;
+    public ImageView slideimg;
     @FXML
     private Label textArea;
     public static JsonNode jsonNodeForUser;
     public void initializeUserData(JsonNode jsonNode) {
         jsonNodeForUser = jsonNode;
         String name = jsonNode.get("name").asText();
-        String info = "學員 :   "+name;
+        int grade = jsonNodeForUser.get("grade").asInt();
+        String gradeName= "";
+        if(grade==0){
+            gradeName = "中尉";
+        } else if (grade==1) {
+            gradeName = "少校";
+        }
+        String studentUnit = jsonNode.get("studentUnit").asText();
+        String info = "學員 :   "+name+"\n單位 :   "+studentUnit+"\n級職 :   "+gradeName;
 //        User user = new User();
         textArea.setText(info);
         textArea.setFont(lightFontForAll);
@@ -62,16 +73,41 @@ public class TsController {
         text1.setFont(customFontForAll);
         text2.setFont(customFontForAll);
         text3.setFont(customFontForAll);
+        System.out.println(labeltitle.isVisible());
+        welcomeControl();
 
     }
-    public void handleLogoutButtonAction(ActionEvent actionEvent) {
-        String serverUrl = "http://localhost:8080/user/logout";
-        HttpURLConnection connection = HttpClientGet.sendGetRequest(serverUrl);
-        if (isHttpResponseSuccessful(connection)) {
-            showSuccessAlert("登出成功");
-            Platform.runLater(() -> {
 
-                Stage currentStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+    private void welcomeControl() {
+        Timer timer = new Timer();
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                // This code will run after a delay
+                labeltitle.setVisible(true);
+            }
+        }, 1000); // Delay in milliseconds (e.g., 1000 ms = 1 second)
+
+        TranslateTransition slideIn = new TranslateTransition(Duration.seconds(1), slideimg);
+
+        slideIn.setFromX(-310);
+        slideIn.setFromY(-55);
+        slideIn.setToX(0);
+        slideIn.setToY(0);
+        slideIn.setCycleCount(1);
+
+        slideIn.play();
+
+    }
+
+    public void handleLogoutButtonAction(ActionEvent actionEvent) {
+        String serverUrl = "http://"+localhostip+":8080/user/logout";
+        HttpURLConnection connection = HttpClientGet.sendGetRequest(serverUrl);
+
+        if (isHttpResponseSuccessful(connection)) {
+            Stage currentStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            showSuccessAlert("登出成功",currentStage);
+            Platform.runLater(() -> {
 
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/login.fxml"));
                 Parent loginRoot = null;
@@ -97,14 +133,17 @@ public class TsController {
             return responseCode == 200;
         } catch (IOException e) {
             e.printStackTrace();
+            System.out.println("登出有問題");
             return false;
         }
     }
-    private void showSuccessAlert(String message) {
+    private void showSuccessAlert(String message, Stage currentStage) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("成功");
         alert.setHeaderText(null);
         alert.setContentText(message);
+        alert.initModality(Modality.WINDOW_MODAL);
+        alert.initOwner(currentStage);
 
         alert.showAndWait();
     }
@@ -157,7 +196,7 @@ public class TsController {
     public void handleCourseTrainingClick(ActionEvent actionEvent) {
         try {
 
-            String jsonResponse = HttpClientGetData.sendGetRequest("http://localhost:8080/course");
+            String jsonResponse = HttpClientGetData.sendGetRequest("http://"+localhostip+":8080/course");
             if (jsonResponse!=null) {
 
                 List<Course> courses = parseCoursesJson(jsonResponse);
@@ -193,22 +232,18 @@ public class TsController {
 
             if (jsonNode.isArray()) {
                 for (JsonNode courseJson : jsonNode) {
-                    Course course = new Course();
-//                    course.setId(courseJson.get("id").asLong());
-                    course.setCourseId(courseJson.get("courseId").asLong());
-                    course.setCourseType(courseJson.get("courseType").asInt());
-                    course.setCourseName(courseJson.get("courseName").asText());
-                    course.setCourseSchedule(courseJson.get("courseSchedule").asText());
-                    course.setCourseDesc(courseJson.get("courseDesc").asText());
-                    course.setCreditUnits(courseJson.get("creditUnits").asInt());
-//                    course.setState(courseJson.get("state").asInt());
-//                    course.setLongDate(courseJson.get("longDate").asLong());
-//                    course.setCreateDate(courseJson.get("createDate").asText());
-//                    course.setUpdateDate(courseJson.get("updateDate").asText());
-                    courses.add(course);
-                    System.out.println("course"+courses);
+                    long courseId = courseJson.get("courseId").asLong();
+                    if (courseId != 6) {
+                        Course course = new Course();
+                        course.setCourseId(courseId);
+                        course.setCourseType(courseJson.get("courseType").asInt());
+                        course.setCourseName(courseJson.get("courseName").asText());
+                        course.setCourseSchedule(courseJson.get("courseSchedule").asText());
+                        course.setCourseDesc(courseJson.get("courseDesc").asText());
+                        course.setCreditUnits(courseJson.get("creditUnits").asInt());
+                        courses.add(course);
+                    }
                 }
-                System.out.println("courselist"+courses);
                 for (Course course : courses) {
                     String courseName = course.getCourseName();
                     System.out.println("Course Name: " + courseName);

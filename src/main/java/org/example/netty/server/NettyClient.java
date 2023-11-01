@@ -20,9 +20,12 @@ public class NettyClient {
     public Channel getChannel() {
         return channel;
     }
+    public static String localhostip;
 
     public void connectToServer() {
         NioEventLoopGroup group = new NioEventLoopGroup();
+//        localhostip="192.168.50.48";
+        localhostip="localhost";
         try {
             Bootstrap bootstrap = new Bootstrap();
             bootstrap.group(group);
@@ -35,7 +38,7 @@ public class NettyClient {
                 }
             });
 
-            ChannelFuture channelFuture = bootstrap.connect("localhost", 6666).sync();
+            ChannelFuture channelFuture = bootstrap.connect(localhostip, 6666).sync();
             channel = channelFuture.channel();
             System.out.println("connecttoserver的channel"+channel);
         } catch (Exception e) {

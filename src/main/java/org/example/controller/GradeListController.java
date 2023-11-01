@@ -35,41 +35,7 @@ import static org.example.controller.TsController.jsonNodeForUser;
 import static org.example.controller.UnitController.informationDetail;
 
 public class GradeListController {
-//    @FXML private TableView<Student> table;
-//    @FXML private TableColumn<Student,String> nameColumn;
-//    @FXML private TableColumn<Student,String> idColumn;
-//    @FXML private TableColumn<Student,String> taskColumn;
-//    @FXML private TableColumn<Student,String> scoreColumn;
-//
-//
-//
-//    private ObservableList<Student> getStudents(){
-//        ObservableList<Student> characters = FXCollections.observableArrayList();
-//        characters.add(new Student("Cersei","Lannister","Queen Regent","100000"));
-//        characters.add(new Student("Jaime","Lannister","King Slayer","8000"));
-//        characters.add(new Student("Tyrion","Lannister","Queen's Hand","60000"));
-//
-//        return characters;
-//    }
-//
-//
-//    public void initialize() {
-//        //nameColumn
-//        nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
-//
-//        //idColumn
-//        idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
-//
-//        //taskColumn
-//        taskColumn.setCellValueFactory(new PropertyValueFactory<>("task"));
-//
-//        //scoreColumn
-//        scoreColumn.setCellValueFactory(new PropertyValueFactory<>("score"));
-//
-//        //table = new TableView<>();
-//        table.setItems(getStudents());
-//
-//    }
+
     @FXML
     private TableView<Student> tableView;
 
@@ -151,9 +117,9 @@ public class GradeListController {
         String counts = Integer.toString(correctAnswerCount);
 // Create data for the TableView
         ObservableList<Student> data = FXCollections.observableArrayList(
-                new Student(name, studentUnit, gradeName,"無紀錄","7",counts,"信號搜索",testTime,informationDetail),
-                new Student(name, studentUnit, gradeName,"無紀錄","2","","信號追蹤","",""),
-                new Student(name, studentUnit, gradeName,"無紀錄","2","","信號監視","","")
+                new Student(name, studentUnit, gradeName,"待審核","7",counts,"信號搜索",testTime,informationDetail),
+                new Student(name, studentUnit, gradeName,"待審核","2","","信號追蹤","",""),
+                new Student(name, studentUnit, gradeName,"待審核","2","","信號監視","","")
         );
 // Set the data to the TableView
         tableView.setOnMouseClicked(event -> {

@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
@@ -59,7 +58,7 @@
                </image>
             </ImageView>
       <!--      <Button fx:id="" layoutX="211.0" layoutY="591.0" onAction="#handleCourseTrainingClick" prefHeight="16.0" prefWidth="16.0" />-->
-            <ImageView onMouseClicked="#handleOnlineButton" id="online" fitHeight="293.0" fitWidth="304.0" layoutX="50.0" layoutY="437.0" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;">
+            <ImageView id="online" fitHeight="293.0" fitWidth="304.0" layoutX="50.0" layoutY="437.0" onMouseClicked="#handleOnlineButton" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;">
                <image>
                   <Image url="@images/1-2連線課程點選.png" />
                </image>
@@ -79,7 +78,17 @@
                   <Font size="24.0" />
                </font>
             </Label>
-            <Label fx:id="textArea" layoutX="810.0" layoutY="80.0" prefHeight="53.0" prefWidth="129.0" text="Label" />
+            <Label fx:id="textArea" layoutX="811.0" layoutY="77.0" prefHeight="60.0" prefWidth="129.0" text="Label" />
+            <ImageView fx:id="slideimg" fitHeight="164.0" fitWidth="456.0" layoutX="312.0" layoutY="53.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/課程列表框.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="labeltitle" alignment="CENTER" contentDisplay="CENTER" layoutX="396.0" layoutY="90.0" text="歡迎進入模擬器測試軟體" textAlignment="CENTER" textFill="WHITE" visible="false">
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </Label>
          </children>
       </Pane>
       <ImageView fx:id="logoutButtonView" fitHeight="38.0" fitWidth="76.0" layoutX="980.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">

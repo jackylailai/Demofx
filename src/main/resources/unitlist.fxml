@@ -29,7 +29,7 @@
          </image>
       </ImageView>
 <!--      <Button layoutX="47.0" layoutY="803.0" mnemonicParsing="false" onAction="#handleGoBackButtonAction" opacity="0.1" prefHeight="69.0" prefWidth="248.0"  />-->
-      <ImageView fx:id="button1" fitHeight="142.0" fitWidth="265.0" layoutX="138.0" layoutY="228.0" onMouseClicked="#handleButtonAction" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="button1" fitHeight="142.0" fitWidth="265.0" layoutX="138.0" layoutY="228.0" onMouseClicked="#handleButtonAction" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;">
          <image>
             <Image url="@images/課程項目與課程列表選框.png" />
          </image>
@@ -39,47 +39,47 @@
             <Image url="@images/課程項目與課程列表選框.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="button7" fitHeight="142.0" fitWidth="265.0" layoutX="137.0" layoutY="511.0" onMouseClicked="#handleButtonAction" pickOnBounds="true" preserveRatio="true">
+<!--      <ImageView fx:id="button7" fitHeight="142.0" fitWidth="265.0" layoutX="137.0" layoutY="511.0" onMouseClicked="#handleButtonAction" pickOnBounds="true" preserveRatio="true">-->
+<!--         <image>-->
+<!--            <Image url="@images/課程項目與課程列表選框.png" />-->
+<!--         </image>-->
+<!--      </ImageView>-->
+      <ImageView fx:id="button2" fitHeight="142.0" fitWidth="265.0" layoutX="408.0" layoutY="227.0" onMouseClicked="#handleButtonAction" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@images/課程項目與課程列表選框.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="button2" fitHeight="142.0" fitWidth="265.0" layoutX="408.0" layoutY="227.0" onMouseClicked="#handleButtonAction" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;">
-         <image>
-            <Image url="@images/課程項目與課程列表選框.png" />
-         </image>
-      </ImageView>
-      <ImageView fx:id="button5" fitHeight="142.0" fitWidth="265.0" layoutX="408.0" layoutY="369.0" onMouseClicked="#handleButtonAction" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@images/課程項目與課程列表選框.png" />
-         </image>
-      </ImageView>
-      <ImageView fx:id="button8" fitHeight="142.0" fitWidth="265.0" layoutX="408.0" layoutY="514.0" onMouseClicked="#handleButtonAction" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@images/課程項目與課程列表選框.png" />
-         </image>
-      </ImageView>
-      <ImageView fx:id="button9" fitHeight="142.0" fitWidth="265.0" layoutX="677.0" layoutY="515.0" onMouseClicked="#handleButtonAction" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@images/課程項目與課程列表選框.png" />
-         </image>
-      </ImageView>
-      <ImageView fx:id="button6" fitHeight="142.0" fitWidth="265.0" layoutX="677.0" layoutY="369.0" onMouseClicked="#handleButtonAction" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@images/課程項目與課程列表選框.png" />
-         </image>
-      </ImageView>
+<!--      <ImageView fx:id="button5" fitHeight="142.0" fitWidth="265.0" layoutX="408.0" layoutY="369.0" onMouseClicked="#handleButtonAction" pickOnBounds="true" preserveRatio="true">-->
+<!--         <image>-->
+<!--            <Image url="@images/課程項目與課程列表選框.png" />-->
+<!--         </image>-->
+<!--      </ImageView>-->
+<!--      <ImageView fx:id="button8" fitHeight="142.0" fitWidth="265.0" layoutX="408.0" layoutY="514.0" onMouseClicked="#handleButtonAction" pickOnBounds="true" preserveRatio="true">-->
+<!--         <image>-->
+<!--            <Image url="@images/課程項目與課程列表選框.png" />-->
+<!--         </image>-->
+<!--      </ImageView>-->
+<!--      <ImageView fx:id="button9" fitHeight="142.0" fitWidth="265.0" layoutX="677.0" layoutY="515.0" onMouseClicked="#handleButtonAction" pickOnBounds="true" preserveRatio="true">-->
+<!--         <image>-->
+<!--            <Image url="@images/課程項目與課程列表選框.png" />-->
+<!--         </image>-->
+<!--      </ImageView>-->
+<!--      <ImageView fx:id="button6" fitHeight="142.0" fitWidth="265.0" layoutX="677.0" layoutY="369.0" onMouseClicked="#handleButtonAction" pickOnBounds="true" preserveRatio="true">-->
+<!--         <image>-->
+<!--            <Image url="@images/課程項目與課程列表選框.png" />-->
+<!--         </image>-->
+<!--      </ImageView>-->
       <ImageView fx:id="button3" fitHeight="142.0" fitWidth="265.0" layoutX="677.0" layoutY="228.0" onMouseClicked="#handleButtonAction" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@images/課程項目與課程列表選框.png" />
          </image>
       </ImageView>
-      <Text layoutX="70.0" layoutY="77.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: TaipeiSansTCBeta-Bold;" styleClass="bold-label" text="課程項目">
+      <Text layoutX="70.0" layoutY="77.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: TaipeiSansTCBeta-Bold;" styleClass="bold-label" text="課程單元">
          <font>
             <Font name="System Bold" size="46.0" />
          </font>
       </Text>
-      <Label fx:id="label1" layoutX="226.0" layoutY="283.0" text="111111">
+      <Label fx:id="label1" alignment="CENTER" layoutX="204.0" layoutY="277.0" prefHeight="45.0" prefWidth="132.0" wrapText="true">
          <font>
             <Font size="24.0" />
          </font>
@@ -99,12 +99,12 @@
             <Font size="24.0" />
          </font>
       </Label>
-      <Label fx:id="label3" layoutX="738.0" layoutY="282.0" text="111111">
+      <Label fx:id="label3" alignment="CENTER" layoutX="744.0" layoutY="283.0" prefHeight="32.0" prefWidth="132.0">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <Label fx:id="label2" layoutX="499.0" layoutY="283.0" text="111111">
+      <Label fx:id="label2" alignment="CENTER" ellipsisString="" layoutX="480.0" layoutY="264.0" prefHeight="80.0" prefWidth="122.0" textAlignment="CENTER" wrapText="true">
          <font>
             <Font size="24.0" />
          </font>
@@ -114,7 +114,7 @@
             <Font size="24.0" />
          </font>
       </Label>
-      <Label fx:id="label4" layoutX="226.0" layoutY="431.0" text="111111">
+      <Label fx:id="label4" layoutX="226.0" layoutY="431.0">
          <font>
             <Font size="24.0" />
          </font>
@@ -134,7 +134,7 @@
             <Image url="@images/課程列表框.png" />
          </image>
       </ImageView>
-      <Label fx:id="courseItemTitle" layoutX="472.0" layoutY="150.0" text="Label" textAlignment="CENTER" textFill="WHITE">
+      <Label fx:id="courseItemTitle" alignment="CENTER" ellipsisString="" layoutX="449.0" layoutY="144.0" prefHeight="45.0" prefWidth="184.0" textAlignment="CENTER" textFill="WHITE" wrapText="true">
          <font>
             <Font size="24.0" />
          </font>

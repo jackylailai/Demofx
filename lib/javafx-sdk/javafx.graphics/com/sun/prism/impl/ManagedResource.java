@@ -93,7 +93,7 @@ public abstract class ManagedResource<T> implements GraphicsResource {
 
     public final void assertLocked() {
         if (lockcount <= 0) {
-            throw new IllegalStateException("Operation requires resource lock");
+            throw new IllegalStateException("Oper requires resource lock");
         }
     }
 

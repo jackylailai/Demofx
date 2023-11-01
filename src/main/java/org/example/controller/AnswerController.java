@@ -132,42 +132,44 @@ public class AnswerController {
                 currentStage.setScene(quizScene);
                 currentStage.setTitle("Quiz List");
             } else {
-                if (onlineControlCounts==1){
-                    onlineControlCounts+=1;
-                    sendMessageToServer("finish",ctxFromHandler);
-                    //第一個同學考完
-                }
-                FXMLLoader scorelistloader = new FXMLLoader(getClass().getResource("/scorelist.fxml"));
-                Parent scorelistroot = scorelistloader.load();
+                System.out.println("第一個人考完 我來看看Onlinecontrolcounts?應該要是1??????"+onlineControlCounts);
+                onlineControlCounts+=1;
+                sendMessageToServer("finish",ctxFromHandler);
+                //第一個同學考完
+                try {
+                    FXMLLoader scorelistloader = new FXMLLoader(getClass().getResource("/scorelist.fxml"));
+                    Parent scorelistroot = scorelistloader.load();
 
 
-//        AnswerController scorelistController = scorelistloader.getController();
-//            scorelistController.setQuizs(quizzesdata);
-                Scene scorelistScene = new Scene(scorelistroot);
-                scorelistScene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/globalStyles.css")).toExternalForm());
-                Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                    Scene scorelistScene = new Scene(scorelistroot);
+                    scorelistScene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/globalStyles.css")).toExternalForm());
+                    Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
-                Screen secondScreen = Screen.getScreens().stream()
-                        .filter(screen -> !screen.equals(Screen.getPrimary()))
-                        .findFirst()
-                        .orElse(Screen.getPrimary());
+                    Screen secondScreen = Screen.getScreens().stream()
+                            .filter(screen -> !screen.equals(Screen.getPrimary()))
+                            .findFirst()
+                            .orElse(Screen.getPrimary());
 
-                System.out.println("scorelistScene"+scorelistScene);
-                currentStage.setWidth(1080);
-                currentStage.setHeight(960);
+                    System.out.println("scorelistScene" + scorelistScene);
+                    currentStage.setWidth(1080);
+                    currentStage.setHeight(960);
 
-                Screen screen = Screen.getPrimary();
-                Rectangle2D secondScreenBounds = secondScreen.getVisualBounds();
+                    Screen screen = Screen.getPrimary();
+                    Rectangle2D secondScreenBounds = secondScreen.getVisualBounds();
 //
-                double centerX = secondScreenBounds.getMinX() + (secondScreenBounds.getWidth() - 1080) / 2;
-                double centerY = secondScreenBounds.getMinY() + (secondScreenBounds.getHeight() - 960) / 2;
-                currentStage.setX(centerX);
-                currentStage.setY(centerY);
-                currentStage.setAlwaysOnTop(true);
-                currentStage.setScene(scorelistScene);
-                currentStage.setTitle("ScoreList");
+                    double centerX = secondScreenBounds.getMinX() + (secondScreenBounds.getWidth() - 1080) / 2;
+                    double centerY = secondScreenBounds.getMinY() + (secondScreenBounds.getHeight() - 960) / 2;
+                    currentStage.setX(centerX);
+                    currentStage.setY(centerY);
+                    currentStage.setAlwaysOnTop(true);
+                    currentStage.setScene(scorelistScene);
+                    currentStage.setTitle("ScoreList");
+                }catch(NullPointerException e){
+                    System.out.println("nullpoint");
+                }
             }
         }else{
+                System.out.println("onlinecontrol 剛判斷為2近來 同學2呈現答案 開始跳轉到問答題 onlinecontrolcounts應該是2???"+onlineControlCounts);
                 if (onlineControlCounts==2) {
                     sendMessageToServer("finish", ctxFromHandler);
                     onlineControlCounts += 1;

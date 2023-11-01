@@ -23,13 +23,19 @@ public class Main extends Application {
     }
     public static Font customFontForAll;
     public static Font customFontForSmall;
+    public static Font customFontForMiddle;
     public static Font boldFontForAll;
     public static Font lightFontForAll;
     @Override
     public void start(Stage primaryStage) throws Exception {
         InputStream ttfPath = this.getClass().getResourceAsStream( "/fonts/TaipeiSansTCBeta-Regular.ttf" );
         customFontForAll= Font.loadFont(ttfPath,24);
-        customFontForSmall = Font.loadFont(ttfPath,18);
+        InputStream ttfSmallPath = this.getClass().getResourceAsStream( "/fonts/TaipeiSansTCBeta-Regular.ttf" );
+        InputStream ttfmiddlePath = this.getClass().getResourceAsStream( "/fonts/TaipeiSansTCBeta-Regular.ttf" );
+        customFontForSmall = Font.loadFont(ttfSmallPath,18);
+        customFontForMiddle = Font.loadFont(ttfmiddlePath,20);
+        System.out.println("big,"+customFontForAll);
+        System.out.println("middle,"+customFontForMiddle);
         System.out.println("small,"+customFontForSmall);
         InputStream ttfBoldPath = this.getClass().getResourceAsStream( "/fonts/TaipeiSansTCBeta-Bold.ttf" );
         boldFontForAll= Font.loadFont(ttfBoldPath,24);

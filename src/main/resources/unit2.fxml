@@ -116,7 +116,7 @@
                   <Font name="System Bold Italic" size="26.0" />
                </font>
             </Label>
-            <Label layoutX="103.0" layoutY="449.0" text="1號號手" textFill="WHITE">
+            <Label layoutX="103.0" layoutY="449.0" textFill="WHITE">
                <font>
                   <Font name="System Bold Italic" size="26.0" />
                </font>

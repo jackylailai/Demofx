@@ -8,9 +8,11 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 
+import static org.example.netty.server.NettyClient.localhostip;
+
 public class HttpClientPostLogin {
     public static String sendLoginRequest(String username, String password) {
-        String apiUrl = "http://localhost:8080/user/login";
+        String apiUrl = "http://"+localhostip+":8080/user/login";
         String requestBody = "{\"username\":\"" + username + "\", \"password\":\"" + password + "\"}";
 
         try {
