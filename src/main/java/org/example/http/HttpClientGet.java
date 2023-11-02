@@ -16,6 +16,9 @@ public class HttpClientGet {
 
             connection.setRequestMethod("GET");
 
+            String sessionId = "JSESSIONID=" + SessionStorage.getSessionId();
+            connection.setRequestProperty("Cookie" , sessionId);
+
             int responseCode = connection.getResponseCode();
             System.out.println("Response Code: " + responseCode);
 

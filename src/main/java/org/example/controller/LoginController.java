@@ -13,6 +13,9 @@ import javafx.stage.Stage;
 import org.example.http.HttpClientPostLogin;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.example.modelDTO.NettyDTO;
+import org.example.modelDTO.UserDTO;
+import org.example.netty.controller.NettyClientMsgController;
 
 import java.io.IOException;
 
@@ -52,14 +55,22 @@ public class LoginController {
         // 當登入按鈕被點擊時執行的程式碼
         String username = usernameField.getText();
         String password = passwordField.getText();
-//        password = getSHA256StrJava(password);
+
+        password = getSHA256StrJava(password);
+        UserDTO userDTO = new UserDTO();
+        userDTO.setUsername(username);
+        userDTO.setPassword(password);
+        userDTO.setCtxId(NettyClientMsgController.getClientCtxId());
         // 創建JSON數據，實際上需要根據你的需求創建正確的JSON數據
-        String jsonResponse = HttpClientPostLogin.sendLoginRequest(username, password);
+//        String jsonResponse = HttpClientPostLogin.sendLoginRequest(username, password);
+        String jsonResponse = HttpClientPostLogin.sendLoginRequestDTO(userDTO);
         System.out.println(jsonResponse + "jsonResponse");
         if (jsonResponse != null && !jsonResponse.isEmpty() && jsonResponse.startsWith("{")) {
             ObjectMapper objectMapper = new ObjectMapper();
             try {
                 JsonNode jsonNode = objectMapper.readTree(jsonResponse);
+                NettyDTO nettyDTO = objectMapper.readValue(jsonResponse, NettyDTO.class);
+                System.out.println("nettyDTO : " + nettyDTO);
                 int level = jsonNode.get("level").asInt();
                 if (level == 1) {
                     System.out.println("1你是學生!");

@@ -5,6 +5,7 @@ import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import io.netty.util.CharsetUtil;
 import javafx.application.Platform;
+import org.example.netty.controller.NettyClientMsgController;
 
 import static org.example.controller.OnlineUnitController.*;
 import static org.example.controller.QuizController.operationCounts;
@@ -13,6 +14,9 @@ public class ClientHandler extends SimpleChannelInboundHandler<String> {
     private int curTime = 0;
     private final int beatTime =25; // 心跳時間間隔為 6 秒
     public static ChannelHandlerContext ctxFromHandler;
+
+    // 	一啟動只要有import NettyClientHandler就會直接建立
+    NettyClientMsgController nettyClientMsgController = NettyClientMsgController.getInstance();
 //    @Override
 //    public void userEventTriggered(ChannelHandlerContext ctx, Object evt) throws Exception {
 //        try {
@@ -35,6 +39,14 @@ public class ClientHandler extends SimpleChannelInboundHandler<String> {
 //            e.printStackTrace();
 //        }
 //    }
+
+    @Override
+    public void channelRegistered(ChannelHandlerContext ctx) throws Exception {
+        System.out.println("channelRegistered : ");
+//		System.out.println("channelRegistered : " + ctx.channel().remoteAddress().toString());
+//		super.channelRegistered(ctx);
+        nettyClientMsgController.setCtx(ctx);
+    }
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, String message) {
         Platform.runLater(() -> {
@@ -46,9 +58,11 @@ public class ClientHandler extends SimpleChannelInboundHandler<String> {
     //收到訊息是Read
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
+        System.out.println("channelRead : ");
         ByteBuf byteBuf = (ByteBuf) msg;
         String servermessage = byteBuf.toString(CharsetUtil.UTF_8);
         System.out.println("\n" + "收到 server 端" + ctx.channel().remoteAddress() + "的消息：" + byteBuf.toString(CharsetUtil.UTF_8));
+        nettyClientMsgController.treatMsg(servermessage);
         ctxFromHandler=ctx;
         Platform.runLater(() -> {
 //            System.out.println("read");

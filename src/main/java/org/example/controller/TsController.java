@@ -196,7 +196,8 @@ public class TsController {
     public void handleCourseTrainingClick(ActionEvent actionEvent) {
         try {
 
-            String jsonResponse = HttpClientGetData.sendGetRequest("http://"+localhostip+":8080/course");
+//            String jsonResponse = HttpClientGetData.sendGetRequest("http://"+localhostip+":8080/course");
+            String jsonResponse = HttpClientGetData.sendGetRequest("http://"+localhostip+":8080/course/getAllCourse");
             if (jsonResponse!=null) {
 
                 List<Course> courses = parseCoursesJson(jsonResponse);

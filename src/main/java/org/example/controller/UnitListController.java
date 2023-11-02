@@ -123,9 +123,10 @@ public class UnitListController {
         }
     }
     
-    private void showUnitDetails(Long courseId, MouseEvent event) {
-        String baseUrl = "http://"+localhostip+":8080/unit";
-        String serverUrl = baseUrl + "/" + courseId;
+    private void showUnitDetails(Long unitId, MouseEvent event) {
+//        String baseUrl = "http://"+localhostip+":8080/unit";
+        String baseUrl = "http://"+localhostip+":8080/unit/getUnitByUnitId";
+        String serverUrl = baseUrl + "/" + unitId;
         try {
 
             String jsonResponse = HttpClientGetData.sendGetRequest(serverUrl);
