@@ -1,0 +1,9 @@
+
+.label {
+    -fx-font-family: "TaipeiSansTCBeta-Regular";
+}
+
+.bold-label {
+    <font-weight>: "TaipeiSansTCBeta-Bold";
+    font-family: "TaipeiSansTCBeta-Bold";
+}

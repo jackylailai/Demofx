@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="540.0" prefWidth="335.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.QuizController">
+   <children>
+      <ImageView fitHeight="100.0" fitWidth="280.0" layoutX="29.0" layoutY="34.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/倒數計時.png" />
+         </image>
+      </ImageView>
+      <Text fx:id="countDownText" layoutX="99.0" layoutY="110.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="140.0">
+         <font>
+            <Font size="42.0" />
+         </font></Text>
+      <Label fx:id="operationLabel" layoutX="96.0" layoutY="353.0" prefHeight="93.0" prefWidth="142.0" textAlignment="CENTER" />
+      <ImageView fitHeight="58.0" fitWidth="142.0" layoutX="97.0" layoutY="416.0" onMouseClicked="#handleButtonAction" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;">
+         <image>
+            <Image url="@images/完成並提交預設.png" />
+         </image>
+      </ImageView>
+      <Line id="1" endX="-43.79998779296875" endY="-1.52587890625E-5" fill="BLACK" layoutX="94.0" layoutY="220.0" startX="-100.0" stroke="#87ff18" strokeWidth="10.0" />
+      <Circle id="1" fx:id="firstCircle" fill="DARKGRAY" layoutX="64.0" layoutY="220.0" radius="13.0" stroke="DARKGRAY" strokeType="INSIDE" />
+      <Line id="2" fx:id="secondLine" endX="-32.20001220703125" endY="-1.52587890625E-5" layoutX="182.0" layoutY="220.0" startX="-100.0" stroke="#fffdfd" strokeWidth="10.0" />
+      <Line id="3" fx:id="thirdLine" endX="-32.20001220703125" endY="-1.52587890625E-5" fill="#fffdfd" layoutX="283.0" layoutY="219.0" startX="-100.0" stroke="#fffdfd" strokeWidth="10.0" />
+      <Circle id="3" fx:id="thirdCircle" fill="#fffdfd" layoutX="265.0" layoutY="220.0" radius="13.0" stroke="#fffdfd" strokeType="INSIDE" />
+      <Circle id="2" fx:id="secondCircle" fill="#fffdfd" layoutX="168.0" layoutY="220.0" radius="13.0" stroke="#fffdfd" strokeType="INSIDE" />
+      <Line id="4" endX="-43.0" endY="-1.52587890625E-5" fill="#fffdfd" layoutX="383.0" layoutY="219.0" startX="-100.0" stroke="#fffdfd" strokeWidth="10.0" />
+      <ImageView fitHeight="150.0" layoutX="62.0" layoutY="399.0" pickOnBounds="true" preserveRatio="true" />
+      <Label id="1" layoutX="29.0" layoutY="246.0" prefHeight="71.0" prefWidth="70.0" text="搜索頻率範圍" textAlignment="CENTER" wrapText="true">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+      <Label id="3" layoutX="236.0" layoutY="258.0">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label id="2" layoutX="136.0" layoutY="259.0">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label id="2" layoutX="230.0" layoutY="249.0" prefHeight="65.0" prefWidth="71.0" text="剔除信號參數" textAlignment="CENTER" wrapText="true">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+      <Label id="3" layoutX="137.0" layoutY="270.0" text="截收準位" wrapText="true">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+   </children>
+</Pane>

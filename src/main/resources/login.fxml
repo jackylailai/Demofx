@@ -2,29 +2,35 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.LoginController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="960.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.LoginController">
    <children>
-      <ImageView fitHeight="720.0" fitWidth="1280.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="960.0" fitWidth="1080.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@T1.1-2.jpg" />
+            <Image url="@images/1-1.jpg" />
          </image>
       </ImageView>
-      <TextField fx:id="usernameField" layoutX="540.0" layoutY="373.0" prefHeight="31.0" prefWidth="200.0" style="-fx-background-color: rgba(53,89,119,0.0);" stylesheets="@login.css" promptText="請輸入帳號">
+      <TextField fx:id="usernameField" layoutX="408.0" layoutY="480.0" prefHeight="31.0" prefWidth="200.0" promptText="請輸入帳號" style="-fx-background-color: rgba(53,89,119,0.0);" stylesheets="@login.css">
          <font>
             <Font size="18.0" />
          </font></TextField>
-      <TextField fx:id="passwordField" layoutX="540.0" layoutY="432.0" prefHeight="31.0" prefWidth="200.0" style="-fx-background-color: rgba(53,89,119,0.0);" stylesheets="@login.css" promptText="請輸入密碼">
+      <PasswordField fx:id="passwordField" layoutX="408.0" layoutY="554.0" prefHeight="31.0" prefWidth="200.0" promptText="請輸入密碼" style="-fx-background-color: rgba(53,89,119,0.0);" stylesheets="@login.css">
          <font>
             <Font size="18.0" />
          </font>
-      </TextField>
-      <Button layoutX="608.0" layoutY="554.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="65.0" text="登入" textFill="#140e0e" textOverrun="CENTER_ELLIPSIS" onAction="#handleLoginButtonAction" />
+      </PasswordField>
+<!--      <Button layoutX="457.0" layoutY="647.0" mnemonicParsing="false"  prefHeight="42.0" prefWidth="165.0" text="登入" textFill="#140e0e" textOverrun="CENTER_ELLIPSIS" />-->
+      <ImageView fx:id="loginButtonView" fitHeight="75.0" fitWidth="200.0" layoutX="440.0" layoutY="631.0" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;">
+         <image>
+            <Image url="@images/登入點選.png" />
+         </image>
+      </ImageView>
    </children>
    <opaqueInsets>
       <Insets />

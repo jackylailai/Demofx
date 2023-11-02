@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="960.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.OnlineUnitController">
+   <children>
+      <Pane prefHeight="960.0" prefWidth="1080.0">
+         <children>
+            <ImageView fitHeight="960.0" fitWidth="1080.0" layoutX="-7.0" layoutY="-14.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/通用底圖2.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="65.0" fitWidth="100.0" layoutX="493.0" layoutY="520.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/現在畫面.png" />
+               </image>
+            </ImageView>
+
+            <ImageView fx:id="unitimage" fitHeight="400.0" fitWidth="564.0" layoutX="302.0" layoutY="101.0" pickOnBounds="true" preserveRatio="true">
+            </ImageView>
+            <ImageView fx:id="quizImage" fitHeight="68.0" fitWidth="319.0" layoutX="747.0" layoutY="808.0" onMouseClicked="#handleQuizButtonAction" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;">
+               <image>
+                  <Image url="@images/開始測驗.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="66.0" fitWidth="314.0" layoutX="21.0" layoutY="811.0" onMouseClicked="#handleGoBackButtonAction" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;">
+               <image>
+                  <Image url="@images/返回上一頁.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="100.0" fitWidth="200.0" layoutX="440.0" layoutY="792.0" onMouseClicked="#handleVideoButtonAction" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;">
+               <image>
+                  <Image url="@images/觀看影片點選.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="543.0" fitWidth="269.0" layoutX="15.0" layoutY="137.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/1-2課程訓練點選.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="button1" fitHeight="100.0" fitWidth="335.0" layoutX="15.0" layoutY="648.0" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;">
+               <image>
+                  <Image url="@images/測驗框.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="button2" fitHeight="100.0" fitWidth="335.0" layoutX="377.0" layoutY="648.0" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;">
+               <image>
+                  <Image url="@images/測驗框.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="button3" fitHeight="100.0" fitWidth="335.0" layoutX="731.0" layoutY="648.0" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;">
+               <image>
+                  <Image url="@images/測驗框.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="70.0" layoutY="19.0" prefHeight="65.0" prefWidth="200.0" style="-fx-font-family: TaipeiSansTCBeta-Bold;" styleClass="bold-label" text="信號搜索">
+               <font>
+                  <Font name="System Bold" size="46.0" />
+               </font></Label>
+            <ImageView fitHeight="30.0" fitWidth="35.0" layoutX="284.0" layoutY="828.0" onMouseClicked="#handleGoBackButtonAction" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;">
+               <image>
+                  <Image url="@images/返回上一頁箭頭.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="title1" layoutX="32.0" layoutY="654.0" styleClass="bold-label" text="訓練目的">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="title3" layoutX="755.0" layoutY="654.0" styleClass="bold-label" text="本次接受令命令">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="title2" layoutX="393.0" layoutY="654.0" styleClass="bold-label" text="需求條件">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Label>
+            <TextArea fx:id="distext1" editable="false" layoutX="32.0" layoutY="684.0" prefHeight="60.0" prefWidth="300.0" style="-fx-faint-focus-color: transparent;-fx-focus-color: transparent; -fx-text-box-border: transparent; -fx-background-color: -fx-control-inner-background;     -fx-background-insets: 0;" wrapText="true" />
+            <TextArea fx:id="distext3" editable="false" layoutX="756.0" layoutY="684.0" prefHeight="60.0" prefWidth="300.0" style="-fx-faint-focus-color: transparent;-fx-focus-color: transparent; -fx-text-box-border: transparent; -fx-background-color: -fx-control-inner-background;     -fx-background-insets: 0;" wrapText="true" />
+            <TextArea fx:id="distext2" editable="false" layoutX="394.0" layoutY="684.0" prefHeight="60.0" prefWidth="300.0" style="-fx-faint-focus-color: transparent;-fx-focus-color: transparent; -fx-text-box-border: transparent; -fx-background-color: -fx-control-inner-background;     -fx-background-insets: 0;" wrapText="true" />
+            <Label layoutX="97.0" layoutY="173.0" text="分配小組" textFill="WHITE">
+               <font>
+                  <Font name="System Bold Italic" size="26.0" />
+               </font>
+            </Label>
+            <Label layoutX="103.0" layoutY="209.0" text="偵搜車2" textFill="WHITE">
+               <font>
+                  <Font name="System Bold Italic" size="26.0" />
+               </font>
+            </Label>
+            <Label layoutX="97.0" layoutY="291.0" text="小隊成員" textFill="WHITE">
+               <font>
+                  <Font name="System Bold Italic" size="26.0" />
+               </font>
+            </Label>
+            <Label layoutX="57.0" layoutY="337.0" text="Jacky" textFill="WHITE">
+               <font>
+                  <Font name="System Bold Italic" size="20.0" />
+               </font>
+            </Label>
+            <Label layoutX="130.0" layoutY="337.0" text="杰倫Chou" textFill="WHITE">
+               <font>
+                  <Font name="System Bold Italic" size="20.0" />
+               </font>
+            </Label>
+            <Label layoutX="97.0" layoutY="403.0" text="分配職位" textFill="WHITE">
+               <font>
+                  <Font name="System Bold Italic" size="26.0" />
+               </font>
+            </Label>
+            <Label layoutX="103.0" layoutY="449.0" textFill="WHITE">
+               <font>
+                  <Font name="System Bold Italic" size="26.0" />
+               </font>
+            </Label>
+            <ImageView id="blockImage" fx:id="blockImage" fitHeight="843.0" fitWidth="957.0" layoutX="62.0" layoutY="48.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/1-2箭頭ja.png" />
+               </image>
+            </ImageView>
+
+         </children>
+      </Pane>
+   </children>
+</Pane>

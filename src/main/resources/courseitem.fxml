@@ -1,25 +1,133 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="960.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.CourseItemController">
    <children>
-      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="46.0" layoutY="34.0" pickOnBounds="true" preserveRatio="true">
+      <Pane layoutX="1.0" layoutY="1.0" prefHeight="960.0" prefWidth="1080.0" scaleZ="2.0" />
+      <ImageView fitHeight="960.0" fitWidth="1080.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@images/courseitem.png" />
+            <Image url="@images/通用底圖.png" />
          </image>
       </ImageView>
-      <TextField layoutX="899.0" layoutY="126.0" prefHeight="111.0" prefWidth="190.0" />
-      <TextField layoutX="486.0" layoutY="126.0" prefHeight="111.0" prefWidth="190.0" />
-      <TextField layoutX="691.0" layoutY="126.0" prefHeight="111.0" prefWidth="190.0" />
-      <TextField layoutX="691.0" layoutY="305.0" prefHeight="111.0" prefWidth="190.0" />
-      <TextField layoutX="284.0" layoutY="305.0" prefHeight="111.0" prefWidth="190.0" />
-      <TextField layoutX="486.0" layoutY="305.0" prefHeight="111.0" prefWidth="190.0" />
-      <TextField layoutX="284.0" layoutY="126.0" prefHeight="111.0" prefWidth="190.0" />
-      <TextField layoutX="899.0" layoutY="305.0" prefHeight="111.0" prefWidth="190.0" />
+<!--      <Button fx:id="button1" layoutX="207.0" layoutY="220.0" onAction="#handleButtonAction" prefHeight="66.0" prefWidth="113.0" />-->
+<!--      <Button fx:id="button2" layoutX="215.0" layoutY="526.0" onAction="#handleButtonAction" prefHeight="51.0" prefWidth="98.0" />-->
+<!--      <Button fx:id="button3" layoutX="496.0" layoutY="376.0" onAction="#handleButtonAction" prefHeight="51.0" prefWidth="90.0" />-->
+<!--      <Button fx:id="button4" layoutX="794.0" layoutY="221.0" onAction="#handleButtonAction" prefHeight="66.0" prefWidth="105.0" />-->
+<!--      <Button fx:id="button5" layoutX="207.0" layoutY="367.0" onAction="#handleButtonAction" prefHeight="69.0" prefWidth="113.0" />-->
+<!--      <Button fx:id="button6" layoutX="485.0" layoutY="522.0" onAction="#handleButtonAction" prefHeight="59.0" prefWidth="98.0" />-->
+<!--      <Button fx:id="button7" layoutX="489.0" layoutY="231.0" onAction="#handleButtonAction" prefHeight="45.0" prefWidth="90.0" />-->
+<!--      <Button fx:id="button8" layoutX="753.0" layoutY="372.0" onAction="#handleButtonAction" prefHeight="59.0" prefWidth="105.0" />-->
+      <ImageView fitHeight="66.0" fitWidth="314.0" layoutX="21.0" layoutY="811.0" onMouseClicked="#handleGoBackButtonAction" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;">
+         <image>
+            <Image url="@images/返回上一頁.png" />
+         </image>
+      </ImageView>
+<!--      <Button layoutX="47.0" layoutY="803.0" mnemonicParsing="false" onAction="#handleGoBackButtonAction" opacity="0.1" prefHeight="69.0" prefWidth="248.0"  />-->
+      <ImageView fx:id="button1" fitHeight="142.0" fitWidth="265.0" layoutX="132.0" layoutY="183.0" onMouseClicked="#handleButtonAction" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;">
+         <image>
+            <Image url="@images/課程項目與課程列表選框.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="button4" fitHeight="142.0" fitWidth="265.0" layoutX="131.0" layoutY="324.0" onMouseClicked="#handleButtonAction" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/課程項目與課程列表選框.png" />
+         </image>
+      </ImageView>
+<!--      <ImageView fx:id="button7" fitHeight="142.0" fitWidth="265.0" layoutX="131.0" layoutY="480.0" onMouseClicked="#handleButtonAction" pickOnBounds="true" preserveRatio="true">-->
+<!--         <image>-->
+<!--            <Image url="@images/課程項目與課程列表選框.png" />-->
+<!--         </image>-->
+<!--      </ImageView>-->
+      <ImageView fx:id="button2" fitHeight="142.0" fitWidth="265.0" layoutX="408.0" layoutY="182.0" onMouseClicked="#handleButtonAction" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/課程項目與課程列表選框.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="button5" fitHeight="142.0" fitWidth="265.0" layoutX="408.0" layoutY="324.0" onMouseClicked="#handleButtonAction" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/課程項目與課程列表選框.png" />
+         </image>
+      </ImageView>
+<!--      <ImageView fx:id="button8" fitHeight="142.0" fitWidth="265.0" layoutX="408.0" layoutY="480.0" onMouseClicked="#handleButtonAction" pickOnBounds="true" preserveRatio="true">-->
+<!--         <image>-->
+<!--            <Image url="@images/課程項目與課程列表選框.png" />-->
+<!--         </image>-->
+<!--      </ImageView>-->
+<!--      <ImageView fx:id="button9" fitHeight="142.0" fitWidth="265.0" layoutX="673.0" layoutY="481.0" onMouseClicked="#handleButtonAction" pickOnBounds="true" preserveRatio="true">-->
+<!--         <image>-->
+<!--            <Image url="@images/課程項目與課程列表選框.png" />-->
+<!--         </image>-->
+<!--      </ImageView>-->
+<!--      <ImageView fx:id="button6" fitHeight="142.0" fitWidth="265.0" layoutX="673.0" layoutY="324.0" onMouseClicked="#handleButtonAction" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;">-->
+<!--         <image>-->
+<!--            <Image url="@images/課程項目與課程列表選框.png" />-->
+<!--         </image>-->
+<!--      </ImageView>-->
+      <ImageView fx:id="button3" fitHeight="142.0" fitWidth="265.0" layoutX="673.0" layoutY="183.0" onMouseClicked="#handleButtonAction" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/課程項目與課程列表選框.png" />
+         </image>
+      </ImageView>
+      <Text layoutX="70.0" layoutY="77.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: TaipeiSansTCBeta-Bold;" styleClass="bold-label" text="課程項目">
+         <font>
+            <Font name="System Bold" size="46.0" />
+         </font>
+      </Text>
+      <Label fx:id="label1" alignment="CENTER" layoutX="194.0" layoutY="234.0" prefHeight="41.0" prefWidth="155.0" textAlignment="CENTER" wrapText="true">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Label fx:id="label8" layoutX="499.0" layoutY="535.0">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Label fx:id="label7" layoutX="223.0" layoutY="535.0" textAlignment="CENTER">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Label fx:id="label6" alignment="CENTER" layoutX="735.0" layoutY="386.0" prefHeight="32.0" prefWidth="155.0" textAlignment="JUSTIFY" wrapText="true">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Label fx:id="label3" alignment="CENTER" layoutX="752.0" layoutY="223.0" prefHeight="80.0" prefWidth="122.0" textAlignment="CENTER" wrapText="true">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Label fx:id="label2" alignment="CENTER" layoutX="470.0" layoutY="220.0" prefHeight="85.0" prefWidth="155.0" textAlignment="CENTER" wrapText="true">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Label fx:id="label5" alignment="CENTER" layoutX="487.0" layoutY="361.0" prefHeight="85.0" prefWidth="122.0" textAlignment="CENTER">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Label fx:id="label4" alignment="CENTER" layoutX="211.0" layoutY="363.0" prefHeight="80.0" prefWidth="122.0" textAlignment="CENTER" wrapText="true">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Label fx:id="label9" layoutX="764.0" layoutY="535.0" textAlignment="CENTER">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="30.0" fitWidth="35.0" layoutX="284.0" layoutY="828.0" onMouseClicked="#handleGoBackButtonAction" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;">
+         <image>
+            <Image url="@images/返回上一頁箭頭.png" />
+         </image>
+      </ImageView>
    </children>
 </Pane>

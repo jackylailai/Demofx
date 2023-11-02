@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="335.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.AnswerController">
+   <children>
+      <ImageView fitHeight="400.0" fitWidth="335.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/測驗小視窗3.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="62.0" fitWidth="66.0" layoutX="64.0" layoutY="140.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/測驗小視窗3背景圖.png" />
+         </image>
+      </ImageView>
+<!--      <Button layoutX="107.0" layoutY="210.0" mnemonicParsing="false" onAction="#handleNextQuizButton" prefHeight="54.0" prefWidth="121.0" text="繼續下個測驗內容" />-->
+      <ImageView fitHeight="70.0" fitWidth="230.0" layoutX="52.0" layoutY="272.0" onMouseClicked="#handleNextQuizButton" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;">
+         <image>
+            <Image url="@images/繼續下個工作內容預設.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="62.0" fitWidth="66.0" layoutX="215.0" layoutY="140.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/測驗小視窗3背景圖.png" />
+         </image>
+      </ImageView>
+      <ScrollPane layoutX="3.0" layoutY="135.0" prefHeight="130.0" prefWidth="330.0" style="-fx-background-color: transparent;">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="256.0" prefWidth="312.0" style="-fx-background-color: transparent;">
+               <children>
+                  <Label fx:id="yourAnswer" ellipsisString="" layoutX="57.0" layoutY="14.0" prefHeight="44.0" prefWidth="95.0" textAlignment="JUSTIFY" textOverrun="CLIP">
+                     <font>
+                        <Font size="31.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="yourAnswer2" ellipsisString="" layoutX="57.0" layoutY="84.0" prefHeight="44.0" prefWidth="95.0" textAlignment="JUSTIFY" textOverrun="CLIP">
+                     <font>
+                        <Font size="31.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="answer" layoutX="213.0" layoutY="14.0" prefHeight="44.0" prefWidth="95.0" textAlignment="JUSTIFY">
+                     <font>
+                        <Font size="34.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="yourAnswer3" ellipsisString="" layoutX="57.0" layoutY="189.0" prefHeight="44.0" prefWidth="95.0" textAlignment="JUSTIFY" textOverrun="CLIP">
+                     <font>
+                        <Font size="31.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="answer2" layoutX="213.0" layoutY="84.0" prefHeight="44.0" prefWidth="95.0" textAlignment="JUSTIFY">
+                     <font>
+                        <Font size="34.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="answer3" layoutX="217.0" layoutY="189.0" prefHeight="44.0" prefWidth="95.0" textAlignment="JUSTIFY">
+                     <font>
+                        <Font size="34.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+        </content>
+      </ScrollPane>
+   </children>
+</Pane>

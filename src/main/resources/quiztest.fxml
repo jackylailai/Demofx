@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.QuizTestController">
+   <children>
+      <TextField layoutX="331.0" layoutY="84.0" prefHeight="50.0" prefWidth="159.0" promptText="僅能回答數字" />
+      <Label layoutX="90.0" layoutY="71.0" prefHeight="75.0" prefWidth="186.0" text="問答題目1">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="90.0" layoutY="242.0" prefHeight="75.0" prefWidth="186.0" text="問答題目2">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <RadioButton layoutX="349.0" layoutY="270.0" mnemonicParsing="false" text="是">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </RadioButton>
+      <RadioButton layoutX="411.0" layoutY="270.0" mnemonicParsing="false" text="非">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </RadioButton>
+      <Button onAction="#handleNextButton" layoutX="230.0" layoutY="456.0" mnemonicParsing="false" text="繳交">
+         <font>
+            <Font size="31.0" />
+         </font>
+      </Button>
+   </children>
+</Pane>

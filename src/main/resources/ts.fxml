@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="960.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.TsController">
+   <children>
+      <Pane prefHeight="960.0" prefWidth="1080.0">
+         <children>
+            <ImageView fitHeight="960.0" fitWidth="1080.0" layoutY="-6.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/1-2背景.png" />
+               </image>
+            </ImageView>
+            <Text fx:id="text1" fill="#fcf9f9" layoutX="194.0" layoutY="539.0" strokeType="OUTSIDE" strokeWidth="0.0" text="連線課程">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Text>
+            <Text fx:id="text2" fill="#ffecec" layoutX="566.0" layoutY="294.0" strokeType="OUTSIDE" strokeWidth="0.0" text="課程訓練">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Text>
+            <Text fx:id="text3" fill="#fcf9f9" layoutX="858.0" layoutY="291.0" strokeType="OUTSIDE" strokeWidth="0.0" text="學員成績">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Text>
+            <ImageView id="course" fx:id="courseTraining" fitHeight="563.0" fitWidth="396.0" layoutX="335.0" layoutY="167.0" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;">
+               <image>
+                  <Image url="@images/1-2課程訓練點選.png" />
+               </image>
+            </ImageView>
+      <!--      <Button layoutX="924.0" layoutY="19.0" mnemonicParsing="false" onAction="#handleLogoutButtonAction" text="登出">-->
+      <!--         <font>-->
+      <!--            <Font size="14.0" />-->
+      <!--         </font>-->
+      <!--      </Button>-->
+<!--            <TextArea fx:id="textArea" layoutX="809.0" layoutY="81.0" prefHeight="53.0" prefWidth="129.0" />-->
+            <ImageView id="grade" fitHeight="293.0" fitWidth="304.0" layoutX="706.0" layoutY="169.0" onMouseClicked="#handleScoreListButton" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;">
+               <image>
+                  <Image url="@images/1-2學員成績點選.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="293.0" fitWidth="304.0" layoutX="706.0" layoutY="437.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/1-2課程輔助點選.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="250.0" fitWidth="262.0" layoutX="71.0" layoutY="187.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/1-2箭頭.png" />
+               </image>
+            </ImageView>
+      <!--      <Button fx:id="" layoutX="211.0" layoutY="591.0" onAction="#handleCourseTrainingClick" prefHeight="16.0" prefWidth="16.0" />-->
+            <ImageView id="online" fitHeight="293.0" fitWidth="304.0" layoutX="50.0" layoutY="437.0" onMouseClicked="#handleOnlineButton" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;">
+               <image>
+                  <Image url="@images/1-2連線課程點選.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="194.0" layoutY="502.0" style="-fx-font-family: TaipeiSansTCBeta-Bold;" styleClass="bold-label" text="連線課程" textFill="WHITE">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <Label layoutX="858.0" layoutY="239.0" style="-fx-font-family: TaipeiSansTCBeta-Bold;" styleClass="bold-label" text="學員成績" textFill="WHITE">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <Label layoutX="566.0" layoutY="239.0" style="-fx-font-family: TaipeiSansTCBeta-Bold;" styleClass="bold-label" text="課程訓練" textFill="WHITE">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <Label fx:id="textArea" layoutX="811.0" layoutY="77.0" prefHeight="60.0" prefWidth="129.0" text="Label" />
+            <ImageView fx:id="slideimg" fitHeight="164.0" fitWidth="456.0" layoutX="312.0" layoutY="53.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/課程列表框.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="labeltitle" alignment="CENTER" contentDisplay="CENTER" layoutX="396.0" layoutY="90.0" text="歡迎進入模擬器測試軟體" textAlignment="CENTER" textFill="WHITE" visible="false">
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <ImageView fx:id="logoutButtonView" fitHeight="38.0" fitWidth="76.0" layoutX="980.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/1-2登出點觸碰.png" />
+         </image>
+      </ImageView>
+   </children>
+</Pane>
