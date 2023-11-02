@@ -178,7 +178,6 @@ public class OnlineUnitController {
         ImageView clickedButton = (ImageView) event.getSource();
         UnitLabelData buttonData = (UnitLabelData) clickedButton.getUserData();
         Long unitId = (Long) buttonData.getUnitId();
-
         eventFromOnlineUnit=event;
         unitIdFromOnlineUnit=unitId;
         //傳入test1 get

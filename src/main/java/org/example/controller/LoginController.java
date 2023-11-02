@@ -16,6 +16,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.IOException;
 
+import static org.example.utils.SHAService.getSHA256StrJava;
+
 public class LoginController {
     @FXML
     public ImageView loginButtonView;
@@ -50,6 +52,7 @@ public class LoginController {
         // 當登入按鈕被點擊時執行的程式碼
         String username = usernameField.getText();
         String password = passwordField.getText();
+//        password = getSHA256StrJava(password);
         // 創建JSON數據，實際上需要根據你的需求創建正確的JSON數據
         String jsonResponse = HttpClientPostLogin.sendLoginRequest(username, password);
         System.out.println(jsonResponse + "jsonResponse");
