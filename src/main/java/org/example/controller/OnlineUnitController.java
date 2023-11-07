@@ -191,7 +191,8 @@ public class OnlineUnitController {
     }
 
     public static void showQuizDetails(Long unitId, MouseEvent event,int onlineControl) {
-        String baseUrl = "http://"+localhostip+":8080/quiz";
+//        String baseUrl = "http://"+localhostip+":8080/quiz";
+        String baseUrl = "http://"+localhostip+":8080/quiz/getQuizListByUnitId";
         String serverUrl = baseUrl + "/" + unitId;
         try {
 

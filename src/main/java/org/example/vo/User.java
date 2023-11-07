@@ -21,8 +21,8 @@ public class User implements Serializable{
     private int level;
     private String ip;
     private long longDate;
-    private Date createDate;
-    private Date updateDate;
+    private Date createTime;
+    private Date updateTime;
 
     public Long getId() {
         return id;
@@ -106,19 +106,19 @@ public class User implements Serializable{
     }
 
     public Date getCreateDate() {
-        return createDate;
+        return createTime;
     }
 
     public void setCreateDate(Date createDate) {
-        this.createDate = createDate;
+        this.createTime = createDate;
     }
 
     public Date getUpdateDate() {
-        return updateDate;
+        return updateTime;
     }
 
     public void setUpdateDate(Date updateDate) {
-        this.updateDate = updateDate;
+        this.updateTime = updateDate;
     }
     public void setGrade(int grade) {
         this.grade = grade;

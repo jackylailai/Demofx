@@ -77,45 +77,46 @@ public class NettyClientCommonService {
         MsgDTO msgDTO = new MsgDTO();
 
         switch (cmd) {
-            case NettyCode.CMD_NORMAL_MSG -> {
+            case NettyCode.CMD_NORMAL_MSG : {
 
             }
-//            case NettyCode.CMD_CONNECT -> {
+//            case NettyCode.CMD_CONNECT : {
 //
 //            }
 
-//            case NettyCode.CMD_DISCONNECT -> {
+//            case NettyCode.CMD_DISCONNECT : {
 //
 //            }
 
-//            case NettyCode.CMD_LOGIN -> {
+//            case NettyCode.CMD_LOGIN : {
 //
 //            }
 //
-//            case NettyCode.CMD_LOGOUT -> {
+//            case NettyCode.CMD_LOGOUT : {
 //
 //            }
 
-            case NettyCode.CMD_NORMAL_OTHER_MSG -> {
+            case NettyCode.CMD_NORMAL_OTHER_MSG : {
 
             }
 
-            case NettyCode.CMD_OTHER_CONNECT -> {
+            case NettyCode.CMD_OTHER_CONNECT : {
 
             }
 
-            case NettyCode.CMD_OTHER_DISCONNECT -> {
+            case NettyCode.CMD_OTHER_DISCONNECT : {
 
             }
 
-            case NettyCode.CMD_OTHER_LOGIN -> {
+            case NettyCode.CMD_OTHER_LOGIN : {
                 //show from
             }
 
-            case NettyCode.CMD_OTHER_LOGOUT -> {
+            case NettyCode.CMD_OTHER_LOGOUT : {
                 //show from
             }
 
+            
         }
 
         return msgDTO;

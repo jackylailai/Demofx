@@ -144,8 +144,10 @@ public class UnitController {
     }
 
     private void showQuizDetails(Long unitId, MouseEvent event) {
-        String baseUrl = "http://"+localhostip+":8080/quiz";
+//        String baseUrl = "http://"+localhostip+":8080/quiz";
+        String baseUrl = "http://"+localhostip+":8080/quiz/getQuizListByUnitId";
         String serverUrl = baseUrl + "/" + unitId;
+
         try {
 
             String jsonResponse = HttpClientGetData.sendGetRequest(serverUrl);

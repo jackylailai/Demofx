@@ -12,9 +12,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class NettyClientTeamService {
-    @Getter
-    @Setter
+
+
+
+
     private static List<TeamDTO> teamDTOList = new ArrayList<>();
+    public static List<TeamDTO> getTeamDTOList() {
+        return teamDTOList;
+    }
+
+    public static void setTeamDTOList(List<TeamDTO> teamDTOList) {
+        NettyClientTeamService.teamDTOList = teamDTOList;
+    }
 
 
     public MsgDTO treatMsgDTO(int cmd, String from, String msg){

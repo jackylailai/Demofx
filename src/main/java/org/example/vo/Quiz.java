@@ -1,9 +1,10 @@
 package org.example.vo;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 
 import java.util.Date;
-
+@JsonIgnoreProperties(ignoreUnknown = true)
 @Data//會自動生成一些通用的方法，包括 getter 和 setter 方法
 public class Quiz {
     private Long id;
@@ -17,8 +18,8 @@ public class Quiz {
     private String answer;
     private int state;
     private long longDate;
-    private Date createDate;
-    private Date updateDate;
+    private Date createTime;
+    private Date updateTime;
 
     public Long getId() {
         return id;
@@ -100,20 +101,20 @@ public class Quiz {
         this.longDate = longDate;
     }
 
-    public Date getCreateDate() {
-        return createDate;
+    public Date getCreateTime() {
+        return createTime;
     }
 
-    public void setCreateDate(Date createDate) {
-        this.createDate = createDate;
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
     }
 
-    public Date getUpdateDate() {
-        return updateDate;
+    public Date getUpdateTime() {
+        return updateTime;
     }
 
-    public void setUpdateDate(Date updateDate) {
-        this.updateDate = updateDate;
+    public void setUpdateTime(Date updateTime) {
+        this.updateTime = updateTime;
     }
 // Getter and Setter 方法
 }

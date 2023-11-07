@@ -146,7 +146,8 @@ public class OnlineController {
             }
     }
     private List<Unit> showUnitDetails(Long courseId) {
-        String baseUrl = "http://"+localhostip+":8080/unit";
+//        String baseUrl = "http://"+localhostip+":8080/unit";
+        String baseUrl = "http://"+localhostip+":8080/unit/getUnitByUnitId";
         String serverUrl = baseUrl + "/" + courseId;
 
         String jsonResponse = HttpClientGetData.sendGetRequest(serverUrl);

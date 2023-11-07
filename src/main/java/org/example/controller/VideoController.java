@@ -22,24 +22,45 @@ public class VideoController {
     private MediaView mediaView;
     MediaPlayer mediaPlayer;
     private boolean isPlaying = false;
+    private boolean isReadyPlaying = false;
+
     public void initMediaPlayer(String url) {
         Media media = new Media(url);
         System.out.println();
         mediaPlayer = new MediaPlayer(media);
-
         mediaView.setMediaPlayer(mediaPlayer);
+        mediaPlayer.statusProperty().addListener(((observable, oldValue, newValue) -> {
+            if(newValue== MediaPlayer.Status.READY){
+                System.out.println("影片就緒");
+//                mediaPlayer.play();
+                isReadyPlaying=true;
+            }
+            else{
+                System.out.println("影片尚未");
+            }
+        }));
         System.out.println("有成功進入videocontroller");
-        mediaPlayer.play();
+
+//        MediaPlayer.Status status = mediaPlayer.statusProperty().get();
+//        if(status==MediaPlayer.Status.READY){
+//            mediaPlayer.play();
+//        }else{
+//
+//        }
     }
 
     public void handlePauseButton(MouseEvent mouseEvent) {
         if (mediaPlayer != null) {
-            if (isPlaying) {
-                mediaPlayer.pause();
-            } else {
-                mediaPlayer.play();
-            }
-            isPlaying = !isPlaying;
+//            if(isReadyPlaying) {
+                if (mediaPlayer.getStatus() == MediaPlayer.Status.READY) {
+                    if (isPlaying) {
+                        mediaPlayer.pause();
+                    } else {
+                        mediaPlayer.play();
+                    }
+                    isPlaying = !isPlaying;
+                }
+//            }
         }
     }
 //    @FXML

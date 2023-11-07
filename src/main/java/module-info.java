@@ -15,6 +15,8 @@ module Demofx {
     requires io.netty.common;
     exports org.example.vo;
     exports org.example.modelDTO;
+    exports org.example.netty.controller;
+    exports org.example.http;
     opens org.example;
     opens org.example.controller;
     opens org.example.modeldata to javafx.base;

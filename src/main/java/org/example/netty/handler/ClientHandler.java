@@ -62,7 +62,7 @@ public class ClientHandler extends SimpleChannelInboundHandler<String> {
         ByteBuf byteBuf = (ByteBuf) msg;
         String servermessage = byteBuf.toString(CharsetUtil.UTF_8);
         System.out.println("\n" + "收到 server 端" + ctx.channel().remoteAddress() + "的消息：" + byteBuf.toString(CharsetUtil.UTF_8));
-        nettyClientMsgController.treatMsg(servermessage);
+//        nettyClientMsgController.treatMsg(servermessage);
         ctxFromHandler=ctx;
         Platform.runLater(() -> {
 //            System.out.println("read");

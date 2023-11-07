@@ -5,7 +5,13 @@ import lombok.Setter;
 
 public class SessionStorage {
 
-    @Getter
-    @Setter
-    static String sessionId;
+    private static String sessionId;
+
+    public static String getSessionId() {
+        return sessionId;
+    }
+
+    public static void setSessionId(String sessionId) {
+        SessionStorage.sessionId = sessionId;
+    }
 }

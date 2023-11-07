@@ -18,9 +18,14 @@ public class NettyClientMsgController {
     private static NettyClientMsgController controller;
 
 
-    @Getter
-    @Setter
     private static String clientCtxId = "";
+    public static void setClientCtxId(String clientCtxId) {
+        NettyClientMsgController.clientCtxId = clientCtxId;
+    }
+
+    public static String getClientCtxId() {
+        return clientCtxId;
+    }
 
     @Getter
     @Setter
@@ -73,7 +78,7 @@ public class NettyClientMsgController {
         System.out.println("sendCMD() cmdCode : " + cmdCode);
         String teamStrs = "";
         if(cmdCode == NettyCode.TEAM_WAITING_COACH_DISPATCH){
-            teamStrs = DTOParser.parseDTOsToString(nettyClientTeamService.getTeamDTOList().toArray());
+            teamStrs = DTOParser.parseDTOsToString(NettyClientTeamService.getTeamDTOList().toArray());
         }
 
         MsgDTO msgDTO;
@@ -137,13 +142,15 @@ public class NettyClientMsgController {
 
         switch (cmdType) {
 
-            case NettyCode.CMD_NORMAL,NettyCode.CMD -> {
+            case NettyCode.CMD_NORMAL:
+            case NettyCode.CMD : {
                 decodeMsg = CodeDecoder.getCodeMsg("CMD", cmd);
                 if(cmd == NettyCode.CMD_CONNECT){
                     setClientCtxId(msg);
                     System.out.println("check set clientCtxId : " + getClientCtxId());
                 }else{
                     nettyClientCommonService.treatMsgDTO(cmd, from, msg);
+
                 }
 
 //                if(cmd == NettyCode.CMD_LOGIN){
@@ -153,12 +160,13 @@ public class NettyClientMsgController {
 //                        //提示別的使用者登入
 //                    }
 //                }
-
+                break;
             }
 
-            case NettyCode.TEAM -> {
+            case NettyCode.TEAM : {
                 decodeMsg = CodeDecoder.getCodeMsg("TEAM", cmd);
                 nettyClientTeamService.treatMsgDTO(cmd, from, msg);
+                break;
             }
         }
 
