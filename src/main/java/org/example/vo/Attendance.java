@@ -1,11 +1,13 @@
 package org.example.vo;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 
 import java.io.Serializable;
 import java.util.Date;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 @Data
 public class Attendance implements Serializable {
     private Long id;

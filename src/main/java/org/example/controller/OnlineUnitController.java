@@ -3,7 +3,6 @@ package org.example.controller;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.example.netty.handler.ClientHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Rectangle2D;
@@ -315,26 +314,52 @@ public class OnlineUnitController {
 //        currentStage.setScene(scene);
 //        currentStage.setTitle("Video");
 //        currentStage.show();
-        Stage videoStage = new Stage();
+//        Stage videoStage = new Stage();
+//
+//        FXMLLoader loader = new FXMLLoader(getClass().getResource("/video.fxml"));
+//        Parent root = loader.load();
+//        Scene scene = new Scene(root);
+//        scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/globalStyles.css")).toExternalForm());
+//
+//        VideoController videoController = loader.getController();
+//        videoController.initMediaPlayer("file:///c:/SSTP/demo/videos/demo1多人版.mp4");
+//
+//        System.out.println(videoController);
+//        videoStage.setAlwaysOnTop(true);
+//        videoStage.setScene(scene);
+//        videoStage.setTitle("Video");
+//        videoStage.show();
+//
+//        videoStage.setOnCloseRequest(event -> {
+//            if (videoController.mediaPlayer != null) {
+//                videoController.mediaPlayer.stop();
+//            }
+//        });
+        VideoController videoController = new VideoController();
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/video.fxml"));
-        Parent root = loader.load();
-        Scene scene = new Scene(root);
-        scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/globalStyles.css")).toExternalForm());
+        if (videoController.isMediaLoaded("file:///c:/SSTP/demo/videos/demo1多人版.mp4")) {
+            Stage videoStage = new Stage();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/video.fxml"));
+            Parent root = loader.load();
+            Scene scene = new Scene(root);
+            scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/globalStyles.css")).toExternalForm());
+            videoController = loader.getController();
+            videoController.initMediaPlayer("file:///c:/SSTP/demo/videos/demo1多人版.mp4", videoStage);
+            videoStage.setAlwaysOnTop(true);
+            videoStage.setScene(scene);
+            videoStage.setTitle("Video");
+            videoStage.show();
 
-        VideoController videoController = loader.getController();
-        videoController.initMediaPlayer("file:///c:/SSTP/demo/videos/demo1多人版.mp4");
+            VideoController finalVideoController = videoController;
+            videoStage.setOnCloseRequest(event -> {
+                if (finalVideoController.mediaPlayer != null) {
+                    finalVideoController.mediaPlayer.stop();
+                }
+            });
+        } else {
 
-        System.out.println(videoController);
-        videoStage.setAlwaysOnTop(true);
-        videoStage.setScene(scene);
-        videoStage.setTitle("Video");
-        videoStage.show();
+            System.out.println("video載入失敗");
 
-        videoStage.setOnCloseRequest(event -> {
-            if (videoController.mediaPlayer != null) {
-                videoController.mediaPlayer.stop();
-            }
-        });
+        }
     }
 }

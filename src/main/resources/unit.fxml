@@ -8,6 +8,8 @@
 <?import javafx.scene.text.Font?>
 
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.ProgressIndicator?>
+<?import javafx.scene.layout.StackPane?>
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="960.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.UnitController">
    <children>
       <Pane prefHeight="960.0" prefWidth="1080.0">
@@ -82,7 +84,9 @@
             <TextArea fx:id="distext1" editable="false" layoutX="32.0" layoutY="684.0" prefHeight="60.0" prefWidth="300.0" style="-fx-faint-focus-color: transparent;-fx-focus-color: transparent; -fx-text-box-border: transparent; -fx-background-color: -fx-control-inner-background;     -fx-background-insets: 0;" wrapText="true" />
             <TextArea fx:id="distext3" editable="false"  layoutX="756.0" layoutY="684.0" prefHeight="60.0" prefWidth="300.0" style="-fx-faint-focus-color: transparent;-fx-focus-color: transparent; -fx-text-box-border: transparent; -fx-background-color: -fx-control-inner-background;     -fx-background-insets: 0;" wrapText="true" />
             <TextArea fx:id="distext2" editable="false"  layoutX="394.0" layoutY="684.0" prefHeight="60.0" prefWidth="300.0" style="-fx-faint-focus-color: transparent;-fx-focus-color: transparent; -fx-text-box-border: transparent; -fx-background-color: -fx-control-inner-background;     -fx-background-insets: 0;" wrapText="true" />
-
+<!--            <StackPane fx:id="loadingPane" alignment="CENTER" visible="false">-->
+<!--               <ProgressIndicator />-->
+<!--            </StackPane>-->
          </children>
       </Pane>
    </children>
