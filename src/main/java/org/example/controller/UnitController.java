@@ -31,7 +31,6 @@ import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
-import java.util.concurrent.CompletableFuture;
 
 import static org.example.Main.customFontForAll;
 import static org.example.controller.UnitListController.unitsDataForUnitList;
@@ -49,8 +48,6 @@ public class UnitController {
     public Label title2;
     public Label title1;
     @FXML
-    public StackPane loadingPane;
-    @FXML
     private ImageView unitimage;
     @FXML
     private ImageView button1;
@@ -62,6 +59,9 @@ public class UnitController {
     @FXML
     private ImageView button3;
     public static String informationDetail;
+    private static Stage videoStage;
+    private static Stage storeUnitStage;
+    MediaPlayer mediaPlayer;
 
     public void initialize() {
         addMouseHoverHandler(button1, distext1, title1);
@@ -174,6 +174,7 @@ public class UnitController {
                 Scene quizScene = new Scene(quizroot);
                 quizScene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/globalStyles.css")).toExternalForm());
                 Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                storeUnitStage=currentStage;
                 Screen secondScreen = Screen.getScreens().stream()
                         .filter(screen -> !screen.equals(Screen.getPrimary()))
                         .findFirst()
@@ -197,6 +198,7 @@ public class UnitController {
                 currentStage.setScene(quizScene);
                 currentStage.setTitle("Quiz List");
             } else {
+                System.out.println("Quiz json 有問題");
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -248,21 +250,18 @@ public class UnitController {
 ////        currentStage.show();
 //
 //
-        System.out.println("點入影片按鈕");
-////        VideoController videoController = new VideoController();
-//
-//
-////        Stage videoStage = new Stage();
-////        FXMLLoader loader = new FXMLLoader(getClass().getResource("/video.fxml"));
+            System.out.println("點入影片按鈕");
+
+//        Stage videoStage = new Stage();
+//        FXMLLoader loader = new FXMLLoader(getClass().getResource("/video.fxml"));
 ////        Parent root = loader.load();
 ////        Scene scene = new Scene(root);
 ////        scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/globalStyles.css")).toExternalForm());
 ////
 ////        VideoController videoController = loader.getController();
 ////        videoController.initMediaPlayer("file:///c:/SSTP/demo/videos/demo1單機版.mp4");
-////        MediaPlayer.Status status = videoController.mediaPlayer.getStatus();
+//        MediaPlayer.Status status = videoController.mediaPlayer.getStatus();
 ////        if(status==MediaPlayer.Status.READY){
-////            System.out.println("ready");
 ////        }else{
 ////            System.out.println("有問題還沒載入影片");
 ////        }
@@ -279,32 +278,85 @@ public class UnitController {
 ////        });
 //
 //
-        VideoController videoController = new VideoController();
 
-        if (videoController.isMediaLoaded("file:///c:/SSTP/demo/videos/demo1單機版.mp4")) {
-            Stage videoStage = new Stage();
+//        VideoController videoController = new VideoController();
+//
+//        if (videoController.isMediaLoaded("file:///c:/SSTP/demo/videos/demo1單機版.mp4")) {
+//            Stage videoStage = new Stage();
+//            FXMLLoader loader = new FXMLLoader(getClass().getResource("/video.fxml"));
+//            Parent root = loader.load();
+//            Scene scene = new Scene(root);
+//            scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/globalStyles.css")).toExternalForm());
+//            videoController = loader.getController();
+//            videoController.initMediaPlayer("file:///c:/SSTP/demo/videos/demo1單機版.mp4",videoStage);
+//            videoStage.setAlwaysOnTop(true);
+//            videoStage.setScene(scene);
+//            videoStage.setTitle("Video");
+//            videoStage.show();
+//
+//
+//            VideoController finalVideoController = videoController;
+//            videoStage.setOnCloseRequest(event -> {
+//                if (finalVideoController.mediaPlayer != null) {
+//                    finalVideoController.mediaPlayer.stop();
+//                }
+//            });
+//        } else {
+//
+//            System.out.println("video載入失敗");
+//
+//        }
+
+            videoStage = new Stage();
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/video.fxml"));
             Parent root = loader.load();
             Scene scene = new Scene(root);
             scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/globalStyles.css")).toExternalForm());
-            videoController = loader.getController();
-            videoController.initMediaPlayer("file:///c:/SSTP/demo/videos/demo1單機版.mp4",videoStage);
+            VideoController videoController = loader.getController();
+            MediaPlayer beforeInitmediaplayer = beforeInitMediaPlayer("file:///c:/SSTP/demo/videos/demo1單機版.mp4");
+            videoController.initMediaPlayer(beforeInitmediaplayer);
             videoStage.setAlwaysOnTop(true);
             videoStage.setScene(scene);
             videoStage.setTitle("Video");
-            videoStage.show();
+//            videoStage.show();
 
-
-            VideoController finalVideoController = videoController;
             videoStage.setOnCloseRequest(event -> {
-                if (finalVideoController.mediaPlayer != null) {
-                    finalVideoController.mediaPlayer.stop();
+                if (mediaPlayer != null) {
+                    mediaPlayer.stop();
                 }
             });
-        } else {
+        }
+        private MediaPlayer beforeInitMediaPlayer(String url) {
+                Media media = new Media(url);
+                mediaPlayer = new MediaPlayer(media);
 
-            System.out.println("video載入失敗");
+                mediaPlayer.bufferProgressTimeProperty().addListener((observable, oldValue, newValue) -> {
+                    double bufferPercent = mediaPlayer.getBufferProgressTime().toSeconds() / mediaPlayer.getTotalDuration().toSeconds() * 100;
+                    System.out.println("緩衝中: " + bufferPercent + "%");
+                });
+                mediaPlayer.setOnReady(() -> {
+                    System.out.println("影片就绪");
+                    videoStage.show();
+                });
+                mediaPlayer.setOnError(()->{
+                    System.out.println("錯誤");
+                    showWarningAlert();
+                });
+                System.out.println("有成功跑完before init video");
+                return mediaPlayer;
+        }
+        private void showWarningAlert() {
+            Platform.runLater(() -> {
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("警告");
+                alert.setHeaderText("發生錯誤");
+                alert.setContentText("載入失敗，請重新點擊播放影片開啟");
 
+                alert.initModality(Modality.WINDOW_MODAL);
+                alert.initOwner(storeUnitStage);
+
+                alert.showAndWait();
+            });
         }
     }
 //    public void handleVideoButtonAction(MouseEvent mouseEvent) {
@@ -372,4 +424,5 @@ public class UnitController {
 //
 //        return mediaPlayer;
 //    }
-}
+
+

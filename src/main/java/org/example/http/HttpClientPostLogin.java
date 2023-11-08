@@ -73,7 +73,9 @@ public class HttpClientPostLogin {
 
             int responseCode = connection.getResponseCode();
             System.out.println("Response Code: " + responseCode);
-
+            if(responseCode==401){
+                return "401";
+            }
             // 取得Cookie標頭
             Map<String, List<String>> headerFields = connection.getHeaderFields();
             List<String> cookiesHeader = headerFields.get("Set-Cookie");
@@ -100,7 +102,7 @@ public class HttpClientPostLogin {
             }
         } catch (IOException e) {
             e.printStackTrace();
-            return "error";
+            return "501";
         }
     }
 }

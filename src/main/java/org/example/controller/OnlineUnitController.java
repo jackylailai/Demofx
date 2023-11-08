@@ -3,19 +3,24 @@ package org.example.controller;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.text.Font;
+import javafx.stage.Modality;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import org.example.http.HttpClientGetData;
@@ -62,7 +67,9 @@ public class OnlineUnitController {
 
     @FXML
     private ImageView button3;
-
+    private static Stage videoStage;
+    private static Stage storeUnitStage;
+    MediaPlayer mediaPlayer;
     public void initialize() {
         addMouseHoverHandler(button1,distext1,title1);
         addMouseHoverHandler(button2,distext2,title2);
@@ -334,32 +341,82 @@ public class OnlineUnitController {
 //            if (videoController.mediaPlayer != null) {
 //                videoController.mediaPlayer.stop();
 //            }
-//        });
-        VideoController videoController = new VideoController();
+////        });
+//        VideoController videoController = new VideoController();
+//
+//        if (videoController.isMediaLoaded("file:///c:/SSTP/demo/videos/demo1多人版.mp4")) {
+//            Stage videoStage = new Stage();
+//            FXMLLoader loader = new FXMLLoader(getClass().getResource("/video.fxml"));
+//            Parent root = loader.load();
+//            Scene scene = new Scene(root);
+//            scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/globalStyles.css")).toExternalForm());
+//            videoController = loader.getController();
+//            videoController.initMediaPlayer("file:///c:/SSTP/demo/videos/demo1多人版.mp4", videoStage);
+//            videoStage.setAlwaysOnTop(true);
+//            videoStage.setScene(scene);
+//            videoStage.setTitle("Video");
+//            videoStage.show();
+//
+//            VideoController finalVideoController = videoController;
+//            videoStage.setOnCloseRequest(event -> {
+//                if (finalVideoController.mediaPlayer != null) {
+//                    finalVideoController.mediaPlayer.stop();
+//                }
+//            });
+//        } else {
+//
+//            System.out.println("video載入失敗");
+//
+//        }
+        videoStage = new Stage();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/video.fxml"));
+        Parent root = loader.load();
+        Scene scene = new Scene(root);
+        scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/globalStyles.css")).toExternalForm());
+        VideoController videoController = loader.getController();
+        MediaPlayer beforeInitmediaplayer = beforeInitMediaPlayer("file:///c:/SSTP/demo/videos/demo1多人版.mp4");
+        videoController.initMediaPlayer(beforeInitmediaplayer);
+        videoStage.setAlwaysOnTop(true);
+        videoStage.setScene(scene);
+        videoStage.setTitle("Video");
+        //            videoStage.show();
 
-        if (videoController.isMediaLoaded("file:///c:/SSTP/demo/videos/demo1多人版.mp4")) {
-            Stage videoStage = new Stage();
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/video.fxml"));
-            Parent root = loader.load();
-            Scene scene = new Scene(root);
-            scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/globalStyles.css")).toExternalForm());
-            videoController = loader.getController();
-            videoController.initMediaPlayer("file:///c:/SSTP/demo/videos/demo1多人版.mp4", videoStage);
-            videoStage.setAlwaysOnTop(true);
-            videoStage.setScene(scene);
-            videoStage.setTitle("Video");
+        videoStage.setOnCloseRequest(event -> {
+            if (mediaPlayer != null) {
+                mediaPlayer.stop();
+            }
+        });
+    }
+    private MediaPlayer beforeInitMediaPlayer(String url) {
+        Media media = new Media(url);
+        mediaPlayer = new MediaPlayer(media);
+
+        mediaPlayer.bufferProgressTimeProperty().addListener((observable, oldValue, newValue) -> {
+            double bufferPercent = mediaPlayer.getBufferProgressTime().toSeconds() / mediaPlayer.getTotalDuration().toSeconds() * 100;
+            System.out.println("緩衝中: " + bufferPercent + "%");
+        });
+        mediaPlayer.setOnReady(() -> {
+            System.out.println("影片就绪");
             videoStage.show();
+        });
+        mediaPlayer.setOnError(()->{
+            System.out.println("錯誤");
+            showWarningAlert();
+        });
+        System.out.println("有成功跑完before init video");
+        return mediaPlayer;
+    }
+    private void showWarningAlert() {
+        Platform.runLater(() -> {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("警告");
+            alert.setHeaderText("發生錯誤");
+            alert.setContentText("載入失敗，請重新點擊播放影片開啟");
 
-            VideoController finalVideoController = videoController;
-            videoStage.setOnCloseRequest(event -> {
-                if (finalVideoController.mediaPlayer != null) {
-                    finalVideoController.mediaPlayer.stop();
-                }
-            });
-        } else {
+            alert.initModality(Modality.WINDOW_MODAL);
+            alert.initOwner(storeUnitStage);
 
-            System.out.println("video載入失敗");
-
-        }
+            alert.showAndWait();
+        });
     }
 }
