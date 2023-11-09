@@ -31,6 +31,7 @@ import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 import static org.example.Main.customFontForAll;
 import static org.example.controller.UnitListController.unitsDataForUnitList;
@@ -61,48 +62,82 @@ public class UnitController {
     public static String informationDetail;
     private static Stage videoStage;
     private static Stage storeUnitStage;
+    private AtomicBoolean isZoomed1 = new AtomicBoolean(false);
+    private AtomicBoolean isZoomed2 = new AtomicBoolean(false);
+    private AtomicBoolean isZoomed3 = new AtomicBoolean(false);
     MediaPlayer mediaPlayer;
 
     public void initialize() {
-        addMouseHoverHandler(button1, distext1, title1);
-        addMouseHoverHandler(button2, distext2, title2);
-        addMouseHoverHandler(button3, distext3, title3);
+        addMouseHoverHandler(button1, distext1, title1, isZoomed1);
+        addMouseHoverHandler(button2, distext2, title2, isZoomed2);
+        addMouseHoverHandler(button3, distext3, title3, isZoomed3);
         informationDetail = "單機";
     }
 
-    private void addMouseHoverHandler(ImageView imageView, TextArea textArea, Label title) {
+    private void addMouseHoverHandler(ImageView imageView, TextArea textArea, Label title, AtomicBoolean isZoomed) {
+//        imageView.setOnMousePressed(event -> {
+//            double currentScaleX = imageView.getScaleX();
+//            double currentScaleY = imageView.getScaleY();
+//            double translateY = imageView.getBoundsInParent().getHeight() * (1.0 - 3.0) / 2.0;
+//            textArea.setFont(new Font(customFontForAll.getFamily(), textArea.getFont().getSize() * 1.2));
+//            System.out.println(textArea.getFont().getName() + textArea.getFont().getSize() + ",data");
+//            title.setFont(new Font(title.getFont().getName(), title.getFont().getSize() * 1.2));
+////            imageView.setScaleY(newScaleY);
+//            imageView.setTranslateY(translateY);
+//            textArea.setTranslateY(translateY * 1.8);
+//            title.setTranslateY(translateY * 1.8);
+//            imageView.setScaleX(currentScaleX * 1);
+//            imageView.setScaleY(currentScaleY * 3);
+//            textArea.setPrefHeight(textArea.getPrefHeight() * 3);
+////            label.setScaleY(newScaleY);
+////            title.setScaleY(newScaleY);
+//
+//        });
+//
+//        imageView.setOnMouseReleased(event -> {
+//            textArea.setFont(new Font(textArea.getFont().getName(), textArea.getFont().getSize() / 1.2));
+//            title.setFont(new Font(title.getFont().getName(), title.getFont().getSize() / 1.2));
+//            System.out.println(textArea.getFont().getName() + textArea.getFont().getSize() + ",回來變小之後data");
+//            imageView.setScaleX(1.0);
+//            imageView.setScaleY(1.0);
+//            imageView.setTranslateY(0.0);
+//            textArea.setTranslateY(0.0);
+//            title.setTranslateY(0.0);
+//            textArea.setScaleY(1.0);
+//            title.setScaleY(1.0);
+//            textArea.setPrefHeight(textArea.getPrefHeight() / 3);
+//
+//        });
         imageView.setOnMousePressed(event -> {
-            double currentScaleX = imageView.getScaleX();
-            double currentScaleY = imageView.getScaleY();
-            double translateY = imageView.getBoundsInParent().getHeight() * (1.0 - 3.0) / 2.0;
-            textArea.setFont(new Font(customFontForAll.getFamily(), textArea.getFont().getSize() * 1.2));
-            System.out.println(textArea.getFont().getName() + textArea.getFont().getSize() + ",data");
-            title.setFont(new Font(title.getFont().getName(), title.getFont().getSize() * 1.2));
+            if (isZoomed.get()) {
+                textArea.setFont(new Font(textArea.getFont().getName(), textArea.getFont().getSize() / 1.2));
+                title.setFont(new Font(title.getFont().getName(), title.getFont().getSize() / 1.2));
+                System.out.println(textArea.getFont().getName() + textArea.getFont().getSize() + ",回來變小之後data");
+                imageView.setScaleX(1.0);
+                imageView.setScaleY(1.0);
+                imageView.setTranslateY(0.0);
+                textArea.setTranslateY(0.0);
+                title.setTranslateY(0.0);
+                textArea.setScaleY(1.0);
+                title.setScaleY(1.0);
+                textArea.setPrefHeight(textArea.getPrefHeight() / 3);
+            } else {
+                double currentScaleX = imageView.getScaleX();
+                double currentScaleY = imageView.getScaleY();
+                double translateY = imageView.getBoundsInParent().getHeight() * (1.0 - 3.0) / 2.0;
+                textArea.setFont(new Font(customFontForAll.getFamily(), textArea.getFont().getSize() * 1.2));
+                System.out.println(textArea.getFont().getName() + textArea.getFont().getSize() + ",data");
+                title.setFont(new Font(title.getFont().getName(), title.getFont().getSize() * 1.2));
 //            imageView.setScaleY(newScaleY);
-            imageView.setTranslateY(translateY);
-            textArea.setTranslateY(translateY * 1.8);
-            title.setTranslateY(translateY * 1.8);
-            imageView.setScaleX(currentScaleX * 1);
-            imageView.setScaleY(currentScaleY * 3);
-            textArea.setPrefHeight(textArea.getPrefHeight() * 3);
-//            label.setScaleY(newScaleY);
-//            title.setScaleY(newScaleY);
+                imageView.setTranslateY(translateY);
+                textArea.setTranslateY(translateY * 1.8);
+                title.setTranslateY(translateY * 1.8);
+                imageView.setScaleX(currentScaleX * 1);
+                imageView.setScaleY(currentScaleY * 3);
+                textArea.setPrefHeight(textArea.getPrefHeight() * 3);
+            }
 
-        });
-
-        imageView.setOnMouseReleased(event -> {
-            textArea.setFont(new Font(textArea.getFont().getName(), textArea.getFont().getSize() / 1.2));
-            title.setFont(new Font(title.getFont().getName(), title.getFont().getSize() / 1.2));
-            System.out.println(textArea.getFont().getName() + textArea.getFont().getSize() + ",回來變小之後data");
-            imageView.setScaleX(1.0);
-            imageView.setScaleY(1.0);
-            imageView.setTranslateY(0.0);
-            textArea.setTranslateY(0.0);
-            title.setTranslateY(0.0);
-            textArea.setScaleY(1.0);
-            title.setScaleY(1.0);
-            textArea.setPrefHeight(textArea.getPrefHeight() / 3);
-
+            isZoomed.set(!isZoomed.get());
         });
     }
 
