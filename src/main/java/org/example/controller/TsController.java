@@ -43,6 +43,7 @@ public class TsController {
     @FXML
     private Label textArea;
     public static JsonNode jsonNodeForUser;
+    public static OnlineController onlineControllerStatic;
     public void initializeUserData(JsonNode jsonNode) {
         jsonNodeForUser = jsonNode;
         String name = jsonNode.get("name").asText();
@@ -291,6 +292,7 @@ public class TsController {
         onlineScene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/globalStyles.css")).toExternalForm());
         Stage currentStage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
         onlineController.setUnits(currentStage);
+        onlineControllerStatic=onlineController;
         Screen secondScreen = Screen.getScreens().stream()
                 .filter(screen -> !screen.equals(Screen.getPrimary()))
                 .findFirst()

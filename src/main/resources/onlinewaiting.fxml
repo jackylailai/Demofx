@@ -33,7 +33,7 @@
             <Font name="System Bold Italic" size="35.0" />
          </font>
       </Label>
-      <ImageView fx:id="groupDone" visible="false" fitHeight="87.0" fitWidth="177.0" layoutX="459.0" layoutY="800.0" onMouseClicked="#openNewOnlineUnitsWindow" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;">
+      <ImageView fx:id="groupDone" visible="false" fitHeight="87.0" fitWidth="177.0" layoutX="459.0" layoutY="800.0" onMouseClicked="#openNewOnlineUnitsWindow" pickOnBounds="true"  preserveRatio="true" style="-fx-cursor: hand;">
          <image>
             <Image url="@images/課程項目與課程列表選框.png" />
          </image>

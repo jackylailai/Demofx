@@ -16,6 +16,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.example.modelDTO.NettyDTO;
 import org.example.modelDTO.UserDTO;
 import org.example.netty.controller.NettyClientMsgController;
+import org.example.netty.handler.ClientHandler;
 
 import java.io.IOException;
 

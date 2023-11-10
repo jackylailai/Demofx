@@ -1,11 +1,14 @@
 package org.example.netty.handler;
 
 import io.netty.buffer.ByteBuf;
+import io.netty.buffer.Unpooled;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import io.netty.util.CharsetUtil;
 import javafx.application.Platform;
 import org.example.netty.controller.NettyClientMsgController;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 
 import static org.example.controller.OnlineUnitController.*;
 import static org.example.controller.QuizController.operationCounts;
@@ -14,6 +17,7 @@ public class ClientHandler extends SimpleChannelInboundHandler<String> {
     private int curTime = 0;
     private final int beatTime =25; // 心跳時間間隔為 6 秒
     public static ChannelHandlerContext ctxFromHandler;
+    public static String ctxId = "";
 
     // 	一啟動只要有import NettyClientHandler就會直接建立
     NettyClientMsgController nettyClientMsgController = NettyClientMsgController.getInstance();
@@ -64,6 +68,15 @@ public class ClientHandler extends SimpleChannelInboundHandler<String> {
         System.out.println("\n" + "收到 server 端" + ctx.channel().remoteAddress() + "的消息：" + byteBuf.toString(CharsetUtil.UTF_8));
 //        nettyClientMsgController.treatMsg(servermessage);
         ctxFromHandler=ctx;
+        JSONParser jsonParser = new JSONParser();
+        Object jsonObj =jsonParser.parse(servermessage);
+        JSONObject jsonObject = (JSONObject) jsonObj;
+        nettyClientMsgController.treatMsg(servermessage);
+        if(ctxId.trim().isEmpty()){
+            ctxId = jsonObject.get("msg").toString();
+
+            System.out.println("ctxId " + ctxId);
+        }
         Platform.runLater(() -> {
 //            System.out.println("read");
             System.out.println(servermessage);
@@ -98,5 +111,35 @@ public class ClientHandler extends SimpleChannelInboundHandler<String> {
         ByteBuf responseByteBuf = ctx.alloc().buffer();
         responseByteBuf.writeBytes(message.getBytes(CharsetUtil.UTF_8));
         ctx.writeAndFlush(responseByteBuf);
+    }
+
+
+
+
+
+
+
+    public static void sendCMD(int cmdType, String msg){
+        String cmdMsg = "";
+        System.out.println("sendCMD() cmdType : " + cmdType + "; msg : " + msg);
+//		switch(cmdType){
+//		case CommonString.CMD_CONNECTED_INT:
+//				cmdMsg = CommonFunction.setResponse(CommonString.CMD_CONNECTED, msg);
+//				break;
+//		case CommonString.CMD_DISCONNECT_INT:
+//				cmdMsg = CommonFunction.setResponse(CommonString.CMD_DISCONNECT , msg);
+//				break;
+//		case CommonString.CMD_LOGIN_INT:
+//				cmdMsg = CommonFunction.setResponse(CommonString.CMD_LOGIN, msg);
+//				break;
+//		case CommonString.CMD_LOGOUT_INT:
+//				cmdMsg = CommonFunction.setResponse(CommonString.CMD_LOGOUT, msg);
+//				break;
+//		}
+        //from NettyDTO
+//		cmdMsg = "{\"cmd\":"+ cmdType + ",\"from\":\""+ msg + "\",\"msg\":\""+ ctxId +  "\"}";
+        cmdMsg = "{\"cmd\":"+ cmdType + ",\"from\":\""+ msg + "\",\"msg\":\""+ ""  +  "\"}";
+
+        ctxFromHandler.writeAndFlush( Unpooled.copiedBuffer( cmdMsg, CharsetUtil.UTF_8));
     }
 }

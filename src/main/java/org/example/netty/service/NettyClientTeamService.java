@@ -3,6 +3,7 @@ package org.example.netty.service;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import lombok.Getter;
 import lombok.Setter;
+import org.example.controller.OnlineController;
 import org.example.modelDTO.MsgDTO;
 import org.example.modelDTO.TeamDTO;
 import org.example.utils.func.DTOParser;
@@ -10,6 +11,8 @@ import org.example.utils.text.NettyCode;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static org.example.controller.TsController.onlineControllerStatic;
 
 public class NettyClientTeamService {
 
@@ -115,11 +118,12 @@ public class NettyClientTeamService {
                 msgDTO.setFrom(from);
                 msgDTO.setMsg(msg);
                 break;
-
+//處理~連線需求 連線後教官給予指令配段完到下一步
             case NettyCode.TEAM_WAITING_NEXT:                   //08
                 msgDTO.setCmd(NettyCode.TEAM_WAITING_NEXT);
                 msgDTO.setFrom(from);
                 msgDTO.setMsg(msg);
+                onlineControllerStatic.showUpOnlineUnitButton();
                 break;
 
             case NettyCode.TEAM_COURSE_STEP_WAITING:            //09
