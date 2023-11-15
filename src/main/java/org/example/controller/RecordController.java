@@ -161,7 +161,8 @@ public class RecordController {
         System.out.println("Timer finished. Perform window transition here.");
     }
     private List<Oper> showOperationDetails(Long unitId) {
-        String baseUrl = "http://"+localhostip+":8080/operation";
+//        String baseUrl = "http://"+localhostip+":8080/operation";
+        String baseUrl = "http://"+localhostip+":8080/oper/getOperListByUnitId";
         String serverUrl = baseUrl + "/" + unitId;
 
         String jsonResponse = HttpClientGetData.sendGetRequest(serverUrl);

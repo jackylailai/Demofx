@@ -143,7 +143,8 @@ public class CourseItemController {
     }
 
     private void showCourseDetails(Long courseId, MouseEvent event) {
-        String baseUrl = "http://"+localhostip+":8080/course";
+//        String baseUrl = "http://"+localhostip+":8080/course";
+        String baseUrl = "http://"+localhostip+":8080/unit/getUnitsBycourseId";
         String serverUrl = baseUrl + "/" + courseId;
         try {
 
@@ -182,7 +183,7 @@ public class CourseItemController {
                     Unit unit = new Unit();
                     unit.setCourseId(unitJson.get("courseId").asLong());
                     unit.setUnitId(unitJson.get("unitId").asLong());
-                    unit.setUnitName(unitJson.get("name").asText());
+                    unit.setUnitName(unitJson.get("unitName").asText());
                     unit.setUnitSubject(unitJson.get("unitSubject").asText());
                     units.add(unit);
                     System.out.println("units" + units);

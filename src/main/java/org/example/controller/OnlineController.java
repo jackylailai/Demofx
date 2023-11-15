@@ -18,6 +18,7 @@ import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import org.example.http.HttpClientGetData;
+import org.example.netty.handler.ClientHandler;
 import org.example.vo.Unit;
 
 import java.awt.*;
@@ -29,14 +30,26 @@ import java.net.URL;
 import java.util.*;
 import java.util.List;
 
+import static org.example.controller.TsController.jsonNodeForUser;
 import static org.example.netty.server.NettyClient.localhostip;
 
 
-public class OnlineController {
+public class OnlineController{
     public Label timerLabel;
+    @FXML
+    private ImageView groupDone;
+    @FXML
+    private Label groupDoneLabel;
 
-    public ImageView groupDone;
-    public Label groupDoneLabel;
+//    @Override
+//    public void update(Observable o, Object arg) {
+//        if (arg instanceof Boolean) {
+//            boolean isVisible = (boolean) arg;
+//            groupDone.setVisible(isVisible);
+//            groupDoneLabel.setVisible(isVisible);
+//        }
+//    }
+
     public interface ResponseCallback {
         void onResponse(boolean is200);
     }
@@ -58,29 +71,36 @@ public class OnlineController {
 //                    }
 //                }
 //            });
-            groupDone.setVisible(false);
-            groupDoneLabel.setVisible(false);
         }
         public void setUnits(Stage currentStage) {
+            groupDone.setVisible(false);
+            groupDoneLabel.setVisible(false);
+
+            ClientHandler.sendCMD(910003, jsonNodeForUser.get("name").asText());
+
+
             Duration duration = Duration.seconds(1);
 
             KeyFrame keyFrame = new KeyFrame(duration, event -> {
+
                 onlineControl(new ResponseCallback() {
                     @Override
                     public void onResponse(boolean isStatusCode) {
                         if (isStatusCode) {
-                            groupDone.setVisible(true);
-                            groupDoneLabel.setVisible(true);
+//                            groupDone.setVisible(true);
+//                            groupDoneLabel.setVisible(true);
                         } else {
                             System.out.println("尚未取得許可");
                         }
                     }
                 });
+
                 System.out.println("Timer finished. Perform window transition here.");
 //                openNewOnlineUnitsWindow(currentStage);
 //                groupDone.setVisible(true);
 //                groupDoneLabel.setVisible(true);
             });
+
             Timeline timeline = new Timeline(keyFrame);
             timeline.setCycleCount(1);
             timeline.play();
@@ -125,6 +145,11 @@ public class OnlineController {
         currentStage.setTitle("Online Units");
         System.out.println("Timer finished. Perform window transition here.");
     }
+    public void showUpOnlineUnitButton(){
+        groupDone.setVisible(true);
+        groupDoneLabel.setVisible(true);
+    }
+
     public void onlineControl(ResponseCallback callback) {
             try {
                 System.out.println("訊息開始寄出去");
@@ -146,7 +171,8 @@ public class OnlineController {
             }
     }
     private List<Unit> showUnitDetails(Long courseId) {
-        String baseUrl = "http://"+localhostip+":8080/unit";
+//        String baseUrl = "http://"+localhostip+":8080/unit";
+        String baseUrl = "http://"+localhostip+":8080/unit/getUnitByUnitId";
         String serverUrl = baseUrl + "/" + courseId;
 
         String jsonResponse = HttpClientGetData.sendGetRequest(serverUrl);

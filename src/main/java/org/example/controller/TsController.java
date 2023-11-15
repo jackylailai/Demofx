@@ -43,6 +43,7 @@ public class TsController {
     @FXML
     private Label textArea;
     public static JsonNode jsonNodeForUser;
+    public static OnlineController onlineControllerStatic;
     public void initializeUserData(JsonNode jsonNode) {
         jsonNodeForUser = jsonNode;
         String name = jsonNode.get("name").asText();
@@ -73,7 +74,7 @@ public class TsController {
         text1.setFont(customFontForAll);
         text2.setFont(customFontForAll);
         text3.setFont(customFontForAll);
-        System.out.println(labeltitle.isVisible());
+//        System.out.println(labeltitle.isVisible());
         welcomeControl();
 
     }
@@ -196,7 +197,8 @@ public class TsController {
     public void handleCourseTrainingClick(ActionEvent actionEvent) {
         try {
 
-            String jsonResponse = HttpClientGetData.sendGetRequest("http://"+localhostip+":8080/course");
+//            String jsonResponse = HttpClientGetData.sendGetRequest("http://"+localhostip+":8080/course");
+            String jsonResponse = HttpClientGetData.sendGetRequest("http://"+localhostip+":8080/course/getAllCourse");
             if (jsonResponse!=null) {
 
                 List<Course> courses = parseCoursesJson(jsonResponse);
@@ -290,6 +292,7 @@ public class TsController {
         onlineScene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/globalStyles.css")).toExternalForm());
         Stage currentStage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
         onlineController.setUnits(currentStage);
+        onlineControllerStatic=onlineController;
         Screen secondScreen = Screen.getScreens().stream()
                 .filter(screen -> !screen.equals(Screen.getPrimary()))
                 .findFirst()

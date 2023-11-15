@@ -18,8 +18,8 @@ public class Tip implements Serializable {
     private int state;
     private long longDate;
 
-    private Date createDate;
-    private Date updateDate;
+    private Date createTime;
+    private Date updateTime;
     // Getter and Setter methods
 
     public Long getId() {
@@ -87,18 +87,18 @@ public class Tip implements Serializable {
     }
 
     public Date getCreateDate() {
-        return createDate;
+        return createTime;
     }
 
     public void setCreateDate(Date createDate) {
-        this.createDate = createDate;
+        this.createTime = createDate;
     }
 
     public Date getUpdateDate() {
-        return updateDate;
+        return updateTime;
     }
 
     public void setUpdateDate(Date updateDate) {
-        this.updateDate = updateDate;
+        this.updateTime = updateDate;
     }
 }

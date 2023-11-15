@@ -17,9 +17,11 @@ import javafx.scene.text.Text;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import org.example.http.HttpClientPostLogin;
+import org.example.modelDTO.AttendanceDTO;
+import org.example.modelDTO.UserDTO;
 import org.example.vo.Quiz;
 
-import javax.swing.*;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
@@ -27,6 +29,11 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
+import java.util.TimeZone;
+
+import static org.example.controller.CourseItemController.coursedata;
+import static org.example.controller.LoginController.staticUsername;
+import static org.example.controller.UnitController.unitsData;
 
 public class QuizController {
     public static List<Quiz> quizzesdata;
@@ -133,6 +140,8 @@ public class QuizController {
             Date currentDate = new Date();
             testTime= dateFormat.format(currentDate);
             System.out.println(testTime+":::::test1Time");
+            String iso8601Date = formatToISO8601(currentDate);
+            postAttendance(currentDate);
 //            operationLabel.setText(operationText);
         } else if (operation==2) {
 //            operationLabel.setText(operationText);
@@ -158,5 +167,29 @@ public class QuizController {
             thirdCircle.setStroke(Color.web("DARKGRAY"));
 //            operationLabel.setText(operationText);
         }
+    }
+    private void postAttendance(Date currentDate){
+        AttendanceDTO attendaceDTO = new AttendanceDTO();
+        attendaceDTO.setUsername(staticUsername);
+        attendaceDTO.setAttendanceDate(currentDate);
+        attendaceDTO.setCourseId(coursedata.get(0).getCourseId());
+        attendaceDTO.setQuizId(quizzesdata.get(0).getQuizId());
+        attendaceDTO.setUnitId(unitsData.get(0).getUnitId());
+        attendaceDTO.setContentId(0L);
+        attendaceDTO.setAttendanceId(22L);
+//        String username = staticUsername;
+//        Long unitId = unitsData.get(0).getUnitId();
+//        Long courseId = coursedata.get(0).getCourseId();
+//        Long quizId = quizzesdata.get(0).getQuizId();
+//        String attendanceDate = iso8601Date;
+
+        String jsonResponse = HttpClientPostLogin.sendAttendanceRequest(attendaceDTO);
+        System.out.println("寫入attendance到資料庫");
+        System.out.println(jsonResponse + "jsonResponse");
+    }
+    public static String formatToISO8601(Date date) {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssXXX");
+        sdf.setTimeZone(TimeZone.getTimeZone("Asia/Shanghai")); // 设置时区
+        return sdf.format(date);
     }
 }
