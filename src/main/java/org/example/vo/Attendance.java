@@ -21,6 +21,8 @@ public class Attendance implements Serializable {
     private Integer team;
 
     private Integer role;
+    private Long recordScore;
+    private String recordShot;
     private Integer score;
 
 
@@ -148,6 +150,22 @@ public class Attendance implements Serializable {
 
     public void setUpdateDate(Date updateDate) {
         this.updateDate = updateDate;
+    }
+
+    public Long getRecordScore() {
+        return recordScore;
+    }
+
+    public void setRecordScore(Long recordScore) {
+        this.recordScore = recordScore;
+    }
+
+    public String getRecordShot() {
+        return recordShot;
+    }
+
+    public void setRecordShot(String recordShot) {
+        this.recordShot = recordShot;
     }
 }
 

@@ -10,6 +10,10 @@ import org.example.netty.controller.NettyClientMsgController;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
+import java.awt.*;
+import java.io.File;
+import java.io.IOException;
+
 import static org.example.controller.OnlineUnitController.*;
 import static org.example.controller.QuizController.operationCounts;
 
@@ -68,15 +72,6 @@ public class ClientHandler extends SimpleChannelInboundHandler<String> {
         System.out.println("\n" + "收到 server 端" + ctx.channel().remoteAddress() + "的消息：" + byteBuf.toString(CharsetUtil.UTF_8));
 //        nettyClientMsgController.treatMsg(servermessage);
         ctxFromHandler=ctx;
-        JSONParser jsonParser = new JSONParser();
-        Object jsonObj =jsonParser.parse(servermessage);
-        JSONObject jsonObject = (JSONObject) jsonObj;
-        nettyClientMsgController.treatMsg(servermessage);
-        if(ctxId.trim().isEmpty()){
-            ctxId = jsonObject.get("msg").toString();
-
-            System.out.println("ctxId " + ctxId);
-        }
         Platform.runLater(() -> {
 //            System.out.println("read");
             System.out.println(servermessage);
@@ -95,6 +90,7 @@ public class ClientHandler extends SimpleChannelInboundHandler<String> {
                     System.out.println("跳轉成績1給人");
                     displayImageFunc();
                     operationCounts=3;//先亂設定不要起衝突就好 目前是在answer那邊會增加
+                    callChromeApp();
                     showQuizDetails(unitIdFromOnlineUnit,eventFromOnlineUnit,2);
                     break;
                 case "score2":
@@ -104,7 +100,35 @@ public class ClientHandler extends SimpleChannelInboundHandler<String> {
                     break;
             }
         });
+        JSONParser jsonParser = new JSONParser();
+        Object jsonObj =jsonParser.parse(servermessage);
+        JSONObject jsonObject = (JSONObject) jsonObj;
+        nettyClientMsgController.treatMsg(servermessage);//把server的資料訊息處理
+        if(ctxId.trim().isEmpty()){
+            ctxId = jsonObject.get("msg").toString();
+
+            System.out.println("ctxId " + ctxId);
+        }
+
     }
+
+    private void callChromeApp() {
+        String shortcutPath = "C:\\Users\\Public\\Desktop\\Google Chrome.lnk";
+        if (operationCounts == null) {
+            try {
+                File shortcutFile = new File(shortcutPath);
+                if (shortcutFile.exists()) {
+                    Desktop.getDesktop().open(shortcutFile);
+                    //                minimizeWindow("Google Chrome");
+                } else {
+                    System.out.println("Shortcut file does not exist.");
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
     public static void sendMessageToServer(String message, ChannelHandlerContext ctx) {
         System.out.println("client訊息:"+message);
         System.out.println("channel: ctx   :"+ctx);

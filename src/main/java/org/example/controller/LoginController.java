@@ -34,6 +34,7 @@ public class LoginController {
     @FXML
     private Button loginButton;
     private Stage primaryStage;
+    public static String staticUsername;
 
     public void setPrimaryStage(Stage primaryStage) {
         this.primaryStage = primaryStage; //
@@ -57,9 +58,11 @@ public class LoginController {
         String username = usernameField.getText();
         String password = passwordField.getText();
 
+        staticUsername=username;
         password = getSHA256StrJava(password);
         UserDTO userDTO = new UserDTO();
         userDTO.setUsername(username);
+
         userDTO.setPassword(password);
         userDTO.setCtxId(NettyClientMsgController.getClientCtxId());
         // 創建JSON數據，實際上需要根據你的需求創建正確的JSON數據

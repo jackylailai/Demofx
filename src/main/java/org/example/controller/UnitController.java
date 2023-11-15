@@ -34,6 +34,8 @@ import java.util.Objects;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 import static org.example.Main.customFontForAll;
+import static org.example.controller.CourseItemController.coursedata;
+import static org.example.controller.QuizController.quizzesdata;
 import static org.example.controller.UnitListController.unitsDataForUnitList;
 import static org.example.netty.server.NettyClient.localhostip;
 
@@ -393,6 +395,10 @@ public class UnitController {
                 alert.showAndWait();
             });
         }
+
+
+
+
     }
 //    public void handleVideoButtonAction(MouseEvent mouseEvent) {
 //        showLoadingIndicator();

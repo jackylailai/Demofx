@@ -74,7 +74,7 @@ public class TsController {
         text1.setFont(customFontForAll);
         text2.setFont(customFontForAll);
         text3.setFont(customFontForAll);
-        System.out.println(labeltitle.isVisible());
+//        System.out.println(labeltitle.isVisible());
         welcomeControl();
 
     }

@@ -24,9 +24,9 @@ public class NettyClient {
 
     public void connectToServer() {
         NioEventLoopGroup group = new NioEventLoopGroup();
-        localhostip="192.168.50.16";//left one
+//        localhostip="192.168.50.16";//left one
 //        localhostip="192.168.50.48";
-//        localhostip="localhost";
+        localhostip="localhost";
         try {
             Bootstrap bootstrap = new Bootstrap();
             bootstrap.group(group);
