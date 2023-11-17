@@ -33,6 +33,7 @@ import java.util.TimeZone;
 
 import static org.example.controller.CourseItemController.coursedata;
 import static org.example.controller.LoginController.staticUsername;
+import static org.example.controller.UnitController.onlineControlCounts;
 import static org.example.controller.UnitController.unitsData;
 
 public class QuizController {
@@ -141,7 +142,11 @@ public class QuizController {
             testTime= dateFormat.format(currentDate);
             System.out.println(testTime+":::::test1Time");
             String iso8601Date = formatToISO8601(currentDate);
-            postAttendance(currentDate);
+            if(onlineControlCounts == 0){
+                postAttendance(currentDate);
+            }else{
+                postAttendance(currentDate,39L);
+            }
 //            operationLabel.setText(operationText);
         } else if (operation==2) {
 //            operationLabel.setText(operationText);
@@ -187,9 +192,28 @@ public class QuizController {
         System.out.println("寫入attendance到資料庫");
         System.out.println(jsonResponse + "jsonResponse");
     }
+    public static void postAttendance(Date currentDate,Long courseId){
+        AttendanceDTO attendaceDTO = new AttendanceDTO();
+        attendaceDTO.setUsername(staticUsername);
+        attendaceDTO.setAttendanceDate(currentDate);
+        attendaceDTO.setCourseId(courseId);
+        attendaceDTO.setQuizId(quizzesdata.get(0).getQuizId());
+        attendaceDTO.setUnitId(unitsData.get(0).getUnitId());
+        attendaceDTO.setContentId(0L);
+        attendaceDTO.setAttendanceId(22L);
+//        String username = staticUsername;
+//        Long unitId = unitsData.get(0).getUnitId();
+//        Long courseId = coursedata.get(0).getCourseId();
+//        Long quizId = quizzesdata.get(0).getQuizId();
+//        String attendanceDate = iso8601Date;
+
+        String jsonResponse = HttpClientPostLogin.sendAttendanceRequest(attendaceDTO);
+        System.out.println("寫入attendance到資料庫");
+        System.out.println(jsonResponse + "jsonResponse");
+    }
     public static String formatToISO8601(Date date) {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssXXX");
-        sdf.setTimeZone(TimeZone.getTimeZone("Asia/Shanghai")); // 设置时区
+        sdf.setTimeZone(TimeZone.getTimeZone("Asia/Shanghai"));
         return sdf.format(date);
     }
 }

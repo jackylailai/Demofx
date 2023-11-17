@@ -9,10 +9,18 @@ import org.example.modelDTO.TeamDTO;
 import org.example.utils.func.DTOParser;
 import org.example.utils.text.NettyCode;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
+import static org.example.controller.OnlineUnitController.*;
+import static org.example.controller.QuizController.*;
+import static org.example.controller.TsController.jsonNodeForUser;
 import static org.example.controller.TsController.onlineControllerStatic;
+import static org.example.netty.handler.ClientHandler.callChromeApp;
+import static org.example.netty.handler.ClientHandler.ctxId;
 
 public class NettyClientTeamService {
 
@@ -123,22 +131,36 @@ public class NettyClientTeamService {
                 msgDTO.setCmd(NettyCode.TEAM_WAITING_NEXT);
                 msgDTO.setFrom(from);
                 msgDTO.setMsg(msg);
-                onlineControllerStatic.showUpOnlineUnitButton();
+                onlineControllerStatic.showUpOnlineUnitButton();//確保是同一個controller
                 break;
 
             case NettyCode.TEAM_COURSE_STEP_WAITING:            //09
                 msgDTO.setCmd(NettyCode.TEAM_COURSE_STEP_WAITING);
                 msgDTO.setFrom(from);
                 msgDTO.setMsg(msg);
+                System.out.println("//有人在執行 其他人先等等");
+                System.out.println("準備封鎖");
+                blockImageFunc();
                 break;
 
             case NettyCode.TEAM_COURSE_STEP_STARTING:           //10
                 msgDTO.setCmd(NettyCode.TEAM_COURSE_STEP_STARTING);
                 msgDTO.setFrom(from);
                 msgDTO.setMsg(msg);
+                System.out.println("是"+msgDTO.getFrom()+"的開始訊息");
+                if(Objects.equals(msgDTO.getFrom(), jsonNodeForUser.get("name").asText())){
+                    System.out.println("是本人的開始訊息");
+                }else{
+                    System.out.println("跳轉成績1給1學員，你是學員2準備考試");
+                    displayImageFunc();
+                    operationCounts=3;//先亂設定不要起衝突就好 目前是在answer那邊會增加
+                    callChromeApp();
+                    showQuizDetails(unitIdFromOnlineUnit,eventFromOnlineUnit,2);
+                }
                 break;
 
-            case NettyCode.TEAM_COURSE_STEP_FINISH:             //11
+            case NettyCode.TEAM_COURSE_STEP_FINISH:
+                System.out.println("收到結束的指令");//11
                 msgDTO.setCmd(NettyCode.TEAM_COURSE_STEP_FINISH);
                 msgDTO.setFrom(from);
                 msgDTO.setMsg(msg);

@@ -10,6 +10,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import lombok.Getter;
+import org.example.netty.handler.ClientHandler;
 
 import java.io.IOException;
 import java.util.List;
@@ -18,6 +19,7 @@ import java.util.Objects;
 import static org.example.Main.customFontForAll;
 import static org.example.controller.QuizController.operationCounts;
 import static org.example.controller.QuizController.quizzesdata;
+import static org.example.controller.TsController.jsonNodeForUser;
 import static org.example.controller.UnitController.onlineControlCounts;
 import static org.example.netty.handler.ClientHandler.ctxFromHandler;
 import static org.example.netty.handler.ClientHandler.sendMessageToServer;
@@ -134,7 +136,8 @@ public class AnswerController {
             } else {
                 System.out.println("第一個人考完 我來看看Onlinecontrolcounts?應該要是1??????"+onlineControlCounts);
                 onlineControlCounts+=1;
-                sendMessageToServer("finish",ctxFromHandler);
+                ClientHandler.sendCMD(910203, jsonNodeForUser.get("name").asText());
+//                sendMessageToServer("finish",ctxFromHandler);
                 //第一個同學考完
                 try {
                     FXMLLoader scorelistloader = new FXMLLoader(getClass().getResource("/scorelist.fxml"));

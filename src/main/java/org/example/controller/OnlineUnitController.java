@@ -25,6 +25,7 @@ import javafx.stage.Screen;
 import javafx.stage.Stage;
 import org.example.http.HttpClientGetData;
 import org.example.modeldata.UnitLabelData;
+import org.example.netty.handler.ClientHandler;
 import org.example.vo.Quiz;
 import org.example.vo.Unit;
 
@@ -37,18 +38,21 @@ import java.util.Objects;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 import static org.example.Main.customFontForAll;
+import static org.example.controller.QuizController.postAttendance;
 import static org.example.controller.QuizController.testTime;
+import static org.example.controller.TsController.jsonNodeForUser;
 import static org.example.controller.UnitController.*;
 import static org.example.controller.UnitListController.unitsDataForUnitList;
-import static org.example.netty.handler.ClientHandler.ctxFromHandler;
-import static org.example.netty.handler.ClientHandler.sendMessageToServer;
 import static org.example.netty.server.NettyClient.localhostip;
 
 public class OnlineUnitController {
     public TextArea distext1;
     public TextArea distext2;
     public TextArea distext3;
-    public StackPane imageStackPane;
+    @FXML
+    public static StackPane imageStackPane;
+
+    @FXML
     public ImageView quizImage;
     public Label title3;
     public Label title2;
@@ -73,6 +77,7 @@ public class OnlineUnitController {
     private AtomicBoolean isZoomed1 = new AtomicBoolean(false);
     private AtomicBoolean isZoomed2 = new AtomicBoolean(false);
     private AtomicBoolean isZoomed3 = new AtomicBoolean(false);
+    public static Stage onlineStage;
     MediaPlayer mediaPlayer;
     public void initialize() {
         addMouseHoverHandler(button1, distext1, title1, isZoomed1);
@@ -84,7 +89,7 @@ public class OnlineUnitController {
         informationDetail="號手";
     }
     @FXML
-    public void setUnits(List<Unit> units) {
+    public void setUnits(List<Unit> units, Stage currentStage) {
         if (units != null) {
             unitsData =units;
             System.out.println("傳進unit頁面" + units);
@@ -108,6 +113,10 @@ public class OnlineUnitController {
             System.out.println("imageurl" + units.get(0).getPictureUrl1());
             Image image = new Image("file:///" + units.get(0).getPictureUrl1());
             unitimage.setImage(image);
+
+
+            onlineStage=currentStage;
+            unitIdFromOnlineUnit=units.get(0).getUnitId();
         }
     }
     private void addMouseHoverHandler(ImageView imageView, TextArea textArea, Label title, AtomicBoolean isZoomed) {
@@ -190,9 +199,11 @@ public class OnlineUnitController {
         UnitLabelData buttonData = (UnitLabelData) clickedButton.getUserData();
         Long unitId = (Long) buttonData.getUnitId();
         eventFromOnlineUnit=event;
-        unitIdFromOnlineUnit=unitId;
+//        unitIdFromOnlineUnit=unitId;
         //傳入test1 get
-        sendMessageToServer("get",ctxFromHandler);
+        ClientHandler.sendCMD(910202, jsonNodeForUser.get("name").asText());//傳訊息跟server說我要開始了
+//        sendMessageToServer("get",ctxFromHandler);
+        showQuizDetails(unitIdFromOnlineUnit,eventFromOnlineUnit,1);
         System.out.println("點擊開始測驗UnitId"+unitId);
 //        if (unitId != null) {
 //            showQuizDetails(unitId,event);
@@ -225,7 +236,8 @@ public class OnlineUnitController {
                     SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                     Date currentDate = new Date();
                     testTime= dateFormat.format(currentDate);
-                    System.out.println(testTime+":::::test2Time");
+                    System.out.println(testTime+":::::test1Time");
+                    postAttendance(currentDate,39L);
                 }else{
                     //剛開始test1進入
                     onlineControlCounts=1;
@@ -239,7 +251,9 @@ public class OnlineUnitController {
                 try {
                     Scene quizScene = new Scene(quizroot);
                     quizScene.getStylesheets().add(Objects.requireNonNull(OnlineUnitController.class.getResource("/globalStyles.css")).toExternalForm());
-                    Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                    Stage currentStage = (Stage) onlineStage.getScene().getWindow();
+
+//                    Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                     Screen secondScreen = Screen.getScreens().stream()
                             .filter(screen -> !screen.equals(Screen.getPrimary()))
                             .findFirst()
@@ -260,7 +274,11 @@ public class OnlineUnitController {
                     currentStage.setY(newY);
                     System.out.println("quizScene" + quizScene);
                     currentStage.setAlwaysOnTop(true);
-                    currentStage.setScene(quizScene);
+                    Platform.runLater(() -> {
+                        //會遇到  invokeExceptionCaught(t);的問題，使用這個處理線程
+                        currentStage.setScene(quizScene);
+                    });
+//                    currentStage.setScene(quizScene);
                     currentStage.setTitle("Quiz List");
                 }catch (NullPointerException e) {
                     // 處理NullPointerException，例如記錄錯誤或執行其他操作
