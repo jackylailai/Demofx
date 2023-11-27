@@ -74,7 +74,7 @@ public class ClientHandler extends SimpleChannelInboundHandler<String> {
         ctxFromHandler=ctx;
         Platform.runLater(() -> {
 //            System.out.println("read");
-            System.out.println(servermessage);
+//            System.out.println(servermessage);
 //            NettyClientApp.appendMessageToChatArea(servermessage);
 //            sendMessageToServer("get",ctx);
             switch (servermessage) {
@@ -112,7 +112,7 @@ public class ClientHandler extends SimpleChannelInboundHandler<String> {
 
     }
 
-    private void callChromeApp() {
+    public static void callChromeApp() {
         String shortcutPath = "C:\\Users\\Public\\Desktop\\Google Chrome.lnk";
         if (operationCounts == null) {
             try {

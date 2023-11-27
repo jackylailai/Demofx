@@ -77,7 +77,8 @@ public class OnlineController{
             groupDoneLabel.setVisible(false);
 
             ClientHandler.sendCMD(910003, jsonNodeForUser.get("name").asText());
-
+//            groupDone.setVisible(true);
+//            groupDoneLabel.setVisible(true)
 
             Duration duration = Duration.seconds(1);
 
@@ -116,17 +117,20 @@ public class OnlineController{
         }
 
         OnlineUnitController onlineUnitsController = onlineUnitsLoader.getController();
+        Scene onlineUnitsScene = new Scene(onlineUnitsRoot);
+        onlineUnitsScene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/globalStyles.css")).toExternalForm());
+        Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         try{
             List<Unit> units = showUnitDetails(39L);
             System.out.println("unit list for online : "+units);
-            onlineUnitsController.setUnits(units);
+            onlineUnitsController.setUnits(units,currentStage);
         }catch (NullPointerException e){
             throw new RuntimeException(e);
         }
 //        OnlineUnitsController onlineUnitsController = onlineUnitsLoader.getController();
-        Scene onlineUnitsScene = new Scene(onlineUnitsRoot);
-        onlineUnitsScene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/globalStyles.css")).toExternalForm());
-        Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+//        Scene onlineUnitsScene = new Scene(onlineUnitsRoot);
+//        onlineUnitsScene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/globalStyles.css")).toExternalForm());
+//        Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Screen secondScreen = Screen.getScreens().stream()
                 .filter(screen -> !screen.equals(Screen.getPrimary()))
                 .findFirst()
