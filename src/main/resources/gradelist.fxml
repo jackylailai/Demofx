@@ -35,5 +35,10 @@
             <Image url="@images/返回上一頁箭頭.png" />
          </image>
       </ImageView>
+      <Text layoutX="70.0" layoutY="189.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: TaipeiSansTCBeta-Bold;" styleClass="bold-label" text="以下為訓練成果紀錄">
+         <font>
+            <Font name="System Bold" size="30.0" />
+         </font>
+      </Text>
    </children>
 </Pane>

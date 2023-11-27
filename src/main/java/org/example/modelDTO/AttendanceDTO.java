@@ -15,6 +15,24 @@ public class AttendanceDTO {
     private Long quizId;
     private Date attendanceDate;
     private Integer team;
+    private Integer recordScore;
+    private Integer score;
+
+    public Integer getScore() {
+        return score;
+    }
+
+    public void setScore(Integer score) {
+        this.score = score;
+    }
+
+    public Integer getRecordScore() {
+        return recordScore;
+    }
+
+    public void setRecordScore(Integer recordScore) {
+        this.recordScore = recordScore;
+    }
 
     public Long getId() {
         return id;

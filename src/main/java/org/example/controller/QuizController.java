@@ -145,7 +145,7 @@ public class QuizController {
             if(onlineControlCounts == 0){
                 postAttendance(currentDate);
             }else{
-                postAttendance(currentDate,39L);
+                postAttendance(currentDate,6L,40);
             }
 //            operationLabel.setText(operationText);
         } else if (operation==2) {
@@ -192,15 +192,17 @@ public class QuizController {
         System.out.println("寫入attendance到資料庫");
         System.out.println(jsonResponse + "jsonResponse");
     }
-    public static void postAttendance(Date currentDate,Long courseId){
+    public static void postAttendance(Date currentDate,Long courseId,Integer score){
         AttendanceDTO attendaceDTO = new AttendanceDTO();
         attendaceDTO.setUsername(staticUsername);
         attendaceDTO.setAttendanceDate(currentDate);
         attendaceDTO.setCourseId(courseId);
         attendaceDTO.setQuizId(quizzesdata.get(0).getQuizId());
-        attendaceDTO.setUnitId(unitsData.get(0).getUnitId());
+        attendaceDTO.setUnitId(40L);
         attendaceDTO.setContentId(0L);
         attendaceDTO.setAttendanceId(22L);
+        attendaceDTO.setTeam(1);
+        attendaceDTO.setScore(score);
 //        String username = staticUsername;
 //        Long unitId = unitsData.get(0).getUnitId();
 //        Long courseId = coursedata.get(0).getCourseId();

@@ -237,7 +237,7 @@ public class OnlineUnitController {
                     Date currentDate = new Date();
                     testTime= dateFormat.format(currentDate);
                     System.out.println(testTime+":::::test1Time");
-                    postAttendance(currentDate,39L);
+                    postAttendance(currentDate,6L,60);
                 }else{
                     //剛開始test1進入
                     onlineControlCounts=1;
